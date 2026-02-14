@@ -170,6 +170,56 @@
     </div>
   </div>
 
+  <!-- Funding Intelligence -->
+  <div class="table-section" id="funding-intel-section">
+    <div class="table-header">
+      <h2>Funding Intelligence</h2>
+    </div>
+    <div style="padding:1.5rem">
+      <div style="font-size:0.8rem;color:var(--text-sec);margin-bottom:1rem;line-height:1.5">
+        Cross-referencing NIH Reporter grants with publication data to identify funding
+        misalignments: genes with organic research momentum but no NIH support, and
+        genes with active grants but declining output.
+      </div>
+      <div class="funding-intel-grid">
+        <div class="funding-intel-card">
+          <h4 style="color:var(--green);margin-bottom:0.5rem">Unfunded Momentum</h4>
+          <div style="font-size:0.75rem;color:var(--text-sec);margin-bottom:0.8rem">High recent publications, zero NIH grants</div>
+          <div id="unfunded-momentum-list" style="max-height:280px;overflow-y:auto"></div>
+        </div>
+        <div class="funding-intel-card">
+          <h4 style="color:var(--orange);margin-bottom:0.5rem">Funded but Quiet</h4>
+          <div style="font-size:0.75rem;color:var(--text-sec);margin-bottom:0.8rem">Active grants but &lt;3 recent publications</div>
+          <div id="funded-quiet-list" style="max-height:280px;overflow-y:auto"></div>
+        </div>
+        <div class="funding-intel-card">
+          <h4 style="color:var(--red);margin-bottom:0.5rem">Emerging Hotspots</h4>
+          <div style="font-size:0.75rem;color:var(--text-sec);margin-bottom:0.8rem">Research surging + disease-relevant + no funding = invest now</div>
+          <div id="hotspot-list" style="max-height:280px;overflow-y:auto"></div>
+        </div>
+      </div>
+      <div style="margin-top:1.2rem">
+        <h4 style="color:var(--text);margin-bottom:0.5rem;font-size:0.85rem">Grants vs. Publications</h4>
+        <canvas id="funding-scatter" width="800" height="300" style="width:100%;max-width:800px;height:auto;border:1px solid var(--border);border-radius:var(--radius);background:var(--bg)"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Translational Readiness -->
+  <div class="table-section" id="translational-section">
+    <div class="table-header">
+      <h2>Translational Readiness</h2>
+    </div>
+    <div style="padding:1.5rem">
+      <div style="font-size:0.8rem;color:var(--text-sec);margin-bottom:1rem;line-height:1.5">
+        Composite score ranking genes by proximity to clinical translation:
+        pathogenic variants (ClinVar) + clinical trials + genetic constraint (pLI) +
+        craniofacial expression (GTEx) + disease association (OMIM).
+      </div>
+      <div id="translational-bars" style="max-height:500px;overflow-y:auto"></div>
+    </div>
+  </div>
+
   <!-- Portfolio Overlay -->
   <div class="table-section" id="portfolio-section">
     <div class="table-header">

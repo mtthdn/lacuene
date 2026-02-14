@@ -920,6 +920,67 @@ tr:hover td { background: var(--elevated); }
   white-space: nowrap;
 }
 
+/* Funding Intelligence */
+.funding-intel-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+}
+.funding-intel-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem;
+}
+
+/* Translational Readiness */
+.translational-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.4rem 0.5rem;
+  border-bottom: 1px solid var(--elevated);
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.1s;
+}
+.translational-row:hover { background: var(--elevated); }
+.translational-label {
+  width: 70px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+.translational-bar-bg {
+  flex: 1;
+  height: 10px;
+  background: var(--elevated);
+  border-radius: 5px;
+  overflow: hidden;
+  min-width: 60px;
+}
+.translational-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--green));
+  border-radius: 5px;
+  transition: width 0.4s ease;
+}
+.translational-score {
+  width: 24px;
+  text-align: right;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text);
+  flex-shrink: 0;
+}
+.translational-components {
+  font-size: 0.7rem;
+  color: var(--text-sec);
+  min-width: 120px;
+  flex-shrink: 0;
+}
+
 /* Constraint interpretation */
 .constraint-high { color: var(--red); font-weight: 500; }
 .constraint-moderate { color: var(--orange); font-weight: 500; }
@@ -953,4 +1014,6 @@ tr:hover td { background: var(--elevated); }
   .graph-controls .control-group { gap: 0.3rem; }
   .layout-btn { padding: 5px 10px; font-size: 0.7rem; }
   .graph-header { flex-direction: column; align-items: flex-start; }
+  .funding-intel-grid { grid-template-columns: 1fr; }
+  .translational-components { display: none; }
 }
