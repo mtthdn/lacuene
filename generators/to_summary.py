@@ -39,7 +39,8 @@ def main():
     source_keys = [
         "in_go", "in_omim", "in_hpo", "in_uniprot", "in_facebase",
         "in_clinvar", "in_pubmed", "in_gnomad", "in_nih_reporter", "in_gtex",
-        "in_clinicaltrials", "in_string",
+        "in_clinicaltrials", "in_string", "in_orphanet", "in_opentargets",
+        "in_models", "in_structures",
     ]
     source_counts = {}
     for name in source_keys:
@@ -58,6 +59,10 @@ def main():
         "in_gtex": "GTEx",
         "in_clinicaltrials": "ClinicalTrials",
         "in_string": "STRING",
+        "in_orphanet": "Orphanet",
+        "in_opentargets": "Open Targets",
+        "in_models": "MGI/ZFIN",
+        "in_structures": "AlphaFold/PDB",
     }
 
     print("=" * 60)
@@ -89,7 +94,7 @@ def main():
             print(f"  {g['symbol']:8s}  {syn_str}")
 
     # Per-gene detail table (abbreviated: GO, OMIM, HPO, UniP, FB, CV, PM, gn, NR, GT)
-    headers = ["GO", "OMIM", "HPO", "UniP", "FB", "CV", "PM", "gn", "NR", "GT", "CT", "ST"]
+    headers = ["GO", "OMIM", "HPO", "UniP", "FB", "CV", "PM", "gn", "NR", "GT", "CT", "ST", "OR", "OT", "MO", "St"]
     header_line = "  ".join(f"{h:>4s}" for h in headers)
     print(f"\n{'Symbol':10s} {header_line}  Sources")
     print("-" * 70)

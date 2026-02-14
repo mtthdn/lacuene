@@ -18,6 +18,10 @@ enrichment: {
 			has_expression:  v._in_gtex
 			has_trials:      v._in_clinicaltrials
 			has_interactions: v._in_string
+			has_rare_disease: v._in_orphanet
+			has_drug_target:  v._in_opentargets
+			has_animal_model: v._in_models
+			has_structure:    v._in_structures
 		}
 	}}
 }

@@ -1,6 +1,6 @@
 # lacuene — Neural Crest Gene Reconciliation
 
-Reconciles 95 neural crest development genes across 12 public biomedical databases
+Reconciles 95 neural crest development genes across 16 public biomedical databases
 using CUE's lattice unification. Each source contributes its own fields; CUE unifies
 them into a single model and computes gap reports, weighted priority scoring, and
 enrichment tiers automatically.
@@ -35,7 +35,7 @@ Spans the full neural crest gene regulatory network:
 | Enteric NS | 6 | RET, GDNF, PHOX2B |
 | Cardiac NC | 8 | GATA4, TBX5, HAND2, NKX2-5 |
 
-## 12 Sources
+## 16 Sources
 
 | Source | API | Fields |
 |--------|-----|--------|
@@ -51,26 +51,34 @@ Spans the full neural crest gene regulatory network:
 | GTEx | REST API | Tissue expression (TPM) |
 | ClinicalTrials | ClinicalTrials.gov v2 | Active clinical trials |
 | STRING | STRING API | Protein-protein interactions |
+| Orphanet | Bulk XML (en_product6) | Rare disease prevalence, disorder associations |
+| Open Targets | GraphQL API | Drug target status, pipeline phase |
+| MGI/ZFIN | Alliance API | Mouse/zebrafish model organism availability |
+| AlphaFold/PDB | REST APIs | Protein structure confidence, crystal structures |
 
 ## Architecture
 
 ```
-normalizers/     API queries / file parsing (12 sources)
+normalizers/     API queries / file parsing (16 sources)
     from_go.py ─────────┐
     from_omim.py ────────┤
     from_hpo.py ─────────┤
     from_uniprot.py ─────┤
     from_facebase.py ────┤
-    from_clinvar.py ─────┤  each writes one CUE file
+    from_clinvar.py ─────┤
     from_pubmed.py ──────┤
-    from_gnomad.py ──────┤
+    from_gnomad.py ──────┤  each writes one CUE file
     from_nih_reporter.py ┤
     from_gtex.py ────────┤
     from_clinicaltrials.py ┤
-    from_string.py ──────┘
+    from_string.py ──────┤
+    from_orphanet.py ────┤
+    from_opentargets.py ─┤
+    from_models.py ──────┤
+    from_structures.py ──┘
                          ↓
 model/           CUE lattice unification
-    schema.cue ─── #Gene type definition (12 sources, 80+ fields)
+    schema.cue ─── #Gene type definition (16 sources, 90+ fields)
     *.cue ──────── per-source data files, unify into `genes` struct
     proj_*.cue ─── computed projections (gaps, weighted scoring, enrichment)
                          ↓

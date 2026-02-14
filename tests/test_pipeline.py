@@ -39,14 +39,15 @@ def test_gene_sources():
         assert flags.get("in_omim", False), f"{gene} missing OMIM"
 
 
-def test_twelve_source_flags():
-    """gene_sources has all source flags including orphanet."""
+def test_sixteen_source_flags():
+    """gene_sources has all 16 source flags."""
     sources = cue_export("gene_sources")
     first_gene = next(iter(sources.values()))
     expected_flags = [
         "in_go", "in_omim", "in_hpo", "in_uniprot", "in_facebase",
         "in_clinvar", "in_pubmed", "in_gnomad", "in_nih_reporter", "in_gtex",
-        "in_clinicaltrials", "in_string", "in_orphanet",
+        "in_clinicaltrials", "in_string", "in_orphanet", "in_opentargets",
+        "in_models", "in_structures",
     ]
     for flag in expected_flags:
         assert flag in first_gene, f"Missing source flag: {flag}"
@@ -188,7 +189,7 @@ def main():
     tests = [
         test_model_validates,
         test_gene_sources,
-        test_twelve_source_flags,
+        test_sixteen_source_flags,
         test_gap_report,
         test_enrichment,
         test_gene_detail,

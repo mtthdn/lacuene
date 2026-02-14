@@ -15,6 +15,8 @@ NORMALIZERS = [
     "from_facebase.py", "from_clinvar.py", "from_pubmed.py",
     "from_gnomad.py", "from_nih_reporter.py", "from_gtex.py",
     "from_clinicaltrials.py", "from_string.py",
+    "from_orphanet.py", "from_opentargets.py", "from_models.py",
+    "from_structures.py",
 ]
 
 # Map normalizer to its cache file for staleness checking
@@ -31,6 +33,10 @@ CACHE_FILES = {
     "from_gtex.py": "data/gtex/gtex_cache.json",
     "from_clinicaltrials.py": "data/clinicaltrials/clinicaltrials_cache.json",
     "from_string.py": "data/string/string_cache.json",
+    "from_orphanet.py": "data/orphanet/orphanet_cache.json",
+    "from_opentargets.py": "data/opentargets/opentargets_cache.json",
+    "from_models.py": "data/models/models_cache.json",
+    "from_structures.py": "data/structures/structures_cache.json",
 }
 
 

@@ -19,6 +19,10 @@ _source_flags: {for k, v in genes {
 		_c_gtex:             v._in_gtex
 		_c_clinicaltrials:   v._in_clinicaltrials
 		_c_string:           v._in_string
+		_c_orphanet:         v._in_orphanet
+		_c_opentargets:      v._in_opentargets
+		_c_models:           v._in_models
+		_c_structures:       v._in_structures
 	}
 }}
 
@@ -40,6 +44,10 @@ gap_report: {
 		missing_gtex_count:             len(missing_gtex)
 		missing_clinicaltrials_count:   len(missing_clinicaltrials)
 		missing_string_count:           len(missing_string)
+		missing_orphanet_count:         len(missing_orphanet)
+		missing_opentargets_count:      len(missing_opentargets)
+		missing_models_count:           len(missing_models)
+		missing_structures_count:       len(missing_structures)
 	}
 
 	// Key research gap: known disease genes with no experimental coverage at NIDCR.
@@ -61,6 +69,10 @@ gap_report: {
 	missing_gtex: [for k, v in genes if !v._in_gtex {symbol: k}]
 	missing_clinicaltrials: [for k, v in genes if !v._in_clinicaltrials {symbol: k}]
 	missing_string: [for k, v in genes if !v._in_string {symbol: k}]
+	missing_orphanet: [for k, v in genes if !v._in_orphanet {symbol: k}]
+	missing_opentargets: [for k, v in genes if !v._in_opentargets {symbol: k}]
+	missing_models: [for k, v in genes if !v._in_models {symbol: k}]
+	missing_structures: [for k, v in genes if !v._in_structures {symbol: k}]
 
 	_all_five: [for k, v in genes
 		if v._in_go && v._in_omim && v._in_hpo && v._in_uniprot && v._in_facebase {k}]
