@@ -1,0 +1,1148 @@
+{
+  "ADAM10": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000137845",
+    "max_phase": 0
+  },
+  "ALDH1A2": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000128918",
+    "max_phase": 0
+  },
+  "AXIN2": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000168646",
+    "max_phase": 0
+  },
+  "BMP2": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000125845",
+    "max_phase": 0
+  },
+  "BMP4": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000125378",
+    "max_phase": 0
+  },
+  "BMP7": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000101144",
+    "max_phase": 0
+  },
+  "CDH11": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000140937",
+    "max_phase": 0
+  },
+  "CDH2": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000170558",
+    "max_phase": 0
+  },
+  "CDH6": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000113361",
+    "max_phase": 0
+  },
+  "CHD7": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000171316",
+    "max_phase": 0
+  },
+  "CTNNB1": {
+    "drug_count": 8,
+    "drugs": [
+      {
+        "disease": "colorectal adenocarcinoma",
+        "drug_name": "PRI-724",
+        "drug_type": "Unknown",
+        "phase": 2
+      },
+      {
+        "disease": "cirrhosis of liver",
+        "drug_name": "PRI-724",
+        "drug_type": "Unknown",
+        "phase": 2
+      },
+      {
+        "disease": "acute myeloid leukemia",
+        "drug_name": "PRI-724",
+        "drug_type": "Unknown",
+        "phase": 1
+      },
+      {
+        "disease": "chronic myelogenous leukemia",
+        "drug_name": "PRI-724",
+        "drug_type": "Unknown",
+        "phase": 1
+      },
+      {
+        "disease": "neoplasm",
+        "drug_name": "PRI-724",
+        "drug_type": "Unknown",
+        "phase": 1
+      }
+    ],
+    "ensembl_id": "ENSG00000168036",
+    "max_phase": 2
+  },
+  "CXCR4": {
+    "drug_count": 128,
+    "drugs": [
+      {
+        "disease": "acute lymphoblastic leukemia",
+        "drug_name": "PLERIXAFOR",
+        "drug_type": "Small molecule",
+        "phase": 4
+      },
+      {
+        "disease": "lymphoma",
+        "drug_name": "PLERIXAFOR",
+        "drug_type": "Small molecule",
+        "phase": 4
+      },
+      {
+        "disease": "neoplasm",
+        "drug_name": "PLERIXAFOR",
+        "drug_type": "Small molecule",
+        "phase": 4
+      },
+      {
+        "disease": "lymphoma",
+        "drug_name": "PLERIXAFOR",
+        "drug_type": "Small molecule",
+        "phase": 4
+      },
+      {
+        "disease": "multiple myeloma",
+        "drug_name": "PLERIXAFOR",
+        "drug_type": "Small molecule",
+        "phase": 4
+      }
+    ],
+    "ensembl_id": "ENSG00000121966",
+    "max_phase": 4
+  },
+  "DLL1": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000198719",
+    "max_phase": 0
+  },
+  "DLX2": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000115844",
+    "max_phase": 0
+  },
+  "DLX3": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000064195",
+    "max_phase": 0
+  },
+  "DLX5": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000105880",
+    "max_phase": 0
+  },
+  "DLX6": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000006377",
+    "max_phase": 0
+  },
+  "ECE1": {
+    "drug_count": 1,
+    "drugs": [
+      {
+        "disease": "hypertension",
+        "drug_name": "DAGLUTRIL",
+        "drug_type": "Small molecule",
+        "phase": 2
+      }
+    ],
+    "ensembl_id": "ENSG00000117298",
+    "max_phase": 2
+  },
+  "EDN1": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000078401",
+    "max_phase": 0
+  },
+  "EDN3": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000124205",
+    "max_phase": 0
+  },
+  "EDNRA": {
+    "drug_count": 176,
+    "drugs": [
+      {
+        "disease": "hypertension",
+        "drug_name": "MACITENTAN",
+        "drug_type": "Small molecule",
+        "phase": 4
+      },
+      {
+        "disease": "hypertension",
+        "drug_name": "BOSENTAN",
+        "drug_type": "Small molecule",
+        "phase": 4
+      },
+      {
+        "disease": "hypertension",
+        "drug_name": "BOSENTAN",
+        "drug_type": "Small molecule",
+        "phase": 4
+      },
+      {
+        "disease": "hypertension",
+        "drug_name": "BOSENTAN",
+        "drug_type": "Small molecule",
+        "phase": 4
+      },
+      {
+        "disease": "hypertension",
+        "drug_name": "AMBRISENTAN",
+        "drug_type": "Small molecule",
+        "phase": 4
+      }
+    ],
+    "ensembl_id": "ENSG00000151617",
+    "max_phase": 4
+  },
+  "EDNRB": {
+    "drug_count": 122,
+    "drugs": [
+      {
+        "disease": "hypertension",
+        "drug_name": "AMBRISENTAN",
+        "drug_type": "Small molecule",
+        "phase": 4
+      },
+      {
+        "disease": "hypertension",
+        "drug_name": "SITAXENTAN",
+        "drug_type": "Small molecule",
+        "phase": 4
+      },
+      {
+        "disease": "hypertension",
+        "drug_name": "BOSENTAN",
+        "drug_type": "Small molecule",
+        "phase": 4
+      },
+      {
+        "disease": "hypertension",
+        "drug_name": "BOSENTAN",
+        "drug_type": "Small molecule",
+        "phase": 4
+      },
+      {
+        "disease": "hypertension",
+        "drug_name": "BOSENTAN",
+        "drug_type": "Small molecule",
+        "phase": 4
+      }
+    ],
+    "ensembl_id": "ENSG00000136160",
+    "max_phase": 4
+  },
+  "ERBB3": {
+    "drug_count": 168,
+    "drugs": [
+      {
+        "disease": "neoplasm",
+        "drug_name": "VANDETANIB",
+        "drug_type": "Small molecule",
+        "phase": 4
+      },
+      {
+        "disease": "thyroid carcinoma",
+        "drug_name": "VANDETANIB",
+        "drug_type": "Small molecule",
+        "phase": 4
+      },
+      {
+        "disease": "thyroid neoplasm",
+        "drug_name": "VANDETANIB",
+        "drug_type": "Small molecule",
+        "phase": 4
+      },
+      {
+        "disease": "thyroid cancer",
+        "drug_name": "VANDETANIB",
+        "drug_type": "Small molecule",
+        "phase": 4
+      },
+      {
+        "disease": "medullary thyroid gland carcinoma",
+        "drug_name": "VANDETANIB",
+        "drug_type": "Small molecule",
+        "phase": 4
+      }
+    ],
+    "ensembl_id": "ENSG00000065361",
+    "max_phase": 4
+  },
+  "ETS1": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000134954",
+    "max_phase": 0
+  },
+  "EVC": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000072840",
+    "max_phase": 0
+  },
+  "FGF8": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000107831",
+    "max_phase": 0
+  },
+  "FGFR1": {
+    "drug_count": 655,
+    "drugs": [
+      {
+        "disease": "neoplasm",
+        "drug_name": "FUTIBATINIB",
+        "drug_type": "Small molecule",
+        "phase": 4
+      },
+      {
+        "disease": "neoplasm",
+        "drug_name": "INFIGRATINIB",
+        "drug_type": "Small molecule",
+        "phase": 4
+      },
+      {
+        "disease": "neoplasm",
+        "drug_name": "REGORAFENIB",
+        "drug_type": "Small molecule",
+        "phase": 4
+      },
+      {
+        "disease": "systemic scleroderma",
+        "drug_name": "NINTEDANIB ESYLATE",
+        "drug_type": "Small molecule",
+        "phase": 4
+      },
+      {
+        "disease": "neoplasm",
+        "drug_name": "ERDAFITINIB",
+        "drug_type": "Small molecule",
+        "phase": 4
+      }
+    ],
+    "ensembl_id": "ENSG00000077782",
+    "max_phase": 4
+  },
+  "FGFR2": {
+    "drug_count": 458,
+    "drugs": [
+      {
+        "disease": "neoplasm",
+        "drug_name": "ERDAFITINIB",
+        "drug_type": "Small molecule",
+        "phase": 4
+      },
+      {
+        "disease": "neoplasm",
+        "drug_name": "FUTIBATINIB",
+        "drug_type": "Small molecule",
+        "phase": 4
+      },
+      {
+        "disease": "neoplasm",
+        "drug_name": "PEMIGATINIB",
+        "drug_type": "Small molecule",
+        "phase": 4
+      },
+      {
+        "disease": "neoplasm",
+        "drug_name": "INFIGRATINIB",
+        "drug_type": "Small molecule",
+        "phase": 4
+      },
+      {
+        "disease": "neoplasm",
+        "drug_name": "REGORAFENIB",
+        "drug_type": "Small molecule",
+        "phase": 4
+      }
+    ],
+    "ensembl_id": "ENSG00000066468",
+    "max_phase": 4
+  },
+  "FGFR3": {
+    "drug_count": 550,
+    "drugs": [
+      {
+        "disease": "neoplasm",
+        "drug_name": "ERDAFITINIB",
+        "drug_type": "Small molecule",
+        "phase": 4
+      },
+      {
+        "disease": "neoplasm",
+        "drug_name": "PEMIGATINIB",
+        "drug_type": "Small molecule",
+        "phase": 4
+      },
+      {
+        "disease": "sarcoma",
+        "drug_name": "PAZOPANIB HYDROCHLORIDE",
+        "drug_type": "Small molecule",
+        "phase": 4
+      },
+      {
+        "disease": "renal cell carcinoma",
+        "drug_name": "PAZOPANIB HYDROCHLORIDE",
+        "drug_type": "Small molecule",
+        "phase": 4
+      },
+      {
+        "disease": "systemic scleroderma",
+        "drug_name": "NINTEDANIB ESYLATE",
+        "drug_type": "Small molecule",
+        "phase": 4
+      }
+    ],
+    "ensembl_id": "ENSG00000068078",
+    "max_phase": 4
+  },
+  "FN1": {
+    "drug_count": 23,
+    "drugs": [
+      {
+        "disease": "eye disease",
+        "drug_name": "OCRIPLASMIN",
+        "drug_type": "Protein",
+        "phase": 4
+      },
+      {
+        "disease": "Abnormal retinal morphology",
+        "drug_name": "OCRIPLASMIN",
+        "drug_type": "Protein",
+        "phase": 4
+      },
+      {
+        "disease": "melanoma",
+        "drug_name": "L19IL2",
+        "drug_type": "Unknown",
+        "phase": 3
+      },
+      {
+        "disease": "macular holes",
+        "drug_name": "OCRIPLASMIN",
+        "drug_type": "Protein",
+        "phase": 3
+      },
+      {
+        "disease": "leiomyosarcoma",
+        "drug_name": "L19TNFA",
+        "drug_type": "Unknown",
+        "phase": 2
+      }
+    ],
+    "ensembl_id": "ENSG00000115414",
+    "max_phase": 4
+  },
+  "FOXD3": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000187140",
+    "max_phase": 0
+  },
+  "GATA4": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000136574",
+    "max_phase": 0
+  },
+  "GBX2": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000168505",
+    "max_phase": 0
+  },
+  "GDNF": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000168621",
+    "max_phase": 0
+  },
+  "GFRA1": {
+    "drug_count": 1,
+    "drugs": [
+      {
+        "disease": "Parkinson disease",
+        "drug_name": "LIATERMIN",
+        "drug_type": "Protein",
+        "phase": 1
+      }
+    ],
+    "ensembl_id": "ENSG00000151892",
+    "max_phase": 1
+  },
+  "HAND1": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000113196",
+    "max_phase": 0
+  },
+  "HAND2": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000164107",
+    "max_phase": 0
+  },
+  "IRF6": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000117595",
+    "max_phase": 0
+  },
+  "ITGB1": {
+    "drug_count": 15,
+    "drugs": [
+      {
+        "disease": "renal cell carcinoma",
+        "drug_name": "VOLOCIXIMAB",
+        "drug_type": "Antibody",
+        "phase": 2
+      },
+      {
+        "disease": "melanoma",
+        "drug_name": "VOLOCIXIMAB",
+        "drug_type": "Antibody",
+        "phase": 2
+      },
+      {
+        "disease": "melanoma",
+        "drug_name": "VOLOCIXIMAB",
+        "drug_type": "Antibody",
+        "phase": 2
+      },
+      {
+        "disease": "renal cell carcinoma",
+        "drug_name": "ATN-161",
+        "drug_type": "Protein",
+        "phase": 2
+      },
+      {
+        "disease": "pancreatic carcinoma",
+        "drug_name": "VOLOCIXIMAB",
+        "drug_type": "Antibody",
+        "phase": 2
+      }
+    ],
+    "ensembl_id": "ENSG00000150093",
+    "max_phase": 2
+  },
+  "JAG1": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000101384",
+    "max_phase": 0
+  },
+  "KIT": {
+    "drug_count": 2349,
+    "drugs": [
+      {
+        "disease": "acute lymphoblastic leukemia",
+        "drug_name": "DASATINIB ANHYDROUS",
+        "drug_type": "Small molecule",
+        "phase": 4
+      },
+      {
+        "disease": "acute myeloid leukemia",
+        "drug_name": "MIDOSTAURIN",
+        "drug_type": "Small molecule",
+        "phase": 4
+      },
+      {
+        "disease": "acute lymphoblastic leukemia",
+        "drug_name": "DASATINIB ANHYDROUS",
+        "drug_type": "Small molecule",
+        "phase": 4
+      },
+      {
+        "disease": "chronic myelogenous leukemia",
+        "drug_name": "DASATINIB ANHYDROUS",
+        "drug_type": "Small molecule",
+        "phase": 4
+      },
+      {
+        "disease": "chronic myelogenous leukemia",
+        "drug_name": "DASATINIB ANHYDROUS",
+        "drug_type": "Small molecule",
+        "phase": 4
+      }
+    ],
+    "ensembl_id": "ENSG00000157404",
+    "max_phase": 4
+  },
+  "LEF1": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000138795",
+    "max_phase": 0
+  },
+  "MEF2C": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000081189",
+    "max_phase": 0
+  },
+  "MITF": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000187098",
+    "max_phase": 0
+  },
+  "MMP2": {
+    "drug_count": 9,
+    "drugs": [
+      {
+        "disease": "breast cancer",
+        "drug_name": "MARIMASTAT",
+        "drug_type": "Small molecule",
+        "phase": 3
+      },
+      {
+        "disease": "lung cancer",
+        "drug_name": "MARIMASTAT",
+        "drug_type": "Small molecule",
+        "phase": 3
+      },
+      {
+        "disease": "prostate adenocarcinoma",
+        "drug_name": "REBIMASTAT",
+        "drug_type": "Small molecule",
+        "phase": 2
+      },
+      {
+        "disease": "hepatitis C virus infection",
+        "drug_name": "CTS-1027",
+        "drug_type": "Small molecule",
+        "phase": 2
+      },
+      {
+        "disease": "hepatitis C virus infection",
+        "drug_name": "CTS-1027",
+        "drug_type": "Small molecule",
+        "phase": 2
+      }
+    ],
+    "ensembl_id": "ENSG00000087245",
+    "max_phase": 3
+  },
+  "MMP9": {
+    "drug_count": 20,
+    "drugs": [
+      {
+        "disease": "gastric adenocarcinoma",
+        "drug_name": "ANDECALIXIMAB",
+        "drug_type": "Antibody",
+        "phase": 3
+      },
+      {
+        "disease": "breast cancer",
+        "drug_name": "MARIMASTAT",
+        "drug_type": "Small molecule",
+        "phase": 3
+      },
+      {
+        "disease": "lung cancer",
+        "drug_name": "MARIMASTAT",
+        "drug_type": "Small molecule",
+        "phase": 3
+      },
+      {
+        "disease": "chronic obstructive pulmonary disease",
+        "drug_name": "AZD-1236",
+        "drug_type": "Small molecule",
+        "phase": 2
+      },
+      {
+        "disease": "Crohn's disease",
+        "drug_name": "ANDECALIXIMAB",
+        "drug_type": "Antibody",
+        "phase": 2
+      }
+    ],
+    "ensembl_id": "ENSG00000100985",
+    "max_phase": 3
+  },
+  "MSX1": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000163132",
+    "max_phase": 0
+  },
+  "MSX2": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000120149",
+    "max_phase": 0
+  },
+  "MYCN": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000134323",
+    "max_phase": 0
+  },
+  "NF1": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000196712",
+    "max_phase": 0
+  },
+  "NGFR": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000064300",
+    "max_phase": 0
+  },
+  "NKX2-5": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000183072",
+    "max_phase": 0
+  },
+  "NOTCH1": {
+    "drug_count": 3,
+    "drugs": [
+      {
+        "disease": "neoplasm",
+        "drug_name": "BRONTICTUZUMAB",
+        "drug_type": "Antibody",
+        "phase": 1
+      },
+      {
+        "disease": "cancer",
+        "drug_name": "BRONTICTUZUMAB",
+        "drug_type": "Antibody",
+        "phase": 1
+      },
+      {
+        "disease": "metastatic colorectal cancer",
+        "drug_name": "BRONTICTUZUMAB",
+        "drug_type": "Antibody",
+        "phase": 1
+      }
+    ],
+    "ensembl_id": "ENSG00000148400",
+    "max_phase": 1
+  },
+  "NOTCH2": {
+    "drug_count": 3,
+    "drugs": [
+      {
+        "disease": "neoplasm",
+        "drug_name": "TAREXTUMAB",
+        "drug_type": "Antibody",
+        "phase": 1
+      },
+      {
+        "disease": "small cell lung carcinoma",
+        "drug_name": "TAREXTUMAB",
+        "drug_type": "Antibody",
+        "phase": 1
+      },
+      {
+        "disease": "pancreatic carcinoma",
+        "drug_name": "TAREXTUMAB",
+        "drug_type": "Antibody",
+        "phase": 1
+      }
+    ],
+    "ensembl_id": "ENSG00000134250",
+    "max_phase": 1
+  },
+  "NR2F1": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000175745",
+    "max_phase": 0
+  },
+  "NR2F2": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000185551",
+    "max_phase": 0
+  },
+  "NRP1": {
+    "drug_count": 1,
+    "drugs": [
+      {
+        "disease": "cancer",
+        "drug_name": "VESENCUMAB",
+        "drug_type": "Antibody",
+        "phase": 1
+      }
+    ],
+    "ensembl_id": "ENSG00000099250",
+    "max_phase": 1
+  },
+  "PAX7": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000009709",
+    "max_phase": 0
+  },
+  "PHOX2B": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000109132",
+    "max_phase": 0
+  },
+  "PLXNA2": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000076356",
+    "max_phase": 0
+  },
+  "PMEL": {
+    "drug_count": 12,
+    "drugs": [
+      {
+        "disease": "neoplasm",
+        "drug_name": "TEBENTAFUSP",
+        "drug_type": "Protein",
+        "phase": 4
+      },
+      {
+        "disease": "melanoma",
+        "drug_name": "TEBENTAFUSP",
+        "drug_type": "Protein",
+        "phase": 4
+      },
+      {
+        "disease": "uveal cancer",
+        "drug_name": "TEBENTAFUSP",
+        "drug_type": "Protein",
+        "phase": 4
+      },
+      {
+        "disease": "Uveal Melanoma",
+        "drug_name": "TEBENTAFUSP",
+        "drug_type": "Protein",
+        "phase": 3
+      },
+      {
+        "disease": "melanoma",
+        "drug_name": "TEBENTAFUSP",
+        "drug_type": "Protein",
+        "phase": 2
+      }
+    ],
+    "ensembl_id": "ENSG00000185664",
+    "max_phase": 4
+  },
+  "RAC1": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000136238",
+    "max_phase": 0
+  },
+  "RARA": {
+    "drug_count": 286,
+    "drugs": [
+      {
+        "disease": "acute promyelocytic leukemia",
+        "drug_name": "TRETINOIN",
+        "drug_type": "Small molecule",
+        "phase": 4
+      },
+      {
+        "disease": "acute promyelocytic leukemia",
+        "drug_name": "TRETINOIN",
+        "drug_type": "Small molecule",
+        "phase": 4
+      },
+      {
+        "disease": "acute promyelocytic leukemia",
+        "drug_name": "TRETINOIN",
+        "drug_type": "Small molecule",
+        "phase": 4
+      },
+      {
+        "disease": "psoriasis",
+        "drug_name": "ACITRETIN",
+        "drug_type": "Small molecule",
+        "phase": 4
+      },
+      {
+        "disease": "psoriasis",
+        "drug_name": "ACITRETIN",
+        "drug_type": "Small molecule",
+        "phase": 4
+      }
+    ],
+    "ensembl_id": "ENSG00000131759",
+    "max_phase": 4
+  },
+  "RET": {
+    "drug_count": 1124,
+    "drugs": [
+      {
+        "disease": "neoplasm",
+        "drug_name": "VANDETANIB",
+        "drug_type": "Small molecule",
+        "phase": 4
+      },
+      {
+        "disease": "neoplasm",
+        "drug_name": "ALECTINIB",
+        "drug_type": "Small molecule",
+        "phase": 4
+      },
+      {
+        "disease": "renal cell carcinoma",
+        "drug_name": "SUNITINIB",
+        "drug_type": "Small molecule",
+        "phase": 4
+      },
+      {
+        "disease": "renal cell carcinoma",
+        "drug_name": "SUNITINIB",
+        "drug_type": "Small molecule",
+        "phase": 4
+      },
+      {
+        "disease": "renal cell carcinoma",
+        "drug_name": "SUNITINIB",
+        "drug_type": "Small molecule",
+        "phase": 4
+      }
+    ],
+    "ensembl_id": "ENSG00000165731",
+    "max_phase": 4
+  },
+  "RHOA": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000067560",
+    "max_phase": 0
+  },
+  "RUNX2": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000124813",
+    "max_phase": 0
+  },
+  "SEMA3A": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000075213",
+    "max_phase": 0
+  },
+  "SEMA3C": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000075223",
+    "max_phase": 0
+  },
+  "SHH": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000164690",
+    "max_phase": 0
+  },
+  "SMAD1": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000170365",
+    "max_phase": 0
+  },
+  "SNAI1": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000124216",
+    "max_phase": 0
+  },
+  "SNAI2": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000019549",
+    "max_phase": 0
+  },
+  "SOX10": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000100146",
+    "max_phase": 0
+  },
+  "SOX2": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000181449",
+    "max_phase": 0
+  },
+  "SOX5": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000134532",
+    "max_phase": 0
+  },
+  "SOX8": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000005513",
+    "max_phase": 0
+  },
+  "SOX9": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000125398",
+    "max_phase": 0
+  },
+  "TBX1": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000184058",
+    "max_phase": 0
+  },
+  "TBX5": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000089225",
+    "max_phase": 0
+  },
+  "TCOF1": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000070814",
+    "max_phase": 0
+  },
+  "TFAP2A": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000137203",
+    "max_phase": 0
+  },
+  "TGFBR1": {
+    "drug_count": 30,
+    "drugs": [
+      {
+        "disease": "hepatocellular carcinoma",
+        "drug_name": "GALUNISERTIB",
+        "drug_type": "Small molecule",
+        "phase": 2
+      },
+      {
+        "disease": "myelodysplastic syndrome",
+        "drug_name": "GALUNISERTIB",
+        "drug_type": "Small molecule",
+        "phase": 2
+      },
+      {
+        "disease": "glioblastoma multiforme",
+        "drug_name": "GALUNISERTIB",
+        "drug_type": "Small molecule",
+        "phase": 2
+      },
+      {
+        "disease": "non-small cell lung carcinoma",
+        "drug_name": "VACTOSERTIB",
+        "drug_type": "Small molecule",
+        "phase": 2
+      },
+      {
+        "disease": "stomach neoplasm",
+        "drug_name": "VACTOSERTIB",
+        "drug_type": "Small molecule",
+        "phase": 2
+      }
+    ],
+    "ensembl_id": "ENSG00000106799",
+    "max_phase": 2
+  },
+  "TGFBR2": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000163513",
+    "max_phase": 0
+  },
+  "TWIST1": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000122691",
+    "max_phase": 0
+  },
+  "TWIST2": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000233608",
+    "max_phase": 0
+  },
+  "TYR": {
+    "drug_count": 1,
+    "drugs": [
+      {
+        "disease": "freckles",
+        "drug_name": "ARBUTIN",
+        "drug_type": "Small molecule",
+        "phase": 2
+      }
+    ],
+    "ensembl_id": "ENSG00000077498",
+    "max_phase": 2
+  },
+  "TYRP1": {
+    "drug_count": 1,
+    "drugs": [
+      {
+        "disease": "melanoma",
+        "drug_name": "FLANVOTUMAB",
+        "drug_type": "Antibody",
+        "phase": 1
+      }
+    ],
+    "ensembl_id": "ENSG00000107165",
+    "max_phase": 1
+  },
+  "WNT1": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000125084",
+    "max_phase": 0
+  },
+  "WNT3A": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000154342",
+    "max_phase": 0
+  },
+  "ZEB2": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000169554",
+    "max_phase": 0
+  },
+  "ZIC1": {
+    "drug_count": 0,
+    "drugs": [],
+    "ensembl_id": "ENSG00000152977",
+    "max_phase": 0
+  }
+}
