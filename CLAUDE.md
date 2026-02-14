@@ -18,9 +18,9 @@ lattice semantics. Generators produce JSON summaries and VizData.
 - `just gaps` — Show research gap report
 - `just anomalies` — Show cross-source anomalies
 - `just digest` — Weekly digest markdown
-- `just bulk` — Genome-wide bulk analysis (19K genes, CSV)
-- `just bulk-craniofacial` — Craniofacial bulk analysis (~1.2K genes)
-- `just hgnc` — Download/refresh HGNC gene data
+- `just bulk` — Genome-wide bulk analysis (moved to lacuene-exp)
+- `just bulk-craniofacial` — Craniofacial bulk analysis (moved to lacuene-exp)
+- `just hgnc` — Download/refresh HGNC gene data (moved to lacuene-exp)
 
 ## Architecture
 ```
@@ -38,10 +38,7 @@ normalizers/ (API/file inputs) -> model/ (CUE unification) -> generators/ (JSON/
 ## Key Files
 - `model/schema.cue` — #Gene type definition (the contract)
 - `model/proj_anomalies.cue` — Cross-source anomaly detection rules
-- `normalizers/genes.py` — 494 craniofacial genes + HGNC ID lookup table
-- `normalizers/expand_genes.py` — Gene list expansion from HGNC bulk data
-- `normalizers/bulk_hgnc.py` — HGNC bulk downloader (19K protein-coding genes)
-- `normalizers/bulk_downloads.py` — Genome-wide bulk pipeline (Python-only, no CUE)
+- `normalizers/genes.py` — 95 curated craniofacial genes + HGNC ID lookup table
 - `normalizers/utils.py` — Shared HTTP retry/backoff utilities
 - `normalizers/from_*.py` — Per-source normalizers (16 sources)
 - `generators/to_vizdata.py` — VizData JSON for graph explorer
@@ -50,3 +47,10 @@ normalizers/ (API/file inputs) -> model/ (CUE unification) -> generators/ (JSON/
 - `generators/to_digest.py` — Weekly digest generator (GitHub issue posting)
 - `generators/templates/` — Jinja2 templates (index, about, base)
 - `generators/static/` — CSS and JS (inlined into HTML at build time)
+
+## Related Repos
+- **lacuene-exp** (`~/lacuene-exp`) — Derived data layer, expanded gene sets, Flask API, overnight workers
+  - API: `lacuene-api.apercue.ca` (LXC 638 on tulip, port 5100)
+  - Static site: `lacuene.apercue.ca` (LXC 612 Caddy)
+  - Bulk/expanded scripts moved here (bulk_hgnc.py, bulk_downloads.py, expand_genes.py)
+  - 95 curated genes stay in lacuene; 494 expanded served from lacuene-exp
