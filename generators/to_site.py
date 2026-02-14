@@ -15,6 +15,7 @@ CSS and JS are inlined via Jinja2 {% include %} for single-file output.
 
 import json
 import os
+import shutil
 import subprocess
 import sys
 from datetime import date
@@ -248,6 +249,11 @@ def main():
     about_path = os.path.join(out_dir, "about.html")
     with open(about_path, "w") as f:
         f.write(about_html)
+
+    # Copy CNAME for custom domain
+    cname_src = STATIC_DIR / "CNAME"
+    if cname_src.exists():
+        shutil.copy2(cname_src, os.path.join(out_dir, "CNAME"))
 
     # Persist current snapshot
     snap_path = os.path.join(snap_dir, f"{today}.json")
