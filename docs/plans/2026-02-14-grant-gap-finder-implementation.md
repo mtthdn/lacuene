@@ -184,7 +184,7 @@ def escape_cue_string(s: str) -> str:
 
 def generate_cue(pubmed_data: dict) -> str:
     lines = [
-        "package froq",
+        "package lacuene",
         "",
         "// PubMed: craniofacial publication data for neural crest genes.",
         "// Source: NCBI PubMed via E-utilities (esearch + esummary)",
@@ -445,7 +445,7 @@ git commit -m "Run all 7 normalizers for 95 genes"
 This CUE file computes gap severity for each gene using the flags:
 
 ```cue
-package froq
+package lacuene
 
 // Funding gap analysis for NIDCR program officers.
 // Scores genes by: has disease + has phenotype + no experimental data + low/no publications.

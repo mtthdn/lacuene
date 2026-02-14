@@ -647,7 +647,7 @@ Add a function that writes the gene list as a CUE file:
 def export_cue(output_path: str):
     """Export gene list as CUE for model self-description."""
     lines = [
-        "package froq",
+        "package lacuene",
         "",
         "// Canonical gene list with HGNC symbols and developmental roles.",
         "// Auto-generated from normalizers/genes.py — do not hand-edit.",
@@ -763,7 +763,7 @@ git commit -m "Update all projections for 10-source model"
 **Step 1: Create proj_weighted_gaps.cue**
 
 ```cue
-package froq
+package lacuene
 
 // Weighted gap priority scoring.
 // Higher score = higher funding priority for NIDCR.
@@ -1005,7 +1005,7 @@ Everything inside `<script>` tags (excluding Cytoscape CDN) goes to `generators/
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{% block title %}froq{% endblock %}</title>
+<title>{% block title %}lacuene{% endblock %}</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.28.1/cytoscape.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>{% include "style.css" %}</style>

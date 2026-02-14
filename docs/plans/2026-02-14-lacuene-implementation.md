@@ -1,4 +1,4 @@
-# froq Implementation Plan
+# lacuene Implementation Plan
 
 > **For Claude:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task.
 
@@ -42,7 +42,7 @@ __pycache__/
 **Step 2: Create CLAUDE.md**
 
 ```markdown
-# CLAUDE.md — froq
+# CLAUDE.md — lacuene
 
 ## What This Is
 Neural crest gene reconciliation pipeline. Normalizers transform biomedical
@@ -81,7 +81,7 @@ normalizers/ (API/file inputs) -> model/ (CUE unification) -> generators/ (JSON/
 **Step 3: Create justfile skeleton**
 
 ```just
-# froq: Neural crest gene reconciliation pipeline
+# lacuene: Neural crest gene reconciliation pipeline
 # Unifies GO, OMIM, HPO, UniProt, and FaceBase into one CUE model.
 
 default: validate generate
@@ -177,7 +177,7 @@ git add -A && git commit -m "Scaffold repo: CLAUDE.md, justfile, directory struc
 **Step 1: Write model/schema.cue**
 
 ```cue
-package froq
+package lacuene
 
 // Unified gene schema. Five sources contribute fields.
 // Each source claims its own identifiers — no shared mutable fields.
@@ -423,7 +423,7 @@ API endpoint: `https://www.ebi.ac.uk/QuickGO/services/annotation/search?geneProd
 
 Output format matches prior pipeline pattern:
 ```cue
-package froq
+package lacuene
 
 genes: {
     "IRF6": {
@@ -588,7 +588,7 @@ git commit -m "Add FaceBase normalizer: craniofacial datasets for 20 genes"
 **Step 1: Write model/proj_sources.cue**
 
 ```cue
-package froq
+package lacuene
 
 // Export source provenance as visible fields.
 gene_sources: {for k, v in genes {
@@ -605,7 +605,7 @@ gene_sources: {for k, v in genes {
 **Step 2: Write model/proj_gap_report.cue**
 
 ```cue
-package froq
+package lacuene
 
 // Gap report: which genes are missing from which sources?
 
@@ -672,7 +672,7 @@ Test with `cue eval` and adjust the counting pattern if needed.
 **Step 3: Write model/proj_enrichment.cue**
 
 ```cue
-package froq
+package lacuene
 
 // Enrichment tiers: how many biological layers describe each gene?
 enrichment: {
@@ -717,7 +717,7 @@ Shows: per-gene table with source coverage, gap report, enrichment breakdown.
 
 Output format:
 ```
-=== froq: Neural Crest Gene Reconciliation ===
+=== lacuene: Neural Crest Gene Reconciliation ===
 20 genes unified across 5 sources
 
 Coverage:

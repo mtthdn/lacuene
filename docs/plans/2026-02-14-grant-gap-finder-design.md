@@ -5,11 +5,11 @@
 
 ## Purpose
 
-Turn froq from a technical demo into a research utility for Dr. Jamie Kugler
+Turn lacuene from a technical demo into a research utility for Dr. Jamie Kugler
 (NIDCR, NIH). She's a program officer managing dental/craniofacial research
 grants. Her core question: "Where should NIDCR be directing funding?"
 
-froq answers this by cross-referencing disease severity (OMIM), clinical
+lacuene answers this by cross-referencing disease severity (OMIM), clinical
 phenotypes (HPO), experimental data (FaceBase), variant pathogenicity (ClinVar),
 and now publication volume (PubMed) to surface **genes that are clinically
 important but scientifically understudied**.

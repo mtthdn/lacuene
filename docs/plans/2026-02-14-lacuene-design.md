@@ -1,4 +1,4 @@
-# froq: Neural Crest Gene Reconciliation Pipeline
+# lacuene: Neural Crest Gene Reconciliation Pipeline
 
 **Date:** 2026-02-14
 **Status:** Approved
@@ -66,7 +66,7 @@ Source-native IDs are preserved in per-source fields.
 ## Schema (`model/schema.cue`)
 
 ```cue
-package froq
+package lacuene
 
 #Gene: {
     symbol: string
@@ -159,7 +159,7 @@ genes: [Symbol=string]: #Gene & {symbol: Symbol}
 ## File Layout
 
 ```
-froq/
+lacuene/
 ├── model/
 │   ├── schema.cue
 │   ├── go.cue               (generated)
