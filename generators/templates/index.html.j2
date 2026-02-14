@@ -244,6 +244,40 @@
     <div style="padding:1.5rem" id="history-content"></div>
   </div>
 
+  <!-- Expanded Pipeline (lacuene-exp) -->
+  <div class="table-section" id="expanded-section">
+    <div class="table-header" style="cursor:pointer" onclick="toggleExpanded()">
+      <h2>Expanded Pipeline</h2>
+      <div class="table-actions">
+        <span class="anomaly-summary-badge" id="expanded-badge">{{ expanded_gene_count }} expanded genes</span>
+        <button class="action-btn" id="expanded-toggle-btn">Expand</button>
+      </div>
+    </div>
+    <div class="collapsible-section" id="expanded-body" style="display:none">
+      <div style="padding:1.5rem">
+        <div style="font-size:0.8rem;color:var(--text-sec);margin-bottom:1rem;line-height:1.5">
+          Beyond the {{ total }} curated genes, the expanded pipeline identifies
+          <strong>{{ expanded_gene_count }}</strong> craniofacial-adjacent genes from HGNC gene groups
+          and name matching. Gap candidates below have disease signal (HPO, Orphanet, OMIM)
+          but are not in the curated set — potential research targets.
+          <span id="api-status-indicator" style="margin-left:0.5rem"></span>
+        </div>
+        <div class="funding-intel-grid" style="grid-template-columns: 1fr 1fr">
+          <div class="funding-intel-card">
+            <h4 style="color:var(--accent);margin-bottom:0.5rem">Gap Candidates</h4>
+            <div style="font-size:0.75rem;color:var(--text-sec);margin-bottom:0.8rem">Genes with disease signal not in curated {{ total }}</div>
+            <div id="gap-candidates-list" style="max-height:350px;overflow-y:auto"></div>
+          </div>
+          <div class="funding-intel-card">
+            <h4 style="color:var(--orange);margin-bottom:0.5rem">Pipeline Status</h4>
+            <div style="font-size:0.75rem;color:var(--text-sec);margin-bottom:0.8rem">Overnight derivation pipeline health</div>
+            <div id="pipeline-status-content" style="font-size:0.8rem;line-height:1.8"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Cross-Source Anomalies -->
   <div class="table-section" id="anomalies-section">
     <div class="table-header" style="cursor:pointer" onclick="toggleAnomalies()">

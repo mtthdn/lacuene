@@ -12,6 +12,7 @@ import os
 import subprocess
 import sys
 from collections import defaultdict
+from pathlib import Path
 
 # Import gene metadata for roles and coloring
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "normalizers"))
@@ -30,6 +31,7 @@ ROLE_COLORS = {
     "enteric": "#79c0ff",        # light blue — enteric nervous system
     "cardiac": "#f0883e",        # dark orange — cardiac neural crest
     "patterning": "#f85149",     # red — legacy, keep for backward compat
+    "expanded": "#484f58",       # muted gray — expanded-tier genes
 }
 
 ROLE_LABELS = {
@@ -42,6 +44,7 @@ ROLE_LABELS = {
     "enteric": "Enteric NS",
     "cardiac": "Cardiac NC",
     "patterning": "Patterning / disease",
+    "expanded": "Expanded",
 }
 
 
@@ -228,6 +231,52 @@ def build_ppi_edges(genes_data: dict) -> list[dict]:
     return edges
 
 
+def load_expanded_genes(curated_symbols: set[str]) -> list[dict]:
+    """Load expanded-tier genes from lacuene-exp, if available.
+
+    Returns Cytoscape.js node objects for genes not already in the curated set,
+    excluding ZNF-family genes. Returns an empty list if the file is not found.
+    """
+    # Try sibling repo path first, then environment variable override
+    exp_path = Path(os.path.dirname(__file__)).parent.parent / "lacuene-exp" / "expanded" / "hgnc_craniofacial.json"
+    if not exp_path.exists():
+        exp_path = Path(os.environ.get("LACUENE_EXP_PATH", "")) / "expanded" / "hgnc_craniofacial.json"
+    if not exp_path.exists():
+        return []
+
+    with open(exp_path) as f:
+        expanded = json.load(f)
+
+    nodes = []
+    for gene in expanded:
+        sym = gene.get("symbol", "")
+        if not sym:
+            continue
+        # Skip genes already in curated set
+        if sym in curated_symbols:
+            continue
+        # Filter out ZNF-family genes (large, low-signal cluster)
+        if sym.startswith("ZNF"):
+            continue
+        nodes.append({
+            "data": {
+                "id": sym,
+                "label": sym,
+                "type": "expanded",
+                "role_label": ROLE_LABELS["expanded"],
+                "source_count": 0,
+                "pub_count": 0,
+                "pub_recent": 0,
+                "velocity": 0,
+                "trend": "none",
+                "color": ROLE_COLORS["expanded"],
+                "size": 8,
+                "opacity": 0.5,
+            }
+        })
+    return nodes
+
+
 def main():
     print("to_vizdata: exporting model data...")
     sources = cue_export("gene_sources")
@@ -235,11 +284,19 @@ def main():
 
     print(f"to_vizdata: building graph for {len(sources)} genes...")
     nodes = build_nodes(sources, genes_data)
+    curated_count = len(nodes)
     edges = build_edges(genes_data)
     pathway_edges = build_pathway_edges(genes_data)
     ppi_edges = build_ppi_edges(genes_data)
     edges.extend(pathway_edges)
     edges.extend(ppi_edges)
+
+    # Load expanded-tier genes from lacuene-exp (optional, no edges)
+    curated_symbols = set(sources.keys())
+    expanded_nodes = load_expanded_genes(curated_symbols)
+    if expanded_nodes:
+        nodes.extend(expanded_nodes)
+        print(f"to_vizdata: added {len(expanded_nodes)} expanded-tier genes")
 
     vizdata = {
         "nodes": nodes,
@@ -247,6 +304,8 @@ def main():
         "metadata": {
             "title": "lacuene: Neural Crest Gene Reconciliation",
             "gene_count": len(nodes),
+            "curated_count": curated_count,
+            "expanded_count": len(expanded_nodes),
             "edge_count": len(edges),
             "sources": ["Gene Ontology", "OMIM", "HPO", "UniProt", "FaceBase",
                         "ClinVar", "PubMed", "gnomAD", "NIH Reporter", "GTEx",
@@ -261,7 +320,7 @@ def main():
         json.dump(vizdata, f, indent=2)
 
     print(f"to_vizdata: wrote {output}")
-    print(f"  {len(nodes)} nodes, {len(edges)} edges")
+    print(f"  {len(nodes)} nodes ({curated_count} curated, {len(expanded_nodes)} expanded), {len(edges)} edges")
 
     # Print edge type breakdown
     pheno_edges = sum(1 for e in edges if e["data"]["type"] == "shared_phenotype")

@@ -181,6 +181,64 @@ def build_digest() -> str:
         lines.append("All sources have complete coverage.")
     lines.append("")
 
+    # Expanded pipeline (lacuene-exp)
+    exp_dir = REPO_ROOT / ".." / "lacuene-exp" / "derived"
+    gap_file = exp_dir / "gap_candidates.json"
+    status_file = exp_dir / "pipeline_status.json"
+
+    if gap_file.exists():
+        with open(gap_file) as f:
+            gap_data = json.load(f)
+
+        candidate_count = gap_data.get("candidate_count", 0)
+        candidates = gap_data.get("candidates", [])
+
+        lines.append("### Expanded Pipeline (lacuene-exp)")
+        lines.append("")
+
+        # Show last run date if status file available
+        if status_file.exists():
+            with open(status_file) as f:
+                status = json.load(f)
+            last_run = status.get("last_run", "unknown")
+            lines.append(f"*Last run: {last_run}*")
+            lines.append("")
+
+        lines.append(
+            f"**{candidate_count} gap candidates** identified "
+            f"with disease signal not in curated set."
+        )
+        lines.append("")
+
+        # Top 5 by confidence score
+        top = sorted(
+            candidates, key=lambda c: c.get("confidence_score", 0),
+            reverse=True
+        )[:5]
+
+        if top:
+            lines.append("Top candidates by confidence:")
+            for c in top:
+                ev = c.get("evidence", {})
+                hpo = ev.get("hpo_phenotype_count", 0)
+                orph = ev.get("orphanet_disorder_count", 0)
+                lines.append(
+                    f"- `{c['symbol']}` — "
+                    f"HPO: {hpo} phenotypes, Orphanet: {orph} disorders"
+                )
+            lines.append("")
+
+        lines.append("Run `just rebuild` in lacuene-exp to refresh.")
+        lines.append("")
+    else:
+        lines.append("### Expanded Pipeline")
+        lines.append("")
+        lines.append(
+            "No derived data available. "
+            "Run overnight pipeline in lacuene-exp."
+        )
+        lines.append("")
+
     # Footer
     lines.append("---")
     lines.append(

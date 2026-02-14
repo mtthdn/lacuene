@@ -7,6 +7,8 @@ const ANOMALIES = {{ anomalies_json }};
 const FUNDING_INTEL = {{ funding_intel_json }};
 const SYNDROME_FUNDING = {{ syndrome_funding_json }};
 const SOURCE_COUNT = {{ source_count }};
+const GAP_CANDIDATES = {{ gap_candidates_json }};
+const PIPELINE_STATUS = {{ pipeline_status_json }};
 let currentFilteredRows = GENE_ROWS;
 const compareSet = new Set();
 
@@ -1050,6 +1052,79 @@ const ANOMALY_TYPE_META = {
   high_pubs_no_facebase: { label: 'High Pubs / No FaceBase',     color: 'var(--orange)',  icon: 'W' },
   clinvar_no_hpo:        { label: 'ClinVar / No HPO Phenotypes',  color: 'var(--red)',     icon: 'E' },
 };
+
+// === Expanded Pipeline Section ===
+let expandedExpanded = false;
+function toggleExpanded() {
+  expandedExpanded = !expandedExpanded;
+  const body = document.getElementById('expanded-body');
+  const btn = document.getElementById('expanded-toggle-btn');
+  if (expandedExpanded) {
+    body.style.display = 'block';
+    btn.textContent = 'Collapse';
+  } else {
+    body.style.display = 'none';
+    btn.textContent = 'Expand';
+  }
+}
+
+(function renderExpandedPipeline() {
+  const candidates = (GAP_CANDIDATES.candidates || []).slice(0, 30);
+  const list = document.getElementById('gap-candidates-list');
+  if (!list) return;
+
+  if (candidates.length === 0) {
+    list.innerHTML = '<div style="color:var(--text-sec);font-size:0.8rem">No gap candidates available. Run overnight pipeline in lacuene-exp.</div>';
+  } else {
+    candidates.forEach(c => {
+      const div = document.createElement('div');
+      div.className = 'gap-item';
+      const hpo = c.evidence ? c.evidence.hpo_phenotype_count : 0;
+      const orphCount = c.evidence ? c.evidence.orphanet_disorder_count : 0;
+      const scoreBadge = `<span class="priority-badge" style="background:var(--accent);color:var(--bg)">S:${c.confidence_score}</span>`;
+      div.innerHTML = `
+        <div>
+          <div class="gap-gene">${c.symbol} ${scoreBadge}</div>
+          <div class="gap-syndrome" style="font-size:0.7rem;color:var(--text-sec)">HPO: ${hpo} phenotypes${orphCount > 0 ? ` · Orphanet: ${orphCount} disorders` : ''}</div>
+        </div>
+        <div class="gap-pubs" style="font-size:0.7rem">${c.cf_source || 'expanded'}</div>
+      `;
+      list.appendChild(div);
+    });
+  }
+
+  // Pipeline status
+  const statusEl = document.getElementById('pipeline-status-content');
+  if (statusEl && PIPELINE_STATUS && PIPELINE_STATUS.last_run) {
+    const phases = PIPELINE_STATUS.phases || {};
+    const phaseHtml = Object.entries(phases).map(([k, v]) => {
+      const color = v === 'ok' ? 'var(--green)' : 'var(--red)';
+      return `<div>${k.replace(/_/g, ' ')}: <strong style="color:${color}">${v}</strong></div>`;
+    }).join('');
+    statusEl.innerHTML = `
+      <div>Last run: <strong>${PIPELINE_STATUS.last_run}</strong></div>
+      <div>Duration: ${PIPELINE_STATUS.duration_seconds}s</div>
+      <div style="margin-top:0.5rem">${phaseHtml}</div>
+    `;
+  } else if (statusEl) {
+    statusEl.innerHTML = '<div style="color:var(--text-sec)">No pipeline status available.</div>';
+  }
+
+  // Live API status check
+  const indicator = document.getElementById('api-status-indicator');
+  if (indicator) {
+    fetch('http://lacuene-api.apercue.ca/api/status', {mode: 'cors'})
+      .then(r => r.json())
+      .then(d => {
+        const tiers = d.tiers || {};
+        indicator.innerHTML = '<span style="color:var(--green)">● API live</span>' +
+          ` (curated: ${tiers.curated?.genes || '?'}, expanded: ${tiers.expanded?.genes || '?'})`;
+      })
+      .catch(() => {
+        indicator.innerHTML = '<span style="color:var(--text-sec)">○ API offline</span>';
+      });
+  }
+})();
 
 let anomaliesExpanded = false;
 

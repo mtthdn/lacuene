@@ -296,6 +296,31 @@ def main():
     # Computed per gene_row so it's available in the gene table
     # (added to gene_rows after they're built below)
 
+    # === Expanded Pipeline Data (from lacuene-exp, build-time) ===
+    exp_base = Path(os.path.dirname(__file__)).parent.parent / "lacuene-exp"
+    gap_candidates_data = {"candidates": [], "candidate_count": 0}
+    expanded_gene_count = 0
+    pipeline_status = {}
+    try:
+        gc_path = exp_base / "derived" / "gap_candidates.json"
+        if gc_path.exists():
+            with open(gc_path) as f:
+                gap_candidates_data = json.load(f)
+        eg_path = exp_base / "expanded" / "hgnc_craniofacial.json"
+        if eg_path.exists():
+            with open(eg_path) as f:
+                expanded_genes_raw = json.load(f)
+                # Filter ZNF like the API does
+                expanded_genes_raw = [g for g in expanded_genes_raw
+                                      if "Zinc fingers C2H2" not in str(g.get("source", ""))]
+                expanded_gene_count = len(expanded_genes_raw)
+        ps_path = exp_base / "derived" / "pipeline_status.json"
+        if ps_path.exists():
+            with open(ps_path) as f:
+                pipeline_status = json.load(f)
+    except (json.JSONDecodeError, OSError) as e:
+        print(f"  Note: expanded data not available ({e})", file=sys.stderr)
+
     # Temporal snapshots
     snap_dir = os.path.join(os.path.dirname(__file__), "..", "output", "snapshots")
     os.makedirs(snap_dir, exist_ok=True)
@@ -362,6 +387,9 @@ def main():
         funding_summary=funding_summary,
         snapshots=snapshots,
         legend_items=legend_items,
+        gap_candidates_json=json.dumps(gap_candidates_data),
+        expanded_gene_count=expanded_gene_count,
+        pipeline_status_json=json.dumps(pipeline_status),
     )
 
     # Render about page
