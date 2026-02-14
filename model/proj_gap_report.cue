@@ -14,9 +14,11 @@ _source_flags: {for k, v in genes {
 		_c_facebase:     v._in_facebase
 		_c_clinvar:      v._in_clinvar
 		_c_pubmed:       v._in_pubmed
-		_c_gnomad:       v._in_gnomad
-		_c_nih_reporter: v._in_nih_reporter
-		_c_gtex:         v._in_gtex
+		_c_gnomad:           v._in_gnomad
+		_c_nih_reporter:     v._in_nih_reporter
+		_c_gtex:             v._in_gtex
+		_c_clinicaltrials:   v._in_clinicaltrials
+		_c_string:           v._in_string
 	}
 }}
 
@@ -33,9 +35,11 @@ gap_report: {
 		missing_facebase_count:     len(missing_facebase)
 		missing_clinvar_count:      len(missing_clinvar)
 		missing_pubmed_count:       len(missing_pubmed)
-		missing_gnomad_count:       len(missing_gnomad)
-		missing_nih_reporter_count: len(missing_nih_reporter)
-		missing_gtex_count:         len(missing_gtex)
+		missing_gnomad_count:           len(missing_gnomad)
+		missing_nih_reporter_count:     len(missing_nih_reporter)
+		missing_gtex_count:             len(missing_gtex)
+		missing_clinicaltrials_count:   len(missing_clinicaltrials)
+		missing_string_count:           len(missing_string)
 	}
 
 	// Key research gap: known disease genes with no experimental coverage at NIDCR.
@@ -55,6 +59,8 @@ gap_report: {
 	missing_gnomad: [for k, v in genes if !v._in_gnomad {symbol: k}]
 	missing_nih_reporter: [for k, v in genes if !v._in_nih_reporter {symbol: k}]
 	missing_gtex: [for k, v in genes if !v._in_gtex {symbol: k}]
+	missing_clinicaltrials: [for k, v in genes if !v._in_clinicaltrials {symbol: k}]
+	missing_string: [for k, v in genes if !v._in_string {symbol: k}]
 
 	_all_five: [for k, v in genes
 		if v._in_go && v._in_omim && v._in_hpo && v._in_uniprot && v._in_facebase {k}]

@@ -2,21 +2,29 @@ const VIZDATA = {{ vizdata_json }};
 const GENE_ROWS = {{ gene_rows_json }};
 const CRITICAL_GAPS = {{ critical_gaps_json }};
 const SNAPSHOTS = {{ snapshots_json }};
+const WEIGHTED_GAPS = {{ weighted_gaps_json }};
 const SOURCE_COUNT = {{ source_count }};
 let currentFilteredRows = GENE_ROWS;
 
-// Populate gap list (Card 1)
+// Populate gap list (Card 1) — sorted by weighted priority score
 const gapList = document.getElementById('gap-list');
-CRITICAL_GAPS.slice(0, 20).forEach(g => {
+const sortedGaps = [...CRITICAL_GAPS].sort((a, b) => {
+  const sa = (WEIGHTED_GAPS[a.symbol] || {}).priority_score || 0;
+  const sb = (WEIGHTED_GAPS[b.symbol] || {}).priority_score || 0;
+  return sb - sa;
+});
+sortedGaps.slice(0, 20).forEach(g => {
   const div = document.createElement('div');
   div.className = 'gap-item';
   div.onclick = () => focusGene(g.symbol);
   const syns = (g.syndromes || []).join(', ') || 'Disease association (see OMIM)';
   const pubLabel = g.pub_count > 0 ? g.pub_count + ' pubs' : 'No pubs';
   const severity = g.pub_count === 0 ? 'var(--red)' : g.pub_count < 20 ? 'var(--orange)' : 'var(--green)';
+  const score = (WEIGHTED_GAPS[g.symbol] || {}).priority_score || 0;
+  const scoreBadge = score > 0 ? `<span class="priority-badge">P:${score}</span>` : '';
   div.innerHTML = `
     <div>
-      <div class="gap-gene"><span class="gap-severity" style="background:${severity}"></span>${g.symbol}</div>
+      <div class="gap-gene"><span class="gap-severity" style="background:${severity}"></span>${g.symbol}${scoreBadge}</div>
       <div class="gap-syndrome">${syns}</div>
     </div>
     <div class="gap-pubs">${pubLabel}</div>
@@ -31,9 +39,11 @@ diseaseGenes.slice(0, 20).forEach(g => {
   const div = document.createElement('div');
   div.className = 'gap-item';
   div.onclick = () => focusGene(g.symbol);
+  const score = (WEIGHTED_GAPS[g.symbol] || {}).priority_score || 0;
+  const scoreBadge = score > 0 ? `<span class="priority-badge">P:${score}</span>` : '';
   div.innerHTML = `
     <div>
-      <div class="gap-gene">${g.symbol}</div>
+      <div class="gap-gene">${g.symbol}${scoreBadge}</div>
       <div class="gap-syndrome">${g.syndrome || 'See OMIM'}</div>
     </div>
     <div class="gap-pubs">${g.pub_total} pubs<br><span style="color:var(--text-sec)">${g.phenotype_count} phenotypes</span></div>
@@ -44,6 +54,14 @@ diseaseGenes.slice(0, 20).forEach(g => {
 // Gene table
 const tbody = document.getElementById('gene-tbody');
 let sortState = { col: null, asc: true };
+function trendArrow(pub_total, pub_recent) {
+  if (!pub_total || pub_total === 0) return '';
+  const ratio = pub_recent / pub_total;
+  if (ratio > 0.5) return '<span class="trend-arrow rising" title="Rising">&#9650;</span>';
+  if (ratio > 0.2) return '<span class="trend-arrow stable" title="Stable">&#9644;</span>';
+  return '<span class="trend-arrow declining" title="Declining">&#9660;</span>';
+}
+
 function renderTable(rows) {
   tbody.innerHTML = '';
   rows.forEach(g => {
@@ -63,8 +81,10 @@ function renderTable(rows) {
       <td>${mark(g.gnomad)}</td>
       <td>${mark(g.nih_reporter)}</td>
       <td>${mark(g.gtex)}</td>
+      <td>${mark(g.clinicaltrials)}</td>
+      <td>${mark(g.string)}</td>
       <td>${g.count}/${SOURCE_COUNT}</td>
-      <td>${g.pub_total || '&mdash;'}</td>
+      <td>${g.pub_total || '&mdash;'}${trendArrow(g.pub_total, g.pub_recent)}</td>
       <td>${g.pub_recent || '&mdash;'}</td>
       <td>${g.pathogenic || '&mdash;'}</td>
       <td style="font-size:0.75rem;color:var(--text-sec)">${g.syndrome}</td>
@@ -143,6 +163,15 @@ const cy = cytoscape({
       }
     },
     {
+      selector: 'edge[type="ppi"]',
+      style: {
+        'line-color': '#3fb950',
+        'width': 1.5,
+        'opacity': 0.5,
+        'line-style': 'dashed',
+      }
+    },
+    {
       selector: 'node:selected',
       style: {
         'border-color': '#e6edf3',
@@ -187,7 +216,7 @@ const cy = cytoscape({
 });
 
 function setLayout(name, btn) {
-  document.querySelectorAll('.layout-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.layout-btn:not(.edge-filter)').forEach(b => b.classList.remove('active'));
   if (btn) btn.classList.add('active');
   const opts = { name: name, animate: true, animationDuration: 600 };
   if (name === 'cose') {
@@ -205,6 +234,17 @@ function setLayout(name, btn) {
     });
   }
   cy.layout(opts).run();
+}
+
+function filterEdges(type, btn) {
+  document.querySelectorAll('.edge-filter').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  if (type === 'all') {
+    cy.edges().style('display', 'element');
+  } else {
+    cy.edges().style('display', 'none');
+    cy.edges(`[type="${type}"]`).style('display', 'element');
+  }
 }
 
 cy.on('tap', 'node', function(evt) {
@@ -230,7 +270,8 @@ cy.on('mouseover', 'edge', function(evt) {
   const edge = evt.target;
   const label = edge.data('label') || '';
   if (!label) return;
-  const prefix = edge.data('type') === 'shared_syndrome' ? 'Syndrome' : 'Phenotype';
+  const edgeType = edge.data('type');
+  const prefix = edgeType === 'shared_syndrome' ? 'Syndrome' : edgeType === 'shared_pathway' ? 'Pathway' : edgeType === 'ppi' ? 'PPI' : 'Phenotype';
   edgeTooltip.textContent = prefix + ': ' + label;
   edgeTooltip.style.display = 'block';
   const pos = evt.renderedPosition || evt.position;
@@ -310,6 +351,88 @@ function showGeneDetail(symbol) {
   if (row.gnomad) srcLabels.push('gnomAD');
   if (row.nih_reporter) srcLabels.push('NIH Reporter');
   if (row.gtex) srcLabels.push('GTEx');
+  if (row.clinicaltrials) srcLabels.push('ClinicalTrials');
+  if (row.string) srcLabels.push('STRING');
+
+  // Publication trend
+  const trend = trendArrow(row.pub_total, row.pub_recent);
+
+  // Tissue expression (GTEx)
+  let tissueHtml = '';
+  if (row.craniofacial_expression != null || (row.top_tissues && row.top_tissues.length > 0)) {
+    tissueHtml = '<div class="detail-field"><div class="detail-label">Tissue Expression (GTEx)</div>';
+    if (row.craniofacial_expression != null) {
+      tissueHtml += `<div class="detail-value" style="margin-bottom:6px">Craniofacial: <strong>${row.craniofacial_expression} TPM</strong></div>`;
+    }
+    if (row.top_tissues && row.top_tissues.length > 0) {
+      const maxTpm = Math.max(...row.top_tissues.map(t => t.tpm || t.median_tpm || 0));
+      row.top_tissues.slice(0, 5).forEach(t => {
+        const tpm = t.tpm || t.median_tpm || 0;
+        const pct = maxTpm > 0 ? Math.round(tpm / maxTpm * 100) : 0;
+        const tissueName = t.tissue || t.name || 'Unknown';
+        tissueHtml += `<div class="tissue-bar-row">
+          <span class="tissue-bar-label" title="${tissueName}">${tissueName}</span>
+          <div class="tissue-bar-bg"><div class="tissue-bar-fill" style="width:${pct}%"></div></div>
+          <span class="tissue-bar-value">${tpm.toFixed(1)}</span>
+        </div>`;
+      });
+    }
+    tissueHtml += '</div>';
+  }
+
+  // NIH Reporter grants
+  let grantsHtml = '';
+  if (row.grant_count > 0 || (row.nih_projects && row.nih_projects.length > 0)) {
+    const projectCount = row.nih_projects ? row.nih_projects.length : row.grant_count;
+    grantsHtml = `<div class="detail-field"><div class="detail-label">Active Grants (${projectCount})</div>`;
+    if (row.nih_projects && row.nih_projects.length > 0) {
+      row.nih_projects.forEach(p => {
+        const projNum = p.project_num || p.project_number || '';
+        const pi = p.pi_name || p.contact_pi_name || 'N/A';
+        const org = p.org_name || p.organization || '';
+        const url = projNum ? `https://reporter.nih.gov/project-details/${projNum}` : '#';
+        grantsHtml += `<div style="padding:0.3rem 0;border-bottom:1px solid var(--elevated);font-size:0.8rem">
+          <a href="${url}" target="_blank" class="gene-link">${projNum || 'Project'}</a>
+          <div style="font-size:0.75rem;color:var(--text-sec)">${pi}${org ? ' &middot; ' + org : ''}</div>
+        </div>`;
+      });
+    } else {
+      grantsHtml += `<div class="detail-value">${row.grant_count} active grant(s)</div>`;
+    }
+    grantsHtml += '</div>';
+  }
+
+  // Genetic constraint (pLI / LOEUF)
+  let constraintHtml = '';
+  {
+    let pliText = 'N/A';
+    let pliClass = 'constraint-low';
+    if (row.pli_score != null) {
+      if (row.pli_score > 0.9) { pliText = `${row.pli_score.toFixed(3)} &mdash; Highly constrained (essential gene)`; pliClass = 'constraint-high'; }
+      else if (row.pli_score > 0.5) { pliText = `${row.pli_score.toFixed(3)} &mdash; Moderately constrained`; pliClass = 'constraint-moderate'; }
+      else { pliText = `${row.pli_score.toFixed(3)} &mdash; Not constrained`; pliClass = 'constraint-low'; }
+    }
+    let loeufText = '';
+    if (row.loeuf_score != null) {
+      loeufText = ` &middot; LOEUF: ${row.loeuf_score.toFixed(3)}`;
+    }
+    constraintHtml = `<div class="detail-field">
+      <div class="detail-label">Genetic Constraint</div>
+      <div class="detail-value"><span class="${pliClass}">pLI: ${pliText}</span>${loeufText}</div>
+    </div>`;
+  }
+
+  // STRING interaction partners
+  let stringHtml = '';
+  if (row.string_partners && row.string_partners.length > 0) {
+    const partnerSymbols = row.string_partners.map(p => typeof p === 'string' ? p : (p.symbol || '')).filter(s => s);
+    stringHtml = `<div class="detail-field">
+      <div class="detail-label">Protein Interactions (${partnerSymbols.length})</div>
+      <div class="detail-value">
+        ${partnerSymbols.sort().map(g => `<span class="detail-tag" onclick="focusGene('${g}')">${g}</span>`).join('')}
+      </div>
+    </div>`;
+  }
 
   content.innerHTML = `
     <h2>${symbol}</h2>
@@ -328,12 +451,16 @@ function showGeneDetail(symbol) {
     </div>
     <div class="detail-field">
       <div class="detail-label">Publication Data</div>
-      <div class="detail-value">${row.pub_total} total &middot; ${row.pub_recent} recent (5yr) &middot; ${row.pathogenic} pathogenic variants</div>
+      <div class="detail-value">${row.pub_total} total ${trend} &middot; ${row.pub_recent} recent (5yr) &middot; ${row.pathogenic} pathogenic variants</div>
     </div>
+    ${tissueHtml}
     <div class="detail-field">
       <div class="detail-label">Source Coverage (${row.count}/${SOURCE_COUNT})</div>
       <div class="detail-value">${srcLabels.join(' ')}</div>
     </div>
+    ${grantsHtml}
+    ${constraintHtml}
+    ${stringHtml}
     ${papersHtml}
     <div class="detail-field">
       <div class="detail-label">Connected Genes (${connected.size})</div>
@@ -350,7 +477,8 @@ function showGeneDetail(symbol) {
         <a href="https://pubmed.ncbi.nlm.nih.gov/?term=${symbol}+AND+(craniofacial+OR+neural+crest)" target="_blank" class="gene-link">PubMed</a> &middot;
         <a href="https://www.omim.org/search?search=${symbol}" target="_blank" class="gene-link">OMIM</a> &middot;
         <a href="https://www.ncbi.nlm.nih.gov/clinvar/?term=${symbol}[gene]" target="_blank" class="gene-link">ClinVar</a> &middot;
-        <a href="https://www.facebase.org/chaise/recordset/#1/isa:dataset/*::cfacets::N4IghgDg9lBcBOBnALhANjAcwCZ0A" target="_blank" class="gene-link">FaceBase</a>
+        <a href="https://www.facebase.org/chaise/recordset/#1/isa:dataset/*::cfacets::N4IghgDg9lBcBOBnALhANjAcwCZ0A" target="_blank" class="gene-link">FaceBase</a> &middot;
+        <a href="https://string-db.org/network/9606.${symbol}" target="_blank" class="gene-link">STRING</a>
       </div>
     </div>
   `;
@@ -369,9 +497,38 @@ document.addEventListener('keydown', function(e) {
   }
 });
 
-function downloadCSV() {
-  const headers = ['Gene','GO','OMIM','HPO','UniProt','FaceBase','ClinVar','PubMed','gnomAD','NIH Reporter','GTEx','Sources','PubTotal','PubRecent','Pathogenic','Phenotypes','Key Syndrome'];
-  const exportRows = currentFilteredRows.length < GENE_ROWS.length ? currentFilteredRows : GENE_ROWS;
+function toggleExportMenu() {
+  const menu = document.getElementById('export-menu');
+  menu.classList.toggle('open');
+}
+
+// Close export menu on click outside
+document.addEventListener('click', function(e) {
+  const dropdown = document.querySelector('.export-dropdown');
+  const menu = document.getElementById('export-menu');
+  if (dropdown && menu && !dropdown.contains(e.target)) {
+    menu.classList.remove('open');
+  }
+});
+
+function downloadCSV(template) {
+  const headers = ['Gene','GO','OMIM','HPO','UniProt','FaceBase','ClinVar','PubMed','gnomAD','NIH Reporter','GTEx','ClinicalTrials','STRING','Sources','PubTotal','PubRecent','Pathogenic','Phenotypes','Key Syndrome'];
+  let exportRows;
+  const gapSymbols = new Set(CRITICAL_GAPS.map(g => g.symbol));
+
+  if (template === 'gaps') {
+    exportRows = GENE_ROWS.filter(g => gapSymbols.has(g.symbol));
+  } else if (template === 'priority') {
+    exportRows = GENE_ROWS.filter(g => {
+      const w = WEIGHTED_GAPS[g.symbol];
+      return w && w.priority_score >= 15;
+    });
+  } else if (template === 'understudied') {
+    exportRows = GENE_ROWS.filter(g => g.pub_total < 20);
+  } else {
+    exportRows = currentFilteredRows.length < GENE_ROWS.length ? currentFilteredRows : GENE_ROWS;
+  }
+
   const rows = exportRows.map(g => [
     g.symbol,
     g.go ? 'Y' : '',
@@ -384,6 +541,8 @@ function downloadCSV() {
     g.gnomad ? 'Y' : '',
     g.nih_reporter ? 'Y' : '',
     g.gtex ? 'Y' : '',
+    g.clinicaltrials ? 'Y' : '',
+    g.string ? 'Y' : '',
     g.count,
     g.pub_total,
     g.pub_recent,
@@ -395,8 +554,13 @@ function downloadCSV() {
   const blob = new Blob([csv], {type: 'text/csv'});
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  a.download = 'froq-grant-gap-finder.csv';
+  const suffix = template ? `-${template}` : '';
+  a.download = `froq-grant-gap-finder${suffix}.csv`;
   a.click();
+
+  // Close dropdown
+  const menu = document.getElementById('export-menu');
+  if (menu) menu.classList.remove('open');
 }
 
 function showBriefing() {
@@ -414,7 +578,7 @@ function showBriefing() {
     text += `[Filtered view: ${geneCount} of ${GENE_ROWS.length} genes matching current filter]\n\n`;
   }
   text += `This analysis cross-references ${GENE_ROWS.length} neural crest genes across ${SOURCE_COUNT} biomedical databases `;
-  text += `(Gene Ontology, OMIM, HPO, UniProt, FaceBase, ClinVar, PubMed, gnomAD, NIH Reporter, GTEx) `;
+  text += `(Gene Ontology, OMIM, HPO, UniProt, FaceBase, ClinVar, PubMed, gnomAD, NIH Reporter, GTEx, ClinicalTrials, STRING) `;
   text += `to identify clinically important but scientifically understudied genes.\n\n`;
   text += `Of ${geneCount} genes${isFiltered ? ' in this filtered set' : ''}, ${relevantGaps.length} have Mendelian disease associations `;
   text += `but lack FaceBase experimental data, representing potential funding gaps.\n\n`;

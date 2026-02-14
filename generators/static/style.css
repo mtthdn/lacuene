@@ -239,6 +239,7 @@ body { font-family: 'Atkinson Hyperlegible Next', system-ui, sans-serif; backgro
   display: flex;
   align-items: center;
   gap: 0.6rem;
+  flex-wrap: wrap;
 }
 .graph-controls label {
   font-size: 0.75rem;
@@ -562,6 +563,101 @@ tr:hover td { background: var(--elevated); }
   color: var(--text-sec);
   font-style: italic;
 }
+
+/* Priority badge */
+.priority-badge {
+  display: inline-block;
+  padding: 1px 7px;
+  background: rgba(163,113,247,0.2);
+  color: var(--purple);
+  border-radius: 10px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  margin-left: 6px;
+  vertical-align: middle;
+  letter-spacing: 0.3px;
+}
+
+/* Trend arrows */
+.trend-arrow {
+  display: inline-block;
+  font-size: 0.7rem;
+  margin-left: 4px;
+  vertical-align: middle;
+  font-weight: 600;
+}
+.trend-arrow.rising { color: var(--green); }
+.trend-arrow.stable { color: var(--text-sec); }
+.trend-arrow.declining { color: var(--red); }
+
+/* Export dropdown */
+.export-dropdown {
+  position: relative;
+  display: inline-block;
+}
+.export-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 4px;
+  background: var(--elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  z-index: 60;
+  min-width: 200px;
+  overflow: hidden;
+}
+.export-menu.open { display: block; }
+.export-option {
+  padding: 8px 14px;
+  font-size: 0.8rem;
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.1s;
+  font-family: 'Atkinson Hyperlegible Next', system-ui, sans-serif;
+}
+.export-option:hover { background: var(--border); color: var(--accent); }
+
+/* Tissue expression bar */
+.tissue-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 3px;
+  font-size: 0.75rem;
+}
+.tissue-bar-label {
+  width: 120px;
+  text-align: right;
+  color: var(--text-sec);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.tissue-bar-bg {
+  flex: 1;
+  height: 8px;
+  background: var(--elevated);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.tissue-bar-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 4px;
+  transition: width 0.4s ease;
+}
+.tissue-bar-value {
+  width: 50px;
+  font-size: 0.7rem;
+  color: var(--text-sec);
+}
+
+/* Constraint interpretation */
+.constraint-high { color: var(--red); font-weight: 500; }
+.constraint-moderate { color: var(--orange); font-weight: 500; }
+.constraint-low { color: var(--text-sec); }
 
 /* Tablet */
 @media (max-width: 1024px) {

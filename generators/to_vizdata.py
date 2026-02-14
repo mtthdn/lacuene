@@ -196,6 +196,38 @@ def build_pathway_edges(genes_data: dict) -> list[dict]:
     return edges
 
 
+def build_ppi_edges(genes_data: dict) -> list[dict]:
+    """Create edges between genes with STRING protein-protein interactions."""
+    gene_set = set(genes_data.keys())
+    edges = []
+    edge_set = set()
+
+    for sym, gene in genes_data.items():
+        partners = gene.get("string_partners", [])
+        if not partners:
+            continue
+        for partner in partners:
+            partner_sym = partner if isinstance(partner, str) else partner.get("symbol", "")
+            if not partner_sym or partner_sym not in gene_set:
+                continue
+            key = tuple(sorted([sym, partner_sym]) + ["ppi"])
+            if key not in edge_set:
+                edge_set.add(key)
+                score = partner.get("score", 0) if isinstance(partner, dict) else 0
+                label = f"{sym}-{partner_sym}"
+                if score:
+                    label += f" ({score})"
+                edges.append({
+                    "data": {
+                        "source": sorted([sym, partner_sym])[0],
+                        "target": sorted([sym, partner_sym])[1],
+                        "type": "ppi",
+                        "label": label,
+                    }
+                })
+    return edges
+
+
 def main():
     print("to_vizdata: exporting model data...")
     sources = cue_export("gene_sources")
@@ -205,7 +237,9 @@ def main():
     nodes = build_nodes(sources, genes_data)
     edges = build_edges(genes_data)
     pathway_edges = build_pathway_edges(genes_data)
+    ppi_edges = build_ppi_edges(genes_data)
     edges.extend(pathway_edges)
+    edges.extend(ppi_edges)
 
     vizdata = {
         "nodes": nodes,
@@ -215,7 +249,8 @@ def main():
             "gene_count": len(nodes),
             "edge_count": len(edges),
             "sources": ["Gene Ontology", "OMIM", "HPO", "UniProt", "FaceBase",
-                        "ClinVar", "PubMed", "gnomAD", "NIH Reporter", "GTEx"],
+                        "ClinVar", "PubMed", "gnomAD", "NIH Reporter", "GTEx",
+                        "ClinicalTrials", "STRING"],
             "roles": {k: v for k, v in ROLE_LABELS.items()},
         }
     }
@@ -232,7 +267,8 @@ def main():
     pheno_edges = sum(1 for e in edges if e["data"]["type"] == "shared_phenotype")
     syn_edges = sum(1 for e in edges if e["data"]["type"] == "shared_syndrome")
     path_edges = sum(1 for e in edges if e["data"]["type"] == "shared_pathway")
-    print(f"  {pheno_edges} phenotype, {syn_edges} syndrome, {path_edges} pathway edges")
+    ppi_count = sum(1 for e in edges if e["data"]["type"] == "ppi")
+    print(f"  {pheno_edges} phenotype, {syn_edges} syndrome, {path_edges} pathway, {ppi_count} PPI edges")
 
 
 if __name__ == "__main__":

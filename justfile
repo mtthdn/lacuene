@@ -1,5 +1,5 @@
 # froq: Neural crest gene reconciliation pipeline
-# Unifies GO, OMIM, HPO, UniProt, FaceBase, ClinVar, PubMed, gnomAD, NIH Reporter, and GTEx into one CUE model.
+# Unifies 12 biomedical sources into one CUE model via lattice semantics.
 
 default: validate generate
 
@@ -26,6 +26,8 @@ normalize:
     python3 normalizers/from_gnomad.py
     python3 normalizers/from_nih_reporter.py
     python3 normalizers/from_gtex.py
+    python3 normalizers/from_clinicaltrials.py
+    python3 normalizers/from_string.py
 
 # Run normalizers in parallel
 normalize-parallel:
@@ -111,6 +113,12 @@ normalize-nih-reporter:
 
 normalize-gtex:
     python3 normalizers/from_gtex.py
+
+normalize-clinicaltrials:
+    python3 normalizers/from_clinicaltrials.py
+
+normalize-string:
+    python3 normalizers/from_string.py
 
 # Build static site
 site: vizdata

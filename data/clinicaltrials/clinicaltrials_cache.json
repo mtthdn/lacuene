@@ -1,0 +1,1056 @@
+{
+  "ADAM10": {
+    "studies": [
+      {
+        "nct_id": "NCT02891213",
+        "status": "UNKNOWN",
+        "title": "Study of the Role of Soluble Forms of RAGE (sRAGE/esRAGE) as Diagnostic and Prognostic Biomarkers of Systemic Lupus Erythematosus."
+      }
+    ],
+    "total_count": 1
+  },
+  "ALDH1A2": {
+    "studies": [],
+    "total_count": 0
+  },
+  "AXIN2": {
+    "studies": [],
+    "total_count": 0
+  },
+  "BMP2": {
+    "studies": [
+      {
+        "nct_id": "NCT03745300",
+        "phase": "Phase 2/Phase 3",
+        "status": "COMPLETED",
+        "title": "Comparative Evaluation Of 1.2% Atorvastatin and 1.2% Simvastatin Gel Local Drug Delivery And Redelivery In Chronic Periodontitis Subjects With Diabetes Mellitus: A Randomized Controlled Clinical Trial."
+      },
+      {
+        "nct_id": "NCT05369091",
+        "phase": "Phase 4",
+        "status": "COMPLETED",
+        "title": "Salivary Bmp-2 Levels & Radiographic Measurement Of Bone Density at Extracted Tooth"
+      },
+      {
+        "nct_id": "NCT06522438",
+        "status": "RECRUITING",
+        "title": "Hyaluronic Acid and Octenidine Gel as an Adjunct to Non-surgical Periodontal Treatment"
+      },
+      {
+        "nct_id": "NCT04149080",
+        "status": "UNKNOWN",
+        "title": "Effects of Simvastatin Gel on Bone Neoformation in Post-extraction Sockets: a Randomized Controlled Trial"
+      },
+      {
+        "nct_id": "NCT01308996",
+        "status": "WITHDRAWN",
+        "title": "Clinical Study of INFUSE\u00ae Bone Graft Compared to Autogenous Bone Graft for Vertical Ridge Augmentation"
+      }
+    ],
+    "total_count": 22
+  },
+  "BMP4": {
+    "studies": [],
+    "total_count": 0
+  },
+  "BMP7": {
+    "studies": [
+      {
+        "nct_id": "NCT03202355",
+        "status": "TERMINATED",
+        "title": "The Effect of OrthoPulse Photobiomodulation on the Rate of Tooth Movement During Alignment With Fixed Appliances"
+      }
+    ],
+    "total_count": 1
+  },
+  "CDH11": {
+    "studies": [],
+    "total_count": 0
+  },
+  "CDH2": {
+    "studies": [],
+    "total_count": 0
+  },
+  "CDH6": {
+    "studies": [],
+    "total_count": 0
+  },
+  "CHD7": {
+    "studies": [],
+    "total_count": 0
+  },
+  "CTNNB1": {
+    "studies": [
+      {
+        "nct_id": "NCT04812119",
+        "status": "COMPLETED",
+        "title": "Genotype-phenotype Correlations in Children and Adults With CTNNB1 Mutation"
+      }
+    ],
+    "total_count": 1
+  },
+  "CXCR4": {
+    "studies": [],
+    "total_count": 0
+  },
+  "DCT": {
+    "studies": [
+      {
+        "nct_id": "NCT05643573",
+        "phase": "Phase 3",
+        "status": "TERMINATED",
+        "title": "A Study to Learn How Well the Study Treatment Asundexian Works and How Safe it is Compared to Apixaban to Prevent Stroke or Systemic Embolism in People With Irregular and Often Rapid Heartbeat (Atrial Fibrillation), and at Risk for Stroke"
+      },
+      {
+        "nct_id": "NCT05552326",
+        "phase": "Phase 3",
+        "status": "COMPLETED",
+        "title": "A Study of Olezarsen Administered Subcutaneously to Participants With Severe Hypertriglyceridemia"
+      }
+    ],
+    "total_count": 2
+  },
+  "DLL1": {
+    "studies": [
+      {
+        "nct_id": "NCT06636435",
+        "phase": "Phase 1",
+        "status": "RECRUITING",
+        "title": "A Phase I, First in Human Study of CBA-1205, Anti-DLK1 Monoclonal Antibody in Patients With Advanced Solid Tumors, Hepatocellular Carcinoma (HCC), Melanoma, and Pediatric Cancer"
+      },
+      {
+        "nct_id": "NCT07162038",
+        "phase": "Phase 1",
+        "status": "RECRUITING",
+        "title": "Phase I Trial Integrating HLA-Haploidentical Anti-CD19 CAR-T Cells With Post-Transplantation Cyclophosphamide-Based HLA-Haploidentical Hematopoietic Cell Transplantation"
+      }
+    ],
+    "total_count": 2
+  },
+  "DLX2": {
+    "studies": [],
+    "total_count": 0
+  },
+  "DLX3": {
+    "studies": [
+      {
+        "nct_id": "NCT01746121",
+        "status": "TERMINATED",
+        "title": "Amelogenesis Imperfecta"
+      }
+    ],
+    "total_count": 1
+  },
+  "DLX5": {
+    "studies": [],
+    "total_count": 0
+  },
+  "DLX6": {
+    "studies": [],
+    "total_count": 0
+  },
+  "ECE1": {
+    "studies": [],
+    "total_count": 0
+  },
+  "EDN1": {
+    "studies": [
+      {
+        "nct_id": "NCT05691426",
+        "status": "UNKNOWN",
+        "title": "Assessment of the Effect of Non-surgical Periodontal Treatment on Endothelial Function- a Prospective Study"
+      },
+      {
+        "nct_id": "NCT01418014",
+        "status": "COMPLETED",
+        "title": "Adolescent Master Protocol"
+      },
+      {
+        "nct_id": "NCT06784869",
+        "status": "NOT_YET_RECRUITING",
+        "title": "The Efficacy of Scaling and Root Planing on Endothelin-1 Level"
+      },
+      {
+        "nct_id": "NCT07326033",
+        "phase": "Phase 2",
+        "status": "NOT_YET_RECRUITING",
+        "title": "Efficacy and Safety of Allogenic Cultured Adipose-derived Mesenchymal Stromal Cell Injections on MoUth Fibrosis and Handicap in Patients With Systemic sclEroderma"
+      },
+      {
+        "nct_id": "NCT03510390",
+        "status": "COMPLETED",
+        "title": "Metformin in Head and Neck Squamous Cell Carcinoma: Effect on Tissue Oxygenation"
+      }
+    ],
+    "total_count": 5
+  },
+  "EDN3": {
+    "studies": [],
+    "total_count": 0
+  },
+  "EDNRA": {
+    "studies": [],
+    "total_count": 0
+  },
+  "EDNRB": {
+    "studies": [],
+    "total_count": 0
+  },
+  "ERBB3": {
+    "studies": [],
+    "total_count": 0
+  },
+  "ETS1": {
+    "studies": [],
+    "total_count": 0
+  },
+  "EVC": {
+    "studies": [
+      {
+        "nct_id": "NCT01267981",
+        "phase": "Phase 3",
+        "status": "COMPLETED",
+        "title": "Efficacy of Small Bowel Preparation in Capsule Endoscopy"
+      }
+    ],
+    "total_count": 1
+  },
+  "FGF8": {
+    "studies": [],
+    "total_count": 0
+  },
+  "FGFR1": {
+    "studies": [
+      {
+        "nct_id": "NCT07292168",
+        "phase": "Phase 1/Phase 2",
+        "status": "RECRUITING",
+        "title": "A Phase 1b/2 Study of the Safety and Efficacy of the Monoclonal Antibody OM-RCA-01 in Patients With Metastatic Tumors Expressing Fibroblast Growth Factor Receptor 1"
+      },
+      {
+        "nct_id": "NCT06160752",
+        "phase": "Phase 1",
+        "status": "RECRUITING",
+        "title": "Safety and Anti-Tumor Activity of TYRA-200 in Advanced Cholangiocarcinoma With Activating FGFR2 Gene Alterations"
+      },
+      {
+        "nct_id": "NCT03822117",
+        "phase": "Phase 2",
+        "status": "TERMINATED",
+        "title": "Efficacy and Safety of Pemigatinib in Previously Treated Locally Advanced/Metastatic or Surgically Unresectable Solid Tumor Malignancies Harboring Activating FGFR Mutations or Translocations (FIGHT-207)"
+      },
+      {
+        "nct_id": "NCT04125693",
+        "phase": "Phase 2",
+        "status": "COMPLETED",
+        "title": "Roll-over Study to Continue Treatment With the Investigational Drug Rogaratinib and to Further Test Its Safety"
+      },
+      {
+        "nct_id": "NCT01928459",
+        "phase": "Phase 1",
+        "status": "COMPLETED",
+        "title": "Phase 1b Trial of BGJ398/BYL719 in Solid Tumors"
+      }
+    ],
+    "total_count": 8
+  },
+  "FGFR2": {
+    "studies": [
+      {
+        "nct_id": "NCT04238715",
+        "phase": "Phase 2",
+        "status": "ACTIVE_NOT_RECRUITING",
+        "title": "A Study of E7090 in Participants With Unresectable Advanced or Metastatic Cholangiocarcinoma With Fibroblast Growth Factor Receptor (FGFR) 2 Gene Fusion"
+      },
+      {
+        "nct_id": "NCT06160752",
+        "phase": "Phase 1",
+        "status": "RECRUITING",
+        "title": "Safety and Anti-Tumor Activity of TYRA-200 in Advanced Cholangiocarcinoma With Activating FGFR2 Gene Alterations"
+      },
+      {
+        "nct_id": "NCT03822117",
+        "phase": "Phase 2",
+        "status": "TERMINATED",
+        "title": "Efficacy and Safety of Pemigatinib in Previously Treated Locally Advanced/Metastatic or Surgically Unresectable Solid Tumor Malignancies Harboring Activating FGFR Mutations or Translocations (FIGHT-207)"
+      },
+      {
+        "nct_id": "NCT04604132",
+        "phase": "Phase 1/Phase 2",
+        "status": "TERMINATED",
+        "title": "Derazantinib Alone or in Combination With Paclitaxel, Ramucirumab or Atezolizumab in Gastric Adenocarcinoma"
+      },
+      {
+        "nct_id": "NCT04972253",
+        "phase": "Phase 1",
+        "status": "WITHDRAWN",
+        "title": "Phase I BLASST-3 Trial"
+      }
+    ],
+    "total_count": 8
+  },
+  "FGFR3": {
+    "studies": [
+      {
+        "nct_id": "NCT04003610",
+        "phase": "Phase 2",
+        "status": "TERMINATED",
+        "title": "Pemigatinib + Pembrolizumab vs Pemigatinib Alone vs Standard of Care for Urothelial Carcinoma (FIGHT-205)"
+      },
+      {
+        "nct_id": "NCT00106977",
+        "status": "COMPLETED",
+        "title": "Clinical Study of Muenke Syndrome (FGFR3-Related Craniosynostosis)"
+      },
+      {
+        "nct_id": "NCT07218380",
+        "phase": "Phase 3",
+        "status": "RECRUITING",
+        "title": "A Study of Vepugratinib (LY3866288) in Participants With Cancer in the Urinary Tract"
+      },
+      {
+        "nct_id": "NCT04972253",
+        "phase": "Phase 1",
+        "status": "WITHDRAWN",
+        "title": "Phase I BLASST-3 Trial"
+      },
+      {
+        "nct_id": "NCT02872714",
+        "phase": "Phase 2",
+        "status": "COMPLETED",
+        "title": "A Study to Evaluate the Efficacy and Safety of Pemigatinib (INCB054828) in Subjects With Urothelial Carcinoma - (FIGHT-201)"
+      }
+    ],
+    "total_count": 7
+  },
+  "FN1": {
+    "studies": [
+      {
+        "nct_id": "NCT05474820",
+        "status": "COMPLETED",
+        "title": "Saliva Irisin Level is Higher and Related With Interleukin 6 in Generalized Periodontitis"
+      },
+      {
+        "nct_id": "NCT05573321",
+        "status": "UNKNOWN",
+        "title": "The Effect of Blood Flow Restriction (Bfr) Exercise on Acute Systemic Myokine Levels in Healthy Trained Men"
+      },
+      {
+        "nct_id": "NCT01066533",
+        "phase": "Phase 4",
+        "status": "TERMINATED",
+        "title": "Immunohistochemical Study of Human Teeth Pulp Capped With Mineral Trioxide Aggregate (MTA) and Novel Endodontic Cement (NEC)"
+      },
+      {
+        "nct_id": "NCT06847984",
+        "status": "NOT_YET_RECRUITING",
+        "title": "Antimicrobial Effect of Curcumin Versus Chlorohexidine on Oral Microbiome"
+      },
+      {
+        "nct_id": "NCT05505084",
+        "status": "ACTIVE_NOT_RECRUITING",
+        "title": "Alveolar Ridge Preservation Following Tooth Extraction."
+      }
+    ],
+    "total_count": 6
+  },
+  "FOXD3": {
+    "studies": [
+      {
+        "nct_id": "NCT06880094",
+        "status": "RECRUITING",
+        "title": "Study of Congenital Orofacial Clefts by Implementing Optical Genome Mapping"
+      },
+      {
+        "nct_id": "NCT02818231",
+        "status": "COMPLETED",
+        "title": "Mechanisms of Cancerogenesis of Woodworkers Adenocarcinomas"
+      },
+      {
+        "nct_id": "NCT01924364",
+        "status": "COMPLETED",
+        "title": "Effect of Concentrating Endogenous Stromal Cells in the Fat Graft Using TGI Device"
+      },
+      {
+        "nct_id": "NCT05949112",
+        "status": "UNKNOWN",
+        "title": "Toothbrush in the Genesis and Prevention of Dental Recessions"
+      },
+      {
+        "nct_id": "NCT01573026",
+        "status": "UNKNOWN",
+        "title": "Five Year Survival Study Evaluating the Genesis Dental Implant System"
+      }
+    ],
+    "total_count": 8
+  },
+  "GATA4": {
+    "studies": [],
+    "total_count": 0
+  },
+  "GBX2": {
+    "studies": [],
+    "total_count": 0
+  },
+  "GDNF": {
+    "studies": [
+      {
+        "nct_id": "NCT06327503",
+        "status": "COMPLETED",
+        "title": "Salivary Signal Molecules for Neural and Vascular Homeostasis in T2DM"
+      }
+    ],
+    "total_count": 1
+  },
+  "GFRA1": {
+    "studies": [],
+    "total_count": 0
+  },
+  "HAND1": {
+    "studies": [],
+    "total_count": 0
+  },
+  "HAND2": {
+    "studies": [],
+    "total_count": 0
+  },
+  "IRF6": {
+    "studies": [
+      {
+        "nct_id": "NCT06776471",
+        "status": "RECRUITING",
+        "title": "Clinical Evaluation of Two Different Pit and Fissure Sealants"
+      },
+      {
+        "nct_id": "NCT03034837",
+        "phase": "Phase 4",
+        "status": "COMPLETED",
+        "title": "Effectiveness and Economic Evaluation of Glass Ionomer Material Using as Dental Sealant"
+      },
+      {
+        "nct_id": "NCT02668874",
+        "status": "COMPLETED",
+        "title": "A Clinical Trial Comparing Isolite\u00ae vs. Cotton Roll Isolation in the Placement of Dental Sealants"
+      },
+      {
+        "nct_id": "NCT07330089",
+        "status": "NOT_YET_RECRUITING",
+        "title": "Retention of Pits and Fissure Sealants on Non Carious vs Initial Carious Enamel Lesions in Posterior Teeth"
+      },
+      {
+        "nct_id": "NCT02649816",
+        "status": "COMPLETED",
+        "title": "Effectiveness of Resin Sealants: Retrospective Cohort Study"
+      }
+    ],
+    "total_count": 25
+  },
+  "ITGB1": {
+    "studies": [],
+    "total_count": 0
+  },
+  "JAG1": {
+    "studies": [
+      {
+        "nct_id": "NCT02963077",
+        "phase": "Phase 1",
+        "status": "COMPLETED",
+        "title": "A Safety and Pharmakokinetic Study of A4250 Alone or in Combination With A3384"
+      },
+      {
+        "nct_id": "NCT06506734",
+        "status": "NOT_YET_RECRUITING",
+        "title": "Dental Dyschromia and Quality of Life in Early Prolonged Hyperbilirubinemia"
+      }
+    ],
+    "total_count": 2
+  },
+  "KIT": {
+    "studies": [
+      {
+        "nct_id": "NCT01954212",
+        "phase": "Phase 2",
+        "status": "COMPLETED",
+        "title": "Stroke Oral healthCare pLan Evaluation"
+      },
+      {
+        "nct_id": "NCT06764043",
+        "status": "COMPLETED",
+        "title": "Molar-Incisor Hypomineralization Vs Periodontal Health"
+      },
+      {
+        "nct_id": "NCT02359318",
+        "status": "COMPLETED",
+        "title": "Enamel Damages Following De-bracketing From Infiltrated Surfaces"
+      },
+      {
+        "nct_id": "NCT05083572",
+        "phase": "Phase 4",
+        "status": "UNKNOWN",
+        "title": "Effect of Probiotic on Gut Microbiome and Bacterial Translocation in Healthy Asian Volunteers"
+      },
+      {
+        "nct_id": "NCT05196061",
+        "status": "RECRUITING",
+        "title": "Human Skin and Gut Mycobiome and Bacteriome Comprehensive Registry"
+      }
+    ],
+    "total_count": 275
+  },
+  "LEF1": {
+    "studies": [],
+    "total_count": 0
+  },
+  "MEF2C": {
+    "studies": [],
+    "total_count": 0
+  },
+  "MITF": {
+    "studies": [],
+    "total_count": 0
+  },
+  "MMP2": {
+    "studies": [
+      {
+        "nct_id": "NCT06017817",
+        "status": "RECRUITING",
+        "title": "Antibacterial Photodynamic Therapy in the Management of Peri-implantitis"
+      },
+      {
+        "nct_id": "NCT04335526",
+        "phase": "Phase 1",
+        "status": "COMPLETED",
+        "title": "A Clinical Study to Assess the Effect of Change of Bile Acid on the PD and Safety of Metformin and Microbiome Profiles"
+      },
+      {
+        "nct_id": "NCT06540690",
+        "status": "RECRUITING",
+        "title": "Comparison of Palatal Wound Healing in Diabetic and Non-diabetic Patients"
+      },
+      {
+        "nct_id": "NCT05171400",
+        "status": "UNKNOWN",
+        "title": "A New Drug Delivery System - Silk Fibroin Film Loaded or Not With Insulin on Palatal Mucosa Wound Healing"
+      },
+      {
+        "nct_id": "NCT05675241",
+        "status": "UNKNOWN",
+        "title": "Characterizing the Inflammation Around Dental Implants"
+      }
+    ],
+    "total_count": 11
+  },
+  "MMP9": {
+    "studies": [
+      {
+        "nct_id": "NCT06522438",
+        "status": "RECRUITING",
+        "title": "Hyaluronic Acid and Octenidine Gel as an Adjunct to Non-surgical Periodontal Treatment"
+      },
+      {
+        "nct_id": "NCT02891213",
+        "status": "UNKNOWN",
+        "title": "Study of the Role of Soluble Forms of RAGE (sRAGE/esRAGE) as Diagnostic and Prognostic Biomarkers of Systemic Lupus Erythematosus."
+      },
+      {
+        "nct_id": "NCT04730687",
+        "status": "COMPLETED",
+        "title": "Er,Cr:YSGG and Diode Lasers in the Treatment of Peri-implantitis"
+      },
+      {
+        "nct_id": "NCT07008599",
+        "status": "COMPLETED",
+        "title": "Assessment of Inflammatory Biomarkers in Molar-Incisor Hypomineralization-Affected First Permanent Molars"
+      },
+      {
+        "nct_id": "NCT06545812",
+        "status": "RECRUITING",
+        "title": "Immune Response During the Conservative and Minimal Invasive Treatment of Pain Caused by Lumbar Disc Herniation"
+      }
+    ],
+    "total_count": 38
+  },
+  "MSX1": {
+    "studies": [],
+    "total_count": 0
+  },
+  "MSX2": {
+    "studies": [],
+    "total_count": 0
+  },
+  "MYCN": {
+    "studies": [
+      {
+        "nct_id": "NCT01121419",
+        "status": "COMPLETED",
+        "title": "The Role of IMP3 Expression in Patients With Neuroblastoma"
+      }
+    ],
+    "total_count": 1
+  },
+  "NF1": {
+    "studies": [
+      {
+        "nct_id": "NCT04888936",
+        "status": "RECRUITING",
+        "title": "Clinical, Genetic, and Epidemiologic Study of Children and Adults With RASopathies"
+      },
+      {
+        "nct_id": "NCT06120036",
+        "phase": "Phase 1",
+        "status": "COMPLETED",
+        "title": "Dosing and Tolerability of Deoxycholic Acid vs. Polidocanol in the Treatment of Neurofibromatosis Type 1 Cutaneous Neurofibromas"
+      },
+      {
+        "nct_id": "NCT04463316",
+        "status": "RECRUITING",
+        "title": "GROWing Up With Rare GENEtic Syndromes"
+      },
+      {
+        "nct_id": "NCT05361811",
+        "status": "RECRUITING",
+        "title": "Acceptance and Commitment Therapy for Caregivers of Children With a RASopathy: An Internal Pilot Feasibility Study and Follow-up Randomized Controlled Trial"
+      },
+      {
+        "nct_id": "NCT03504501",
+        "phase": "Phase 2",
+        "status": "TERMINATED",
+        "title": "Synaptic Plasticity and Cognitive Function in RASopathies"
+      }
+    ],
+    "total_count": 10
+  },
+  "NGFR": {
+    "studies": [],
+    "total_count": 0
+  },
+  "NKX2-5": {
+    "studies": [],
+    "total_count": 0
+  },
+  "NOTCH1": {
+    "studies": [
+      {
+        "nct_id": "NCT01476592",
+        "status": "COMPLETED",
+        "title": "A Biological Study of Resveratrol's Effects on Notch-1 Signaling in Subjects With Low Grade Gastrointestinal Tumors"
+      },
+      {
+        "nct_id": "NCT01158274",
+        "phase": "Phase 1",
+        "status": "COMPLETED",
+        "title": "RO4929097 and Capecitabine in Treating Patients With Refractory Solid Tumors"
+      }
+    ],
+    "total_count": 2
+  },
+  "NOTCH2": {
+    "studies": [],
+    "total_count": 0
+  },
+  "NR2F1": {
+    "studies": [],
+    "total_count": 0
+  },
+  "NR2F2": {
+    "studies": [],
+    "total_count": 0
+  },
+  "NRP1": {
+    "studies": [],
+    "total_count": 0
+  },
+  "PAX3": {
+    "studies": [],
+    "total_count": 0
+  },
+  "PAX6": {
+    "studies": [
+      {
+        "nct_id": "NCT06412718",
+        "status": "NOT_YET_RECRUITING",
+        "title": "Validation of Human Drugs Target of Repurposed Drugs and Novel Therapies"
+      },
+      {
+        "nct_id": "NCT06950619",
+        "status": "NOT_YET_RECRUITING",
+        "title": "Associations Between Dental Anomalies and Ocular, Cutaneous and Skin Appendages Features"
+      }
+    ],
+    "total_count": 2
+  },
+  "PAX7": {
+    "studies": [],
+    "total_count": 0
+  },
+  "PHOX2B": {
+    "studies": [
+      {
+        "nct_id": "NCT03088020",
+        "status": "RECRUITING",
+        "title": "International Congenital Central Hypoventilation Syndrome (CCHS) Registry and CCHS SHARE"
+      },
+      {
+        "nct_id": "NCT03568669",
+        "status": "RECRUITING",
+        "title": "Neurocognition in Congenital Central Hypoventilation Syndrome (CCHS)"
+      }
+    ],
+    "total_count": 2
+  },
+  "PLXNA2": {
+    "studies": [],
+    "total_count": 0
+  },
+  "PMEL": {
+    "studies": [],
+    "total_count": 0
+  },
+  "RAC1": {
+    "studies": [],
+    "total_count": 0
+  },
+  "RARA": {
+    "studies": [
+      {
+        "nct_id": "NCT00105001",
+        "phase": "Phase 2",
+        "status": "COMPLETED",
+        "title": "Tacrolimus and Mycophenolate Mofetil With or Without Sirolimus in Preventing Acute Graft-Versus-Host Disease in Patients Who Are Undergoing Donor Stem Cell Transplant for Hematologic Cancer"
+      }
+    ],
+    "total_count": 1
+  },
+  "RET": {
+    "studies": [
+      {
+        "nct_id": "NCT03045185",
+        "status": "COMPLETED",
+        "title": "Regenerative Endodontic Treatment of Traumatised Teeth"
+      },
+      {
+        "nct_id": "NCT05517187",
+        "status": "UNKNOWN",
+        "title": "Efficacy of Regenerative Endodontic Treatment With PRF as a Secondary Treatment of Mature Necrotic Incisors in Adolescents"
+      },
+      {
+        "nct_id": "NCT01424878",
+        "status": "COMPLETED",
+        "title": "Study of Molecular Pathways in Medullary Thyroid Carcinoma and Correlation of Molecular Data With Clinical Behavior of the MTC in Individuals Patients"
+      },
+      {
+        "nct_id": "NCT05181033",
+        "phase": "Phase 2",
+        "status": "RECRUITING",
+        "title": "Lenvatinib+Letrozole Versus Fulvestrant in Metastatic ER+/HER2- Breast Cancer, Post Progression on Al + CDK4/6 Inhibitor"
+      },
+      {
+        "nct_id": "NCT05581706",
+        "status": "COMPLETED",
+        "title": "Regenerative Endodontics Using Different Intracanal Medicaments on Radiographic Outcomes and Periapical MMP-8 Levels"
+      }
+    ],
+    "total_count": 12
+  },
+  "RHOA": {
+    "studies": [],
+    "total_count": 0
+  },
+  "RUNX2": {
+    "studies": [
+      {
+        "nct_id": "NCT06773923",
+        "phase": "Phase 3",
+        "status": "ENROLLING_BY_INVITATION",
+        "title": "Effectiveness of 3D-printed Patient-specific Resorbable Scaffolds for Maxillary Bone Regeneration"
+      },
+      {
+        "nct_id": "NCT05447026",
+        "status": "COMPLETED",
+        "title": "The Effect of Adjunctive Therapies in Regenerative Treatment of Stage III Grade C Periodontitis"
+      },
+      {
+        "nct_id": "NCT05791721",
+        "phase": "Phase 4",
+        "status": "COMPLETED",
+        "title": "Effect of Preemptive Etoricoxib and Dexamethasone on Wound Healing and Clinical Parameters After Third Molar Surgery"
+      },
+      {
+        "nct_id": "NCT06856369",
+        "phase": "Phase 4",
+        "status": "ACTIVE_NOT_RECRUITING",
+        "title": "Clinical Efficacy of 1% Metformin and Alendronate Gel in Adjunct to Fibrin in Chronic Periodontitis"
+      },
+      {
+        "nct_id": "NCT05194813",
+        "status": "COMPLETED",
+        "title": "Surface Treatment of the Dental Implant on the Osseointegration"
+      }
+    ],
+    "total_count": 9
+  },
+  "SEMA3A": {
+    "studies": [],
+    "total_count": 0
+  },
+  "SEMA3C": {
+    "studies": [],
+    "total_count": 0
+  },
+  "SHH": {
+    "studies": [
+      {
+        "nct_id": "NCT01116154",
+        "phase": "Phase 1",
+        "status": "TERMINATED",
+        "title": "Vorinostat and Lenalidomide in Treating Patients With Relapsed or Refractory Hodgkin Lymphoma or Non-Hodgkin Lymphoma"
+      },
+      {
+        "nct_id": "NCT01789255",
+        "phase": "Phase 2",
+        "status": "COMPLETED",
+        "title": "Vorinostat, Tacrolimus, and Methotrexate in Preventing GVHD After Stem Cell Transplant in Patients With Hematological Malignancies"
+      },
+      {
+        "nct_id": "NCT00601718",
+        "phase": "Phase 1/Phase 2",
+        "status": "COMPLETED",
+        "title": "Vorinostat, Rituximab, Ifosfamide, Carboplatin, and Etoposide in Treating Patients With Relapsed or Refractory Lymphoma or Previously Untreated T-Cell Non-Hodgkin Lymphoma or Mantle Cell Lymphoma"
+      },
+      {
+        "nct_id": "NCT00499811",
+        "phase": "Phase 1",
+        "status": "COMPLETED",
+        "title": "Vorinostat in Treating Patients With Metastatic or Unresectable Solid Tumors or Lymphoma and Liver Dysfunction"
+      },
+      {
+        "nct_id": "NCT04691414",
+        "status": "COMPLETED",
+        "title": "Retrospective Study Using Next Generation Sequencing (NGS) on Biological Samples to Improve Genetic Counseling for Patients With Previously Explored Craniofacial Midline Defects."
+      }
+    ],
+    "total_count": 11
+  },
+  "SMAD1": {
+    "studies": [],
+    "total_count": 0
+  },
+  "SNAI1": {
+    "studies": [],
+    "total_count": 0
+  },
+  "SNAI2": {
+    "studies": [],
+    "total_count": 0
+  },
+  "SOX10": {
+    "studies": [],
+    "total_count": 0
+  },
+  "SOX2": {
+    "studies": [
+      {
+        "nct_id": "NCT04939051",
+        "phase": "Phase 2",
+        "status": "RECRUITING",
+        "title": "Obeticholic Acid for Prevention in Barrett's Esophagus"
+      },
+      {
+        "nct_id": "NCT06833840",
+        "status": "COMPLETED",
+        "title": "Evaluation of the Expression and Prognostic Role of Tumor Stem Cell Marker SOX2 in Odontogenic Cysts and Tumors"
+      }
+    ],
+    "total_count": 2
+  },
+  "SOX5": {
+    "studies": [],
+    "total_count": 0
+  },
+  "SOX8": {
+    "studies": [],
+    "total_count": 0
+  },
+  "SOX9": {
+    "studies": [],
+    "total_count": 0
+  },
+  "TBX1": {
+    "studies": [
+      {
+        "nct_id": "NCT02541058",
+        "status": "COMPLETED",
+        "title": "Non-Invasive Chromosomal Evaluation of 22q11.2"
+      },
+      {
+        "nct_id": "NCT01127503",
+        "phase": "Phase 2",
+        "status": "TERMINATED",
+        "title": "Metyrosine (Demser\u00ae) for the Treatment of Psychotic Disorders in Patients With Velocardiofacial Syndrome"
+      },
+      {
+        "nct_id": "NCT00105274",
+        "status": "COMPLETED",
+        "title": "Velocardiofacial (VCFS; 22q11.2; DiGeorge) Syndrome Study"
+      },
+      {
+        "nct_id": "NCT00005102",
+        "status": "UNKNOWN",
+        "title": "Immunologic Evaluation in Patients With DiGeorge Syndrome or Velocardiofacial Syndrome"
+      },
+      {
+        "nct_id": "NCT05149898",
+        "phase": "Phase 1/Phase 2",
+        "status": "COMPLETED",
+        "title": "Open-Label Study of ZYN002 Administered as a Transdermal Gel to Children and Adolescents With 22q11.2 Deletion Syndrome"
+      }
+    ],
+    "total_count": 7
+  },
+  "TBX5": {
+    "studies": [],
+    "total_count": 0
+  },
+  "TCOF1": {
+    "studies": [],
+    "total_count": 0
+  },
+  "TFAP2A": {
+    "studies": [],
+    "total_count": 0
+  },
+  "TFAP2B": {
+    "studies": [],
+    "total_count": 0
+  },
+  "TGFBR1": {
+    "studies": [
+      {
+        "nct_id": "NCT07360704",
+        "status": "COMPLETED",
+        "title": "Genotypes and Craniofacial Phenotypes in Orthodontic Patients With Marfan and Loeys-Dietz Syndromes"
+      },
+      {
+        "nct_id": "NCT01322165",
+        "status": "COMPLETED",
+        "title": "National Registry of Genetically Triggered Thoracic Aortic Aneurysms and Cardiovascular Conditions"
+      }
+    ],
+    "total_count": 2
+  },
+  "TGFBR2": {
+    "studies": [
+      {
+        "nct_id": "NCT07360704",
+        "status": "COMPLETED",
+        "title": "Genotypes and Craniofacial Phenotypes in Orthodontic Patients With Marfan and Loeys-Dietz Syndromes"
+      },
+      {
+        "nct_id": "NCT01322165",
+        "status": "COMPLETED",
+        "title": "National Registry of Genetically Triggered Thoracic Aortic Aneurysms and Cardiovascular Conditions"
+      }
+    ],
+    "total_count": 2
+  },
+  "TWIST1": {
+    "studies": [
+      {
+        "nct_id": "NCT03440697",
+        "status": "ACTIVE_NOT_RECRUITING",
+        "title": "Pathogenetic Basis of Aortopathy and Aortic Valve Disease"
+      },
+      {
+        "nct_id": "NCT00339846",
+        "status": "COMPLETED",
+        "title": "Genetic Analysis of Craniofrontonasal Syndrome"
+      },
+      {
+        "nct_id": "NCT00912119",
+        "phase": "Phase 1",
+        "status": "COMPLETED",
+        "title": "Amicar Pharmacokinetics of Children Having Craniofacial Surgery"
+      },
+      {
+        "nct_id": "NCT04419363",
+        "phase": "Phase 4",
+        "status": "UNKNOWN",
+        "title": "Burosumab in Children and Adolescents With X-linked Hypophosphatemia"
+      },
+      {
+        "nct_id": "NCT04072783",
+        "status": "COMPLETED",
+        "title": "Neurodevelopmental Outcomes in Craniosynostosis Repair"
+      }
+    ],
+    "total_count": 41
+  },
+  "TWIST2": {
+    "studies": [],
+    "total_count": 0
+  },
+  "TYR": {
+    "studies": [
+      {
+        "nct_id": "NCT00504205",
+        "status": "TERMINATED",
+        "title": "MP470 in Treating Patients With Unresectable or Metastatic Solid Tumor or Lymphoma"
+      },
+      {
+        "nct_id": "NCT03653026",
+        "phase": "Phase 3",
+        "status": "COMPLETED",
+        "title": "A Study of the Efficacy and Safety of Upadacitinib (ABT-494) in Participants With Moderately to Severely Active Ulcerative Colitis"
+      },
+      {
+        "nct_id": "NCT01538342",
+        "status": "COMPLETED",
+        "title": "Role of Tyrosine Kinase Lyn and Cleaved Form by Caspases in Psoriasis"
+      },
+      {
+        "nct_id": "NCT05643573",
+        "phase": "Phase 3",
+        "status": "TERMINATED",
+        "title": "A Study to Learn How Well the Study Treatment Asundexian Works and How Safe it is Compared to Apixaban to Prevent Stroke or Systemic Embolism in People With Irregular and Often Rapid Heartbeat (Atrial Fibrillation), and at Risk for Stroke"
+      },
+      {
+        "nct_id": "NCT03068884",
+        "status": "COMPLETED",
+        "title": "Dopamine Dorsolateral Prefrontal Cortex Behavioural Flexibility"
+      }
+    ],
+    "total_count": 69
+  },
+  "TYRP1": {
+    "studies": [],
+    "total_count": 0
+  },
+  "WNT1": {
+    "studies": [
+      {
+        "nct_id": "NCT02531087",
+        "status": "ACTIVE_NOT_RECRUITING",
+        "title": "Urinary Biomarkers of OI Pathobiology"
+      }
+    ],
+    "total_count": 1
+  },
+  "WNT3A": {
+    "studies": [],
+    "total_count": 0
+  },
+  "ZEB2": {
+    "studies": [
+      {
+        "nct_id": "NCT05832541",
+        "status": "RECRUITING",
+        "title": "Expression of Epithelial-Mesenchymal Transition Associated Markers in Peri-implant Tissues"
+      }
+    ],
+    "total_count": 1
+  },
+  "ZIC1": {
+    "studies": [],
+    "total_count": 0
+  }
+}

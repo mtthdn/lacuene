@@ -121,6 +121,14 @@
         <button class="layout-btn active" onclick="setLayout('cose', this)">Force</button>
         <button class="layout-btn" onclick="setLayout('circle', this)">Circle</button>
         <button class="layout-btn" onclick="setLayout('concentric', this)">Concentric</button>
+        <div style="margin-top:0.5rem">
+          <span style="font-size:0.75rem;color:var(--text-sec);margin-right:0.5rem">Edges:</span>
+          <button class="layout-btn edge-filter active" data-edge="all" onclick="filterEdges('all', this)">All</button>
+          <button class="layout-btn edge-filter" data-edge="shared_phenotype" onclick="filterEdges('shared_phenotype', this)">Phenotype</button>
+          <button class="layout-btn edge-filter" data-edge="shared_syndrome" onclick="filterEdges('shared_syndrome', this)">Syndrome</button>
+          <button class="layout-btn edge-filter" data-edge="shared_pathway" onclick="filterEdges('shared_pathway', this)">Pathway</button>
+          <button class="layout-btn edge-filter" data-edge="ppi" onclick="filterEdges('ppi', this)">PPI</button>
+        </div>
       </div>
       <div class="graph-legend">
         {% for role, info in legend_items %}
@@ -188,7 +196,15 @@
       <input type="text" id="gene-search" class="gene-search-input" placeholder="Search genes, syndromes, proteins..." autocomplete="off">
       <div class="table-actions">
         <button class="action-btn" onclick="showBriefing()">Briefing Summary</button>
-        <button class="action-btn" onclick="downloadCSV()">Download CSV</button>
+        <div class="export-dropdown">
+          <button class="action-btn" onclick="toggleExportMenu()">Export CSV &#9662;</button>
+          <div class="export-menu" id="export-menu">
+            <div class="export-option" onclick="downloadCSV()">All Genes</div>
+            <div class="export-option" onclick="downloadCSV('gaps')">Critical Gaps Only</div>
+            <div class="export-option" onclick="downloadCSV('priority')">Top Priority (Score &ge;15)</div>
+            <div class="export-option" onclick="downloadCSV('understudied')">Understudied (&lt; 20 pubs)</div>
+          </div>
+        </div>
       </div>
     </div>
     <div class="table-wrap">

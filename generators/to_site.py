@@ -63,6 +63,8 @@ def main():
         "in_gnomad": "gnomAD",
         "in_nih_reporter": "NIH Reporter",
         "in_gtex": "GTEx",
+        "in_clinicaltrials": "ClinicalTrials",
+        "in_string": "STRING",
     }
     source_urls = {
         "in_go": "http://geneontology.org/",
@@ -75,6 +77,8 @@ def main():
         "in_gnomad": "https://gnomad.broadinstitute.org/",
         "in_nih_reporter": "https://reporter.nih.gov/",
         "in_gtex": "https://gtexportal.org/",
+        "in_clinicaltrials": "https://clinicaltrials.gov/",
+        "in_string": "https://string-db.org/",
     }
 
     # Mapping from source key (in_go) to the gene_rows field name (go)
@@ -89,6 +93,8 @@ def main():
         "in_gnomad": "gnomad",
         "in_nih_reporter": "nih_reporter",
         "in_gtex": "gtex",
+        "in_clinicaltrials": "clinicaltrials",
+        "in_string": "string",
     }
 
     source_count = len(source_names)
@@ -98,7 +104,7 @@ def main():
     for key in source_names:
         source_counts[key] = sum(1 for s in sources.values() if s.get(key, False))
 
-    # Build gene detail rows (all 10 sources)
+    # Build gene detail rows (all 12 sources)
     gene_rows = []
     for sym in sorted(sources.keys()):
         flags = sources[sym]
@@ -124,6 +130,8 @@ def main():
             "gnomad": flags.get("in_gnomad", False),
             "nih_reporter": flags.get("in_nih_reporter", False),
             "gtex": flags.get("in_gtex", False),
+            "clinicaltrials": flags.get("in_clinicaltrials", False),
+            "string": flags.get("in_string", False),
             "count": count,
             "syndrome": syn_short,
             "protein": gene.get("protein_name", ""),
@@ -133,11 +141,22 @@ def main():
             "pathogenic": pathogenic,
             "phenotype_count": len(phenotypes),
             "syndromes": syndromes,
+            "pli_score": gene.get("pli_score", None),
+            "loeuf_score": gene.get("loeuf_score", None),
+            "grant_count": gene.get("active_grant_count", 0),
+            "trial_count": gene.get("active_trial_count", 0),
+            "top_tissues": gene.get("top_tissues", []),
+            "nih_projects": gene.get("nih_reporter_projects", []),
+            "string_partners": gene.get("string_partners", []),
+            "craniofacial_expression": gene.get("craniofacial_expression", None),
         })
 
     # Critical gaps from CUE projection
     critical_gaps = funding.get("critical", [])
     funding_summary = funding.get("summary", {})
+
+    # Weighted priority scores
+    weighted = cue_export("weighted_gaps")
 
     # Temporal snapshots
     snap_dir = os.path.join(os.path.dirname(__file__), "..", "output", "snapshots")
@@ -189,6 +208,7 @@ def main():
         gene_rows_json=json.dumps(gene_rows),
         critical_gaps_json=json.dumps(critical_gaps),
         snapshots_json=json.dumps(snapshots),
+        weighted_gaps_json=json.dumps(weighted),
         total=total,
         source_count=source_count,
         source_names=source_names,

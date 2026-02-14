@@ -15,8 +15,10 @@ funding_gaps: {
 			has_variants:   v._in_clinvar
 			has_literature: v._in_pubmed
 			has_constraint: v._in_gnomad
-			has_funding:    v._in_nih_reporter
-			has_expression: v._in_gtex
+			has_funding:      v._in_nih_reporter
+			has_expression:   v._in_gtex
+			has_trials:       v._in_clinicaltrials
+			has_interactions: v._in_string
 			if v.pubmed_total != _|_ {pub_count: v.pubmed_total}
 			if v.pubmed_total == _|_ {pub_count: 0}
 			if v.omim_syndromes != _|_ {syndromes: v.omim_syndromes}

@@ -11,8 +11,10 @@ gene_sources: {for k, v in genes {
 		in_facebase:     v._in_facebase
 		in_clinvar:      v._in_clinvar
 		in_pubmed:       v._in_pubmed
-		in_gnomad:       v._in_gnomad
-		in_nih_reporter: v._in_nih_reporter
-		in_gtex:         v._in_gtex
+		in_gnomad:           v._in_gnomad
+		in_nih_reporter:     v._in_nih_reporter
+		in_gtex:             v._in_gtex
+		in_clinicaltrials:   v._in_clinicaltrials
+		in_string:           v._in_string
 	}
 }}

@@ -16,6 +16,8 @@ enrichment: {
 			has_constraint:  v._in_gnomad
 			has_funding:     v._in_nih_reporter
 			has_expression:  v._in_gtex
+			has_trials:      v._in_clinicaltrials
+			has_interactions: v._in_string
 		}
 	}}
 }

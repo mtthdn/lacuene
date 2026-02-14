@@ -1,0 +1,251 @@
+#!/usr/bin/env python3
+"""
+Normalizer: STRING -> model/string.cue
+
+Queries STRING database (string-db.org) for each neural crest gene to extract
+high-confidence protein-protein interaction partners. Only retains interaction
+partners that are within our 95-gene list, enabling PPI edges in the graph.
+
+Results are cached in data/string/string_cache.json for reproducibility.
+Respects STRING rate limits (1s between requests).
+
+Usage:
+    python3 normalizers/from_string.py
+"""
+
+import json
+import sys
+import time
+import urllib.request
+import urllib.error
+from pathlib import Path
+
+# Resolve paths relative to repo root (parent of normalizers/)
+REPO_ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(REPO_ROOT / "normalizers"))
+
+from genes import GENES
+
+CACHE_DIR = REPO_ROOT / "data" / "string"
+CACHE_FILE = CACHE_DIR / "string_cache.json"
+OUTPUT_FILE = REPO_ROOT / "model" / "string.cue"
+
+NETWORK_URL = (
+    "https://string-db.org/api/json/network"
+    "?identifiers={gene}&species=9606&limit=10&required_score=700"
+)
+
+REQUEST_DELAY = 1.0  # seconds between requests (STRING can be slow)
+
+# Set of our gene symbols for filtering partners
+OUR_GENES = set(GENES.keys())
+
+
+def fetch_json(url: str) -> list | dict | None:
+    """Fetch a URL and return parsed JSON, or None on failure."""
+    try:
+        req = urllib.request.Request(url, headers={"Accept": "application/json"})
+        with urllib.request.urlopen(req, timeout=60) as resp:
+            return json.loads(resp.read().decode("utf-8"))
+    except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError, json.JSONDecodeError) as e:
+        print(f"  WARNING: request failed: {e}", file=sys.stderr)
+        return None
+
+
+def query_string_gene(symbol: str) -> dict | None:
+    """
+    Query STRING for a gene symbol. Returns dict with:
+      - string_id: STRING protein ID (e.g. "9606.ENSP00000245479")
+      - interactions: list of {partner, score, partner_string_id}
+      - all_interaction_count: total interactions returned (before filtering)
+    Or None on failure.
+    """
+    url = NETWORK_URL.format(gene=symbol)
+    data = fetch_json(url)
+    if data is None:
+        return None
+
+    # STRING returns an array of interaction objects
+    if not isinstance(data, list):
+        return None
+
+    if len(data) == 0:
+        # Gene found but no high-confidence interactions
+        return {
+            "string_id": "",
+            "interactions": [],
+            "all_interaction_count": 0,
+        }
+
+    # Find the STRING ID for our query gene
+    string_id = ""
+    for interaction in data:
+        pref_a = interaction.get("preferredName_A", "")
+        pref_b = interaction.get("preferredName_B", "")
+        if pref_a == symbol:
+            string_id = interaction.get("stringId_A", "")
+            break
+        elif pref_b == symbol:
+            string_id = interaction.get("stringId_B", "")
+            break
+
+    # Collect all interaction partners and filter to our gene list
+    all_partners = set()
+    filtered_interactions = []
+    for interaction in data:
+        pref_a = interaction.get("preferredName_A", "")
+        pref_b = interaction.get("preferredName_B", "")
+        score = interaction.get("score", 0)
+
+        # Determine which is the partner (not our query gene)
+        if pref_a == symbol:
+            partner = pref_b
+            partner_id = interaction.get("stringId_B", "")
+        elif pref_b == symbol:
+            partner = pref_a
+            partner_id = interaction.get("stringId_A", "")
+        else:
+            # Both are partners of each other (indirect), skip
+            continue
+
+        all_partners.add(partner)
+
+        # Only keep partners in our gene list
+        if partner in OUR_GENES:
+            filtered_interactions.append({
+                "partner": partner,
+                "score": score,
+                "partner_string_id": partner_id,
+            })
+
+    # Sort by score descending
+    filtered_interactions.sort(key=lambda x: x["score"], reverse=True)
+
+    return {
+        "string_id": string_id,
+        "interactions": filtered_interactions,
+        "all_interaction_count": len(all_partners),
+    }
+
+
+def load_cache() -> dict:
+    """Load cached STRING data if available."""
+    if CACHE_FILE.exists():
+        with open(CACHE_FILE) as f:
+            return json.load(f)
+    return {}
+
+
+def save_cache(cache: dict) -> None:
+    """Persist the STRING cache to disk."""
+    CACHE_DIR.mkdir(parents=True, exist_ok=True)
+    with open(CACHE_FILE, "w") as f:
+        json.dump(cache, f, indent=2, sort_keys=True)
+    print(f"  cached: {CACHE_FILE}")
+
+
+def escape_cue_string(s: str) -> str:
+    """Escape a string for CUE literal output."""
+    return s.replace("\\", "\\\\").replace('"', '\\"')
+
+
+def generate_cue(string_data: dict) -> str:
+    """Generate CUE source from STRING data, keyed by HGNC symbol."""
+    gene_count = len(string_data)
+    lines = [
+        "package froq",
+        "",
+        "// STRING: protein-protein interaction data for neural crest genes.",
+        "// Source: STRING database (string-db.org) v12",
+        f"// Generated by normalizers/from_string.py -- {gene_count} genes",
+        "",
+        "genes: {",
+    ]
+
+    for symbol in sorted(string_data.keys()):
+        entry = string_data[symbol]
+        string_id = escape_cue_string(entry["string_id"])
+        interactions = entry.get("interactions", [])
+        partner_symbols = [i["partner"] for i in interactions]
+
+        lines.append(f'\t"{symbol}": {{')
+        lines.append(f"\t\t_in_string: true")
+        lines.append(f'\t\tstring_id:  "{string_id}"')
+        lines.append(f"\t\tstring_interaction_count: {len(partner_symbols)}")
+
+        if partner_symbols:
+            partners_str = ", ".join(f'"{p}"' for p in partner_symbols)
+            lines.append(f"\t\tstring_partners: [{partners_str}]")
+
+        lines.append(f"\t}}")
+
+    lines.append("}")
+    lines.append("")  # trailing newline
+
+    return "\n".join(lines)
+
+
+def main():
+    print("from_string: querying STRING for neural crest gene interactions...")
+
+    cache = load_cache()
+    string_data = {}
+    fetched = 0
+    cached_count = 0
+    failed = 0
+
+    for symbol in sorted(GENES.keys()):
+        if symbol in cache:
+            entry = cache[symbol]
+            partner_count = len(entry.get("interactions", []))
+            print(f"  {symbol}: cached ({partner_count} in-network partners)")
+            string_data[symbol] = entry
+            cached_count += 1
+            continue
+
+        print(f"  {symbol}: querying STRING...", end=" ", flush=True)
+        result = query_string_gene(symbol)
+        time.sleep(REQUEST_DELAY)
+
+        if result is None:
+            print(f"FAILED (skipping)", file=sys.stderr)
+            failed += 1
+            continue
+
+        partner_count = len(result["interactions"])
+        total = result["all_interaction_count"]
+        print(f"{total} total partners, {partner_count} in our network")
+        string_data[symbol] = result
+        cache[symbol] = result
+        fetched += 1
+
+    # Save updated cache
+    save_cache(cache)
+
+    if not string_data:
+        print("ERROR: no STRING data retrieved for any gene", file=sys.stderr)
+        sys.exit(1)
+
+    # Write CUE output
+    print("from_string: writing model/string.cue...")
+    cue_source = generate_cue(string_data)
+    OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
+    with open(OUTPUT_FILE, "w") as f:
+        f.write(cue_source)
+
+    # Stats
+    total_interactions = sum(
+        len(d.get("interactions", [])) for d in string_data.values()
+    )
+    genes_with_partners = sum(
+        1 for d in string_data.values() if d.get("interactions")
+    )
+
+    print(f"from_string: wrote {OUTPUT_FILE}")
+    print(f"  {len(string_data)} genes, {total_interactions} total in-network interactions")
+    print(f"  {genes_with_partners} genes have partners in our 95-gene list")
+    print(f"  ({fetched} fetched, {cached_count} cached, {failed} failed)")
+
+
+if __name__ == "__main__":
+    main()

@@ -39,6 +39,7 @@ def main():
     source_keys = [
         "in_go", "in_omim", "in_hpo", "in_uniprot", "in_facebase",
         "in_clinvar", "in_pubmed", "in_gnomad", "in_nih_reporter", "in_gtex",
+        "in_clinicaltrials", "in_string",
     ]
     source_counts = {}
     for name in source_keys:
@@ -55,12 +56,15 @@ def main():
         "in_gnomad": "gnomAD",
         "in_nih_reporter": "NIH Reporter",
         "in_gtex": "GTEx",
+        "in_clinicaltrials": "ClinicalTrials",
+        "in_string": "STRING",
     }
 
     print("=" * 60)
     print("  froq: Neural Crest Gene Reconciliation")
     print("=" * 60)
-    print(f"\n{total} genes unified across 10 sources\n")
+    source_total = len(source_keys)
+    print(f"\n{total} genes unified across {source_total} sources\n")
 
     print("Coverage Tiers:")
     for tier in sorted(tier_counts.keys(), reverse=True):
@@ -85,7 +89,7 @@ def main():
             print(f"  {g['symbol']:8s}  {syn_str}")
 
     # Per-gene detail table (abbreviated: GO, OMIM, HPO, UniP, FB, CV, PM, gn, NR, GT)
-    headers = ["GO", "OMIM", "HPO", "UniP", "FB", "CV", "PM", "gn", "NR", "GT"]
+    headers = ["GO", "OMIM", "HPO", "UniP", "FB", "CV", "PM", "gn", "NR", "GT", "CT", "ST"]
     header_line = "  ".join(f"{h:>4s}" for h in headers)
     print(f"\n{'Symbol':10s} {header_line}  Sources")
     print("-" * 70)
@@ -96,7 +100,7 @@ def main():
             marks.append("Y" if flags.get(key, False) else "-")
         count = sum(1 for v in flags.values() if v)
         mark_line = "  ".join(f"{m:>4s}" for m in marks)
-        print(f"  {sym:8s} {mark_line}  {count}/10")
+        print(f"  {sym:8s} {mark_line}  {count}/{source_total}")
 
     print()
 

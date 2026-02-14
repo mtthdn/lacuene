@@ -1,0 +1,245 @@
+#!/usr/bin/env python3
+"""
+Normalizer: ClinicalTrials.gov -> model/clinicaltrials.cue
+
+Queries ClinicalTrials.gov API v2 for each neural crest gene, searching for
+clinical trials related to craniofacial / neural crest conditions. Extracts
+trial count and top study details (NCT ID, title, status, phase).
+
+Results are cached in data/clinicaltrials/clinicaltrials_cache.json for
+reproducibility. Rate limits: 0.5s between requests.
+
+Usage:
+    python3 normalizers/from_clinicaltrials.py
+"""
+
+import json
+import sys
+import time
+import urllib.request
+import urllib.error
+import urllib.parse
+from pathlib import Path
+
+# Resolve paths relative to repo root (parent of normalizers/)
+REPO_ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(REPO_ROOT / "normalizers"))
+
+from genes import GENES
+
+CACHE_DIR = REPO_ROOT / "data" / "clinicaltrials"
+CACHE_FILE = CACHE_DIR / "clinicaltrials_cache.json"
+OUTPUT_FILE = REPO_ROOT / "model" / "clinicaltrials.cue"
+
+SEARCH_URL = (
+    "https://clinicaltrials.gov/api/v2/studies"
+    "?query.term={gene}+AND+(craniofacial+OR+neural+crest+OR+dental+OR+cleft)"
+    "&countTotal=true&pageSize=5"
+)
+
+REQUEST_DELAY = 0.5  # seconds between requests
+
+
+def fetch_json(url: str) -> dict | None:
+    """Fetch a URL and return parsed JSON, or None on failure."""
+    try:
+        req = urllib.request.Request(url, headers={"Accept": "application/json"})
+        with urllib.request.urlopen(req, timeout=30) as resp:
+            return json.loads(resp.read().decode("utf-8"))
+    except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError, json.JSONDecodeError) as e:
+        print(f"  WARNING: request failed: {e}", file=sys.stderr)
+        return None
+
+
+def extract_phase(phases: list | None) -> str:
+    """Extract a human-readable phase string from the phases array."""
+    if not phases:
+        return ""
+    # phases is a list like ["PHASE1"], ["PHASE2", "PHASE3"], ["NA"], etc.
+    readable = []
+    for p in phases:
+        if isinstance(p, str):
+            # Convert "PHASE1" -> "Phase 1", "PHASE2" -> "Phase 2", etc.
+            p_upper = p.upper()
+            if p_upper == "NA" or p_upper == "NOT_APPLICABLE":
+                continue
+            elif p_upper == "EARLY_PHASE1":
+                readable.append("Early Phase 1")
+            elif p_upper.startswith("PHASE"):
+                num = p_upper.replace("PHASE", "").strip()
+                readable.append(f"Phase {num}")
+            else:
+                readable.append(p)
+    return "/".join(readable) if readable else ""
+
+
+def query_clinicaltrials_gene(symbol: str) -> dict | None:
+    """
+    Query ClinicalTrials.gov for a gene symbol. Returns dict with:
+      - total_count: int
+      - studies: list of {nct_id, title, status, phase}
+    Or None on failure.
+    """
+    url = SEARCH_URL.format(gene=urllib.parse.quote(symbol, safe=""))
+    data = fetch_json(url)
+    if data is None:
+        return None
+
+    total_count = data.get("totalCount", 0)
+    raw_studies = data.get("studies", [])
+
+    studies = []
+    for study in raw_studies[:5]:
+        try:
+            protocol = study.get("protocolSection", {})
+            id_module = protocol.get("identificationModule", {})
+            status_module = protocol.get("statusModule", {})
+            design_module = protocol.get("designModule", {})
+
+            nct_id = id_module.get("nctId", "")
+            title = id_module.get("briefTitle", "")
+            status = status_module.get("overallStatus", "")
+            phases = design_module.get("phases", [])
+            phase = extract_phase(phases)
+
+            if nct_id and title:
+                entry = {
+                    "nct_id": nct_id,
+                    "title": title,
+                    "status": status,
+                }
+                if phase:
+                    entry["phase"] = phase
+                studies.append(entry)
+        except (KeyError, TypeError, AttributeError):
+            continue
+
+    return {"total_count": total_count, "studies": studies}
+
+
+def load_cache() -> dict:
+    """Load cached ClinicalTrials data if available."""
+    if CACHE_FILE.exists():
+        with open(CACHE_FILE) as f:
+            return json.load(f)
+    return {}
+
+
+def save_cache(cache: dict) -> None:
+    """Persist the ClinicalTrials cache to disk."""
+    CACHE_DIR.mkdir(parents=True, exist_ok=True)
+    with open(CACHE_FILE, "w") as f:
+        json.dump(cache, f, indent=2, sort_keys=True)
+    print(f"  cached: {CACHE_FILE}")
+
+
+def escape_cue_string(s: str) -> str:
+    """Escape a string for CUE literal output."""
+    return s.replace("\\", "\\\\").replace('"', '\\"')
+
+
+def generate_cue(ct_data: dict) -> str:
+    """Generate CUE source from ClinicalTrials data, keyed by HGNC symbol."""
+    gene_count = len(ct_data)
+    lines = [
+        "package froq",
+        "",
+        "// ClinicalTrials.gov: active clinical trials for neural crest genes.",
+        "// Source: ClinicalTrials.gov API v2",
+        f"// Generated by normalizers/from_clinicaltrials.py -- {gene_count} genes",
+        "",
+        "genes: {",
+    ]
+
+    for symbol in sorted(ct_data.keys()):
+        entry = ct_data[symbol]
+        total_count = entry["total_count"]
+        studies = entry.get("studies", [])
+
+        lines.append(f'\t"{symbol}": {{')
+        lines.append(f"\t\t_in_clinicaltrials: true")
+        lines.append(f"\t\tactive_trial_count: {total_count}")
+
+        if studies:
+            lines.append(f"\t\tclinicaltrials_studies: [")
+            for s in studies:
+                nct_id = escape_cue_string(s["nct_id"])
+                title = escape_cue_string(s["title"])
+                status = escape_cue_string(s["status"])
+                phase = s.get("phase", "")
+                lines.append(f"\t\t\t{{")
+                lines.append(f'\t\t\t\tnct_id: "{nct_id}"')
+                lines.append(f'\t\t\t\ttitle:  "{title}"')
+                lines.append(f'\t\t\t\tstatus: "{status}"')
+                if phase:
+                    lines.append(f'\t\t\t\tphase:  "{escape_cue_string(phase)}"')
+                lines.append(f"\t\t\t}},")
+            lines.append(f"\t\t]")
+
+        lines.append(f"\t}}")
+
+    lines.append("}")
+    lines.append("")  # trailing newline
+
+    return "\n".join(lines)
+
+
+def main():
+    print("from_clinicaltrials: querying ClinicalTrials.gov for neural crest genes...")
+
+    cache = load_cache()
+    ct_data = {}
+    fetched = 0
+    cached_count = 0
+    failed = 0
+
+    for symbol in sorted(GENES.keys()):
+        if symbol in cache:
+            print(f"  {symbol}: cached ({cache[symbol]['total_count']} trials)")
+            ct_data[symbol] = cache[symbol]
+            cached_count += 1
+            continue
+
+        print(f"  {symbol}: querying ClinicalTrials.gov...", end=" ", flush=True)
+        result = query_clinicaltrials_gene(symbol)
+        time.sleep(REQUEST_DELAY)
+
+        if result is None:
+            print(f"FAILED (skipping)", file=sys.stderr)
+            failed += 1
+            continue
+
+        print(f"{result['total_count']} trials, "
+              f"{len(result['studies'])} top studies")
+        ct_data[symbol] = result
+        cache[symbol] = result
+        fetched += 1
+
+    # Save updated cache
+    save_cache(cache)
+
+    if not ct_data:
+        print("ERROR: no ClinicalTrials data retrieved for any gene", file=sys.stderr)
+        sys.exit(1)
+
+    # Write CUE output
+    print("from_clinicaltrials: writing model/clinicaltrials.cue...")
+    cue_source = generate_cue(ct_data)
+    OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
+    with open(OUTPUT_FILE, "w") as f:
+        f.write(cue_source)
+
+    # Stats
+    total_trials = sum(d["total_count"] for d in ct_data.values())
+    total_studies = sum(len(d.get("studies", [])) for d in ct_data.values())
+    genes_with_trials = sum(1 for d in ct_data.values() if d["total_count"] > 0)
+
+    print(f"from_clinicaltrials: wrote {OUTPUT_FILE}")
+    print(f"  {len(ct_data)} genes, {total_trials} total trials, "
+          f"{total_studies} study records")
+    print(f"  {genes_with_trials} genes have at least one trial")
+    print(f"  ({fetched} fetched, {cached_count} cached, {failed} failed)")
+
+
+if __name__ == "__main__":
+    main()

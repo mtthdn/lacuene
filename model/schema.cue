@@ -74,6 +74,17 @@ package froq
 	_in_gtex: *false | true
 	top_tissues?: [...#GTExTissue]
 	craniofacial_expression?: number // TPM in relevant tissues
+
+	// ClinicalTrials.gov-owned fields (active clinical trials)
+	_in_clinicaltrials: *false | true
+	active_trial_count?: int
+	clinicaltrials_studies?: [...#ClinicalTrial]
+
+	// STRING-owned fields (protein-protein interactions)
+	string_id: *"" | string // STRING protein ID
+	_in_string: *false | true
+	string_interaction_count?: int
+	string_partners?: [...string] // top interaction partner gene symbols
 }
 
 #GOAnnotation: {
@@ -111,6 +122,13 @@ package froq
 #GTExTissue: {
 	tissue:     string // e.g. "Brain - Cortex"
 	median_tpm: number
+}
+
+#ClinicalTrial: {
+	nct_id: string // e.g. "NCT04123456"
+	title:  string
+	status: string // "Recruiting", "Completed", etc.
+	phase?: string // "Phase 1", "Phase 2", etc.
 }
 
 genes: [Symbol=string]: #Gene & {symbol: Symbol}

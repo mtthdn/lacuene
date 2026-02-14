@@ -14,6 +14,7 @@ NORMALIZERS = [
     "from_go.py", "from_omim.py", "from_hpo.py", "from_uniprot.py",
     "from_facebase.py", "from_clinvar.py", "from_pubmed.py",
     "from_gnomad.py", "from_nih_reporter.py", "from_gtex.py",
+    "from_clinicaltrials.py", "from_string.py",
 ]
 
 # Map normalizer to its cache file for staleness checking
@@ -28,6 +29,8 @@ CACHE_FILES = {
     "from_gnomad.py": "data/gnomad/gnomad_cache.json",
     "from_nih_reporter.py": "data/nih_reporter/nih_reporter_cache.json",
     "from_gtex.py": "data/gtex/gtex_cache.json",
+    "from_clinicaltrials.py": "data/clinicaltrials/clinicaltrials_cache.json",
+    "from_string.py": "data/string/string_cache.json",
 }
 
 
