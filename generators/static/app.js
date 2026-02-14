@@ -131,15 +131,19 @@ const cy = cytoscape({
         'background-color': 'data(color)',
         'label': 'data(label)',
         'color': '#e6edf3',
-        'font-size': '10px',
+        'font-size': '12px',
         'font-family': "'Atkinson Hyperlegible Next', system-ui, sans-serif",
-        'font-weight': 500,
+        'font-weight': 600,
         'text-valign': 'bottom',
-        'text-margin-y': 5,
+        'text-margin-y': 6,
+        'text-outline-width': 2.5,
+        'text-outline-color': '#0d1117',
+        'text-outline-opacity': 1,
         'width': 'data(size)',
         'height': 'data(size)',
         'border-width': 2,
         'border-color': '#0d1117',
+        'min-zoomed-font-size': 8,
         'transition-property': 'opacity, border-color, border-width',
         'transition-duration': '0.2s',
       }
@@ -147,10 +151,10 @@ const cy = cytoscape({
     {
       selector: 'edge',
       style: {
-        'width': 1,
-        'line-color': '#30363d',
+        'width': 0.5,
+        'line-color': '#21262d',
         'curve-style': 'bezier',
-        'opacity': 0.3,
+        'opacity': 0.12,
         'transition-property': 'opacity, line-color, width',
         'transition-duration': '0.2s',
       }
@@ -159,17 +163,33 @@ const cy = cytoscape({
       selector: 'edge[type="shared_syndrome"]',
       style: {
         'line-color': '#db61a2',
-        'width': 2,
-        'opacity': 0.6,
+        'width': 1.5,
+        'opacity': 0.55,
       }
     },
     {
       selector: 'edge[type="ppi"]',
       style: {
         'line-color': '#3fb950',
-        'width': 1.5,
-        'opacity': 0.5,
+        'width': 1.2,
+        'opacity': 0.45,
         'line-style': 'dashed',
+      }
+    },
+    {
+      selector: 'edge[type="shared_pathway"]',
+      style: {
+        'line-color': '#a371f7',
+        'width': 0.8,
+        'opacity': 0.25,
+      }
+    },
+    {
+      selector: 'edge[type="shared_phenotype"]',
+      style: {
+        'line-color': '#30363d',
+        'width': 0.5,
+        'opacity': 0.08,
       }
     },
     {
@@ -186,27 +206,34 @@ const cy = cytoscape({
       }
     },
     {
+      selector: 'edge.highlighted',
+      style: {
+        'opacity': 0.8,
+        'width': 2,
+      }
+    },
+    {
       selector: '.faded',
       style: {
-        'opacity': 0.08,
+        'opacity': 0.04,
       }
     },
   ],
   layout: {
     name: 'cose',
-    idealEdgeLength: 100,
-    nodeOverlap: 20,
+    idealEdgeLength: 180,
+    nodeOverlap: 40,
     refresh: 20,
     fit: true,
-    padding: 40,
+    padding: 60,
     randomize: false,
-    componentSpacing: 80,
-    nodeRepulsion: 8000,
-    edgeElasticity: 100,
+    componentSpacing: 160,
+    nodeRepulsion: 80000,
+    edgeElasticity: 200,
     nestingFactor: 5,
-    gravity: 80,
-    numIter: 1000,
-    initialTemp: 200,
+    gravity: 25,
+    numIter: 1500,
+    initialTemp: 300,
     coolingFactor: 0.95,
     minTemp: 1.0,
     animate: false,
@@ -222,16 +249,19 @@ function setLayout(name, btn) {
   const opts = { name: name, animate: true, animationDuration: 600 };
   if (name === 'cose') {
     Object.assign(opts, {
-      nodeOverlap: 20, idealEdgeLength: 100, nodeRepulsion: 8000,
-      gravity: 80, numIter: 1000, animate: false,
+      nodeOverlap: 40, idealEdgeLength: 180, nodeRepulsion: 80000,
+      edgeElasticity: 200, componentSpacing: 160,
+      gravity: 25, numIter: 1500, initialTemp: 300,
+      padding: 60, animate: false,
     });
   } else if (name === 'circle') {
-    Object.assign(opts, { avoidOverlap: true, spacingFactor: 1.3 });
+    Object.assign(opts, { avoidOverlap: true, spacingFactor: 1.75, padding: 60 });
   } else if (name === 'concentric') {
     Object.assign(opts, {
-      avoidOverlap: true, spacingFactor: 1.3,
+      avoidOverlap: true, spacingFactor: 1.75, padding: 60,
+      minNodeSpacing: 40,
       concentric: n => n.data('pub_count') || 0,
-      levelWidth: () => 3,
+      levelWidth: () => 2,
     });
   }
   cy.layout(opts).run();
@@ -242,11 +272,26 @@ function filterEdges(type, btn) {
   btn.classList.add('active');
   if (type === 'all') {
     cy.edges().style('display', 'element');
+  } else if (type === 'key') {
+    // Show only syndrome + PPI edges (the most informative ones)
+    cy.edges().style('display', 'none');
+    cy.edges('[type="shared_syndrome"]').style('display', 'element');
+    cy.edges('[type="ppi"]').style('display', 'element');
   } else {
     cy.edges().style('display', 'none');
     cy.edges(`[type="${type}"]`).style('display', 'element');
   }
 }
+
+// Default to showing key edges only (syndrome + PPI) to avoid visual overload
+(function() {
+  cy.edges().style('display', 'none');
+  cy.edges('[type="shared_syndrome"]').style('display', 'element');
+  cy.edges('[type="ppi"]').style('display', 'element');
+  document.querySelectorAll('.edge-filter').forEach(b => b.classList.remove('active'));
+  const keyBtn = document.querySelector('.edge-filter[data-edge="key"]');
+  if (keyBtn) keyBtn.classList.add('active');
+})();
 
 cy.on('tap', 'node', function(evt) {
   const node = evt.target;

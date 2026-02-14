@@ -117,18 +117,21 @@
         <div class="gh-sub">Node size = publication count &middot; Color = developmental role &middot; 4 edge types: phenotype, syndrome, pathway, PPI</div>
       </div>
       <div class="graph-controls">
-        <label>Layout:</label>
-        <button class="layout-btn active" onclick="setLayout('cose', this)">Force</button>
-        <button class="layout-btn" onclick="setLayout('circle', this)">Circle</button>
-        <button class="layout-btn" onclick="setLayout('concentric', this)">Concentric</button>
-        <button class="layout-btn" onclick="setClusterLayout(this)">Cluster</button>
-        <div style="margin-top:0.5rem">
-          <span style="font-size:0.75rem;color:var(--text-sec);margin-right:0.5rem">Edges:</span>
-          <button class="layout-btn edge-filter active" data-edge="all" onclick="filterEdges('all', this)">All</button>
-          <button class="layout-btn edge-filter" data-edge="shared_phenotype" onclick="filterEdges('shared_phenotype', this)">Phenotype</button>
-          <button class="layout-btn edge-filter" data-edge="shared_syndrome" onclick="filterEdges('shared_syndrome', this)">Syndrome</button>
-          <button class="layout-btn edge-filter" data-edge="shared_pathway" onclick="filterEdges('shared_pathway', this)">Pathway</button>
-          <button class="layout-btn edge-filter" data-edge="ppi" onclick="filterEdges('ppi', this)">PPI</button>
+        <div class="control-group">
+          <label>Layout:</label>
+          <button class="layout-btn active" onclick="setLayout('cose', this)" title="Physics simulation — groups connected genes together">Force</button>
+          <button class="layout-btn" onclick="setLayout('circle', this)" title="All genes in a circle — good for seeing all nodes equally">Circle</button>
+          <button class="layout-btn" onclick="setLayout('concentric', this)" title="Rings by publication count — most-studied genes at center">Concentric</button>
+          <button class="layout-btn" onclick="setClusterLayout(this)" title="Community detection — groups genes by shared connections">Cluster</button>
+        </div>
+        <div class="control-group">
+          <label>Edges:</label>
+          <button class="layout-btn edge-filter" data-edge="all" onclick="filterEdges('all', this)" title="Show all edge types (may be visually dense)">All</button>
+          <button class="layout-btn edge-filter active" data-edge="key" onclick="filterEdges('key', this)" title="Syndrome + PPI edges only (recommended)">Key</button>
+          <button class="layout-btn edge-filter" data-edge="shared_syndrome" onclick="filterEdges('shared_syndrome', this)" title="Genes sharing a Mendelian syndrome">Syndrome</button>
+          <button class="layout-btn edge-filter" data-edge="ppi" onclick="filterEdges('ppi', this)" title="Protein-protein interactions from STRING">PPI</button>
+          <button class="layout-btn edge-filter" data-edge="shared_pathway" onclick="filterEdges('shared_pathway', this)" title="Genes sharing a GO biological pathway">Pathway</button>
+          <button class="layout-btn edge-filter" data-edge="shared_phenotype" onclick="filterEdges('shared_phenotype', this)" title="Genes sharing HPO phenotype terms">Phenotype</button>
         </div>
       </div>
       <div class="graph-legend">
