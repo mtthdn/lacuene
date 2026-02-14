@@ -1,6 +1,7 @@
 output/
 data/omim/genemap2.txt
 data/hpo/phenotype_to_genes.txt
+data/orphanet/en_product6.xml
 data/cache/
 __pycache__/
 *.pyc

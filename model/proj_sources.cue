@@ -16,5 +16,9 @@ gene_sources: {for k, v in genes {
 		in_gtex:             v._in_gtex
 		in_clinicaltrials:   v._in_clinicaltrials
 		in_string:           v._in_string
+		in_orphanet:         v._in_orphanet
+		in_opentargets:      v._in_opentargets
+		in_models:           v._in_models
+		in_structures:       v._in_structures
 	}
 }}

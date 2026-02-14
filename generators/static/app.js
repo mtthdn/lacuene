@@ -4,6 +4,8 @@ const CRITICAL_GAPS = {{ critical_gaps_json }};
 const SNAPSHOTS = {{ snapshots_json }};
 const WEIGHTED_GAPS = {{ weighted_gaps_json }};
 const ANOMALIES = {{ anomalies_json }};
+const FUNDING_INTEL = {{ funding_intel_json }};
+const SYNDROME_FUNDING = {{ syndrome_funding_json }};
 const SOURCE_COUNT = {{ source_count }};
 let currentFilteredRows = GENE_ROWS;
 
@@ -84,6 +86,10 @@ function renderTable(rows) {
       <td>${mark(g.gtex)}</td>
       <td>${mark(g.clinicaltrials)}</td>
       <td>${mark(g.string)}</td>
+      <td>${mark(g.orphanet)}</td>
+      <td>${mark(g.opentargets)}</td>
+      <td>${mark(g.structures)}</td>
+      <td>${mark(g.models)}</td>
       <td>${g.count}/${SOURCE_COUNT}</td>
       <td>${g.pub_total || '&mdash;'}${trendArrow(g.pub_total, g.pub_recent)}</td>
       <td>${g.pub_recent || '&mdash;'}</td>
@@ -402,6 +408,10 @@ function showGeneDetail(symbol) {
   if (row.gtex) srcLabels.push('GTEx');
   if (row.clinicaltrials) srcLabels.push('ClinicalTrials');
   if (row.string) srcLabels.push('STRING');
+  if (row.orphanet) srcLabels.push('ORPHANET');
+  if (row.opentargets) srcLabels.push('Open Targets');
+  if (row.structures) srcLabels.push('Structures');
+  if (row.models) srcLabels.push('Models');
 
   // Publication trend
   const trend = trendArrow(row.pub_total, row.pub_recent);
@@ -483,6 +493,111 @@ function showGeneDetail(symbol) {
     </div>`;
   }
 
+  // ORPHANET rare disease disorders
+  let orphanetHtml = '';
+  if (row.orphanet && row.orphanet_disorders && row.orphanet_disorders.length > 0) {
+    orphanetHtml = `<div class="detail-field"><div class="detail-label">Rare Disease (ORPHANET) &mdash; ${row.orphanet_disorders.length} disorder(s)</div>`;
+    if (row.prevalence) {
+      orphanetHtml += `<div class="detail-value" style="margin-bottom:6px">Prevalence: <strong>${row.prevalence}</strong></div>`;
+    }
+    row.orphanet_disorders.forEach(d => {
+      const orphaUrl = 'https://www.orpha.net/consor/cgi-bin/OC_Exp.php?lng=en&Expert=' + d.orpha_code;
+      orphanetHtml += `<div style="padding:0.3rem 0;border-bottom:1px solid var(--elevated);font-size:0.8rem">
+        <a href="${orphaUrl}" target="_blank" class="gene-link">ORPHA:${d.orpha_code}</a>
+        <span style="margin-left:0.4rem">${d.name}</span>
+      </div>`;
+    });
+    orphanetHtml += '</div>';
+  }
+
+  // Open Targets drug target data
+  let drugTargetHtml = '';
+  if (row.is_drug_target || (row.opentargets_drugs && row.opentargets_drugs.length > 0)) {
+    const phaseLabels = {0: 'Preclinical', 1: 'Phase I', 2: 'Phase II', 3: 'Phase III', 4: 'Approved'};
+    const phaseColor = row.max_clinical_phase >= 4 ? 'var(--green)' : row.max_clinical_phase >= 2 ? 'var(--orange)' : 'var(--text-sec)';
+    drugTargetHtml = `<div class="detail-field">
+      <div class="detail-label">Drug Target (Open Targets)</div>
+      <div class="detail-value" style="margin-bottom:6px">
+        <strong style="color:${phaseColor}">${row.drug_count} drug(s)</strong> &middot; Max phase: <strong>${phaseLabels[row.max_clinical_phase] || 'Phase ' + row.max_clinical_phase}</strong>
+      </div>`;
+    if (row.opentargets_drugs && row.opentargets_drugs.length > 0) {
+      row.opentargets_drugs.forEach(d => {
+        const phaseLbl = phaseLabels[d.phase] || 'Phase ' + d.phase;
+        const diseaseStr = d.disease ? ' &middot; ' + d.disease : '';
+        drugTargetHtml += `<div style="padding:0.3rem 0;border-bottom:1px solid var(--elevated);font-size:0.8rem">
+          <span style="font-weight:500">${d.drug_name}</span>
+          <span style="font-size:0.75rem;color:var(--text-sec)"> (${d.drug_type})</span>
+          <div style="font-size:0.75rem;color:var(--text-sec)">${phaseLbl}${diseaseStr}</div>
+        </div>`;
+      });
+    }
+    drugTargetHtml += '</div>';
+  } else if (row.opentargets) {
+    drugTargetHtml = `<div class="detail-field">
+      <div class="detail-label">Drug Target (Open Targets)</div>
+      <div class="detail-value">Not a known drug target</div>
+    </div>`;
+  }
+
+  // Protein structure (AlphaFold + PDB)
+  let structureHtml = '';
+  if (row.structures) {
+    structureHtml = '<div class="detail-field"><div class="detail-label">Protein Structure</div>';
+    const parts = [];
+    if (row.has_alphafold) {
+      const conf = row.alphafold_confidence;
+      let confBadge = '';
+      if (conf != null) {
+        const confColor = conf >= 90 ? 'var(--green)' : conf >= 70 ? 'var(--orange)' : 'var(--red)';
+        const confLabel = conf >= 90 ? 'Very high' : conf >= 70 ? 'Confident' : 'Low';
+        confBadge = ` <span style="color:${confColor};font-weight:600">pLDDT ${conf.toFixed(1)}</span> (${confLabel})`;
+      }
+      parts.push('AlphaFold: <strong style="color:var(--green)">Available</strong>' + confBadge);
+    } else {
+      parts.push('AlphaFold: <span style="color:var(--text-sec)">None</span>');
+    }
+    if (row.has_experimental_structure) {
+      parts.push('PDB: <strong style="color:var(--green)">' + row.pdb_count + ' structure(s)</strong>');
+    } else {
+      parts.push('PDB: <span style="color:var(--text-sec)">None</span>');
+    }
+    structureHtml += '<div class="detail-value">' + parts.join(' &middot; ') + '</div>';
+    // External links for structure
+    structureHtml += '<div class="detail-value" style="margin-top:4px;font-size:0.8rem">';
+    if (row.has_alphafold) {
+      structureHtml += `<a href="https://alphafold.ebi.ac.uk/entry/${symbol}" target="_blank" class="gene-link">AlphaFold</a> &middot; `;
+    }
+    if (row.has_experimental_structure) {
+      structureHtml += `<a href="https://www.rcsb.org/search?request=%7B%22query%22%3A%7B%22parameters%22%3A%7B%22value%22%3A%22${symbol}%22%7D%7D%7D" target="_blank" class="gene-link">RCSB PDB</a>`;
+    }
+    structureHtml += '</div>';
+    structureHtml += '</div>';
+  }
+
+  // Model organisms (MGI + ZFIN)
+  let modelsHtml = '';
+  if (row.models) {
+    modelsHtml = '<div class="detail-field"><div class="detail-label">Model Organisms</div>';
+    const mParts = [];
+    if (row.has_mouse_model) {
+      mParts.push('Mouse: <strong style="color:var(--green)">' + (row.mouse_model_count || 1) + ' ortholog(s)</strong>');
+    } else {
+      mParts.push('Mouse: <span style="color:var(--text-sec)">None</span>');
+    }
+    if (row.has_zebrafish_model) {
+      mParts.push('Zebrafish: <strong style="color:var(--green)">' + (row.zebrafish_model_count || 1) + ' ortholog(s)</strong>');
+    } else {
+      mParts.push('Zebrafish: <span style="color:var(--text-sec)">None</span>');
+    }
+    modelsHtml += '<div class="detail-value">' + mParts.join(' &middot; ') + '</div>';
+    modelsHtml += '<div class="detail-value" style="margin-top:4px;font-size:0.8rem">';
+    modelsHtml += '<a href="https://www.informatics.jax.org/searchtool/Search.do?query=' + symbol + '" target="_blank" class="gene-link">MGI</a> &middot; ';
+    modelsHtml += '<a href="https://zfin.org/search?q=' + symbol + '&category=Gene" target="_blank" class="gene-link">ZFIN</a> &middot; ';
+    modelsHtml += '<a href="https://www.alliancegenome.org/search?q=' + symbol + '&category=gene" target="_blank" class="gene-link">Alliance</a>';
+    modelsHtml += '</div>';
+    modelsHtml += '</div>';
+  }
+
   content.innerHTML = `
     <h2>${symbol}</h2>
     ${fundingCase}
@@ -510,6 +625,10 @@ function showGeneDetail(symbol) {
     ${grantsHtml}
     ${constraintHtml}
     ${stringHtml}
+    ${orphanetHtml}
+    ${drugTargetHtml}
+    ${structureHtml}
+    ${modelsHtml}
     ${papersHtml}
     <div class="detail-field">
       <div class="detail-label">Connected Genes (${connected.size})</div>
@@ -527,7 +646,8 @@ function showGeneDetail(symbol) {
         <a href="https://www.omim.org/search?search=${symbol}" target="_blank" class="gene-link">OMIM</a> &middot;
         <a href="https://www.ncbi.nlm.nih.gov/clinvar/?term=${symbol}[gene]" target="_blank" class="gene-link">ClinVar</a> &middot;
         <a href="https://www.facebase.org/chaise/recordset/#1/isa:dataset/*::cfacets::N4IghgDg9lBcBOBnALhANjAcwCZ0A" target="_blank" class="gene-link">FaceBase</a> &middot;
-        <a href="https://string-db.org/network/9606.${symbol}" target="_blank" class="gene-link">STRING</a>
+        <a href="https://string-db.org/network/9606.${symbol}" target="_blank" class="gene-link">STRING</a> &middot;
+        <a href="https://platform.opentargets.io/target/${symbol}" target="_blank" class="gene-link">Open Targets</a>
       </div>
     </div>
   `;
@@ -561,7 +681,7 @@ document.addEventListener('click', function(e) {
 });
 
 function downloadCSV(template) {
-  const headers = ['Gene','GO','OMIM','HPO','UniProt','FaceBase','ClinVar','PubMed','gnomAD','NIH Reporter','GTEx','ClinicalTrials','STRING','Sources','PubTotal','PubRecent','Pathogenic','Phenotypes','Key Syndrome'];
+  const headers = ['Gene','GO','OMIM','HPO','UniProt','FaceBase','ClinVar','PubMed','gnomAD','NIH Reporter','GTEx','ClinicalTrials','STRING','ORPHANET','Open Targets','Structures','Sources','PubTotal','PubRecent','Pathogenic','Phenotypes','Key Syndrome'];
   let exportRows;
   const gapSymbols = new Set(CRITICAL_GAPS.map(g => g.symbol));
 
@@ -592,6 +712,9 @@ function downloadCSV(template) {
     g.gtex ? 'Y' : '',
     g.clinicaltrials ? 'Y' : '',
     g.string ? 'Y' : '',
+    g.orphanet ? 'Y' : '',
+    g.opentargets ? 'Y' : '',
+    g.structures ? 'Y' : '',
     g.count,
     g.pub_total,
     g.pub_recent,
@@ -627,7 +750,7 @@ function showBriefing() {
     text += `[Filtered view: ${geneCount} of ${GENE_ROWS.length} genes matching current filter]\n\n`;
   }
   text += `This analysis cross-references ${GENE_ROWS.length} neural crest genes across ${SOURCE_COUNT} biomedical databases `;
-  text += `(Gene Ontology, OMIM, HPO, UniProt, FaceBase, ClinVar, PubMed, gnomAD, NIH Reporter, GTEx, ClinicalTrials, STRING) `;
+  text += `(Gene Ontology, OMIM, HPO, UniProt, FaceBase, ClinVar, PubMed, gnomAD, NIH Reporter, GTEx, ClinicalTrials, STRING, ORPHANET) `;
   text += `to identify clinically important but scientifically understudied genes.\n\n`;
   text += `Of ${geneCount} genes${isFiltered ? ' in this filtered set' : ''}, ${relevantGaps.length} have Mendelian disease associations `;
   text += `but lack FaceBase experimental data, representing potential funding gaps.\n\n`;
@@ -1015,6 +1138,149 @@ function renderAnomalyList(items) {
   }
   container.innerHTML = html;
 }
+
+// === Funding Intelligence ===
+(function renderFundingIntel() {
+  // Unfunded Momentum list
+  const unfundedList = document.getElementById('unfunded-momentum-list');
+  if (!unfundedList) return;
+  const unfunded = FUNDING_INTEL.filter(g => g.unfunded_momentum).sort((a, b) => b.recent - a.recent);
+  unfunded.forEach(g => {
+    const div = document.createElement('div');
+    div.className = 'gap-item';
+    div.onclick = () => focusGene(g.symbol);
+    div.innerHTML = `<div><div class="gap-gene">${g.symbol}</div><div class="gap-syndrome">${g.pubs} total pubs, velocity ${(g.velocity * 100).toFixed(0)}%</div></div><div class="gap-pubs" style="color:var(--green)">${g.recent} recent</div>`;
+    unfundedList.appendChild(div);
+  });
+  if (unfunded.length === 0) unfundedList.innerHTML = '<div style="font-size:0.8rem;color:var(--text-sec)">All active genes have NIH funding</div>';
+
+  // Funded but Quiet list
+  const quietList = document.getElementById('funded-quiet-list');
+  const quiet = FUNDING_INTEL.filter(g => g.funded_quiet).sort((a, b) => a.recent - b.recent);
+  quiet.forEach(g => {
+    const div = document.createElement('div');
+    div.className = 'gap-item';
+    div.onclick = () => focusGene(g.symbol);
+    div.innerHTML = `<div><div class="gap-gene">${g.symbol}</div><div class="gap-syndrome">${g.grants} grant(s), ${g.pubs} total pubs</div></div><div class="gap-pubs" style="color:var(--orange)">${g.recent} recent</div>`;
+    quietList.appendChild(div);
+  });
+  if (quiet.length === 0) quietList.innerHTML = '<div style="font-size:0.8rem;color:var(--text-sec)">No funded-but-quiet genes detected</div>';
+
+  // Emerging Hotspots list
+  const hotspotList = document.getElementById('hotspot-list');
+  const hotspots = FUNDING_INTEL.filter(g => g.hotspot_score >= 5).sort((a, b) => b.hotspot_score - a.hotspot_score);
+  hotspots.slice(0, 15).forEach(g => {
+    const div = document.createElement('div');
+    div.className = 'gap-item';
+    div.onclick = () => focusGene(g.symbol);
+    const badge = `<span class="priority-badge" style="background:rgba(248,81,73,0.25);color:var(--red);border-color:rgba(248,81,73,0.4)">H:${g.hotspot_score}</span>`;
+    div.innerHTML = `<div><div class="gap-gene">${g.symbol}${badge}</div><div class="gap-syndrome">velocity ${(g.velocity * 100).toFixed(0)}% &middot; ${g.has_disease ? 'disease-associated' : 'no OMIM'}</div></div><div class="gap-pubs">${g.recent} recent<br><span style="font-size:0.7rem;color:var(--text-sec)">${g.grants} grants</span></div>`;
+    hotspotList.appendChild(div);
+  });
+  if (hotspots.length === 0) hotspotList.innerHTML = '<div style="font-size:0.8rem;color:var(--text-sec)">No emerging hotspots detected</div>';
+
+  // Scatter plot: grants (x) vs recent pubs (y)
+  const canvas = document.getElementById('funding-scatter');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  const pad = { top: 20, right: 20, bottom: 35, left: 50 };
+  const pw = W - pad.left - pad.right, ph = H - pad.top - pad.bottom;
+
+  ctx.fillStyle = '#0d1117';
+  ctx.fillRect(0, 0, W, H);
+
+  // Axes
+  const maxGrants = Math.max(1, ...FUNDING_INTEL.map(g => g.grants));
+  const maxRecent = Math.max(1, ...FUNDING_INTEL.map(g => g.recent));
+  ctx.strokeStyle = '#30363d';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(pad.left, pad.top);
+  ctx.lineTo(pad.left, H - pad.bottom);
+  ctx.lineTo(W - pad.right, H - pad.bottom);
+  ctx.stroke();
+
+  // Labels
+  ctx.fillStyle = '#8b949e';
+  ctx.font = '10px system-ui';
+  ctx.textAlign = 'center';
+  ctx.fillText('NIH Grants', W / 2, H - 5);
+  ctx.save();
+  ctx.translate(12, H / 2);
+  ctx.rotate(-Math.PI / 2);
+  ctx.fillText('Recent Pubs (5yr)', 0, 0);
+  ctx.restore();
+
+  // Tick labels
+  for (let i = 0; i <= 4; i++) {
+    const x = pad.left + (pw * i / 4);
+    ctx.fillText(Math.round(maxGrants * i / 4), x, H - pad.bottom + 14);
+    const y = H - pad.bottom - (ph * i / 4);
+    ctx.textAlign = 'right';
+    ctx.fillText(Math.round(maxRecent * i / 4), pad.left - 6, y + 3);
+    ctx.textAlign = 'center';
+  }
+
+  // Role colors from vizdata
+  const roleColorMap = {};
+  VIZDATA.nodes.forEach(n => { roleColorMap[n.data.id] = n.data.color; });
+
+  // Points
+  FUNDING_INTEL.forEach(g => {
+    const x = pad.left + (g.grants / maxGrants) * pw;
+    const y = H - pad.bottom - (g.recent / maxRecent) * ph;
+    ctx.beginPath();
+    ctx.arc(x, y, 4, 0, Math.PI * 2);
+    ctx.fillStyle = roleColorMap[g.symbol] || '#8b949e';
+    ctx.globalAlpha = 0.7;
+    ctx.fill();
+    ctx.globalAlpha = 1;
+  });
+})();
+
+// === Translational Readiness ===
+(function renderTranslational() {
+  const container = document.getElementById('translational-bars');
+  if (!container) return;
+  const scored = GENE_ROWS.filter(g => g.translational_score > 0)
+    .sort((a, b) => b.translational_score - a.translational_score);
+  const maxScore = Math.max(1, ...scored.map(g => g.translational_score));
+
+  const componentColors = {
+    'many pathogenic variants': 'var(--red)',
+    'pathogenic variants': 'var(--orange)',
+    'clinical trial(s)': 'var(--green)',
+    'highly constrained': 'var(--purple)',
+    'craniofacial expression': 'var(--accent)',
+    'Mendelian syndrome': 'var(--pink)',
+  };
+
+  scored.slice(0, 30).forEach(g => {
+    const pct = Math.round(g.translational_score / maxScore * 100);
+    const components = (g.translational_components || []).map(c => {
+      const color = Object.entries(componentColors).find(([k]) => c.includes(k));
+      return `<span style="color:${color ? color[1] : 'var(--text-sec)'};font-size:0.7rem">${c}</span>`;
+    }).join(' &middot; ');
+
+    const row = document.createElement('div');
+    row.className = 'translational-row';
+    row.onclick = () => focusGene(g.symbol);
+    row.innerHTML = `
+      <div class="translational-label">${g.symbol}</div>
+      <div class="translational-bar-bg">
+        <div class="translational-bar-fill" style="width:${pct}%"></div>
+      </div>
+      <div class="translational-score">${g.translational_score}</div>
+      <div class="translational-components">${components}</div>
+    `;
+    container.appendChild(row);
+  });
+
+  if (scored.length === 0) {
+    container.innerHTML = '<div style="font-size:0.85rem;color:var(--text-sec);padding:1rem">No genes with translational readiness data.</div>';
+  }
+})();
 
 // === Cross-Source Filter ===
 function cycleFilter(btn) {

@@ -85,6 +85,34 @@ package lacuene
 	_in_string: *false | true
 	string_interaction_count?: int
 	string_partners?: [...string] // top interaction partner gene symbols
+
+	// ORPHANET-owned fields (rare disease prevalence)
+	orphanet_id: *"" | string
+	_in_orphanet: *false | true
+	orphanet_prevalence?: string
+	orphanet_disorders?: [...#OrphanetDisorder]
+
+	// Open Targets-owned fields (drug target status)
+	_in_opentargets:     *false | true
+	opentargets_id:      *"" | string
+	is_drug_target?:     bool
+	drug_count?:         int
+	max_clinical_phase?: int
+	opentargets_drugs?:  [...#DrugEntry]
+
+	// Model organism fields (MGI + ZFIN via Alliance of Genome Resources)
+	_in_models:             *false | true
+	mouse_model_count?:     int
+	zebrafish_model_count?: int
+	has_mouse_model?:       bool
+	has_zebrafish_model?:   bool
+
+	// Protein structure fields (AlphaFold + PDB)
+	_in_structures: *false | true
+	has_alphafold?: bool
+	alphafold_confidence?: number
+	pdb_count?: int
+	has_experimental_structure?: bool
 }
 
 #GOAnnotation: {
@@ -129,6 +157,19 @@ package lacuene
 	title:  string
 	status: string // "Recruiting", "Completed", etc.
 	phase?: string // "Phase 1", "Phase 2", etc.
+}
+
+#OrphanetDisorder: {
+	orpha_code: string
+	name:       string
+	prevalence?: string
+}
+
+#DrugEntry: {
+	drug_name: string
+	drug_type: string
+	phase:     int
+	disease?:  string
 }
 
 genes: [Symbol=string]: #Gene & {symbol: Symbol}

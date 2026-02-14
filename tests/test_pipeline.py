@@ -40,13 +40,13 @@ def test_gene_sources():
 
 
 def test_twelve_source_flags():
-    """gene_sources has all 12 source flags."""
+    """gene_sources has all source flags including orphanet."""
     sources = cue_export("gene_sources")
     first_gene = next(iter(sources.values()))
     expected_flags = [
         "in_go", "in_omim", "in_hpo", "in_uniprot", "in_facebase",
         "in_clinvar", "in_pubmed", "in_gnomad", "in_nih_reporter", "in_gtex",
-        "in_clinicaltrials", "in_string",
+        "in_clinicaltrials", "in_string", "in_orphanet",
     ]
     for flag in expected_flags:
         assert flag in first_gene, f"Missing source flag: {flag}"

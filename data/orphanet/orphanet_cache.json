@@ -1,0 +1,1658 @@
+{
+  "ADAM10": {
+    "disorders": [
+      {
+        "name": "Reticulate acropigmentation of Kitamura",
+        "orpha_code": "178307"
+      }
+    ],
+    "orphanet_id": "178307"
+  },
+  "AXIN2": {
+    "disorders": [
+      {
+        "name": "AXIN2-related polyposis",
+        "orpha_code": "401911"
+      }
+    ],
+    "orphanet_id": "401911"
+  },
+  "BMP2": {
+    "disorders": [
+      {
+        "name": "20p12.3 microdeletion syndrome",
+        "orpha_code": "261295"
+      },
+      {
+        "name": "Brachydactyly type A2",
+        "orpha_code": "93396"
+      }
+    ],
+    "orphanet_id": "261295"
+  },
+  "BMP4": {
+    "disorders": [
+      {
+        "name": "Stickler syndrome",
+        "orpha_code": "828"
+      },
+      {
+        "name": "Cleft lip/palate",
+        "orpha_code": "199306"
+      },
+      {
+        "name": "Microphthalmia with brain and digit anomalies",
+        "orpha_code": "139471"
+      },
+      {
+        "name": "Renal agenesis, unilateral",
+        "orpha_code": "93100"
+      }
+    ],
+    "orphanet_id": "828"
+  },
+  "CDH11": {
+    "disorders": [
+      {
+        "name": "Branchioskeletogenital syndrome",
+        "orpha_code": "1299"
+      }
+    ],
+    "orphanet_id": "1299"
+  },
+  "CDH2": {
+    "disorders": [
+      {
+        "name": "Inherited isolated arrhythmogenic cardiomyopathy, dominant-right variant",
+        "orpha_code": "293910"
+      }
+    ],
+    "orphanet_id": "293910"
+  },
+  "CHD7": {
+    "disorders": [
+      {
+        "name": "CHARGE syndrome",
+        "orpha_code": "138"
+      },
+      {
+        "name": "Kallmann syndrome",
+        "orpha_code": "478"
+      },
+      {
+        "name": "Normosmic congenital hypogonadotropic hypogonadism",
+        "orpha_code": "432"
+      },
+      {
+        "name": "Omenn syndrome",
+        "orpha_code": "39041"
+      }
+    ],
+    "orphanet_id": "138"
+  },
+  "CTNNB1": {
+    "disorders": [
+      {
+        "name": "Acrofacial dysostosis, Weyers type",
+        "orpha_code": "952"
+      },
+      {
+        "name": "Osteopathia striata-cranial sclerosis syndrome",
+        "orpha_code": "2780"
+      },
+      {
+        "name": "Adult hepatocellular carcinoma",
+        "orpha_code": "210159"
+      },
+      {
+        "name": "Adrenocortical carcinoma",
+        "orpha_code": "1501"
+      },
+      {
+        "name": "Familial exudative vitreoretinopathy",
+        "orpha_code": "891"
+      },
+      {
+        "name": "Intellectual disability-eye abnormalities-microcephaly-peripheral spasticity syndrome",
+        "orpha_code": "404473"
+      },
+      {
+        "name": "Desmoid tumor",
+        "orpha_code": "873"
+      },
+      {
+        "name": "Craniopharyngioma",
+        "orpha_code": "54595"
+      },
+      {
+        "name": "Microcystic stromal tumor",
+        "orpha_code": "569248"
+      },
+      {
+        "name": "Pediatric hepatocellular carcinoma",
+        "orpha_code": "33402"
+      },
+      {
+        "name": "Pilomatrixoma",
+        "orpha_code": "91414"
+      },
+      {
+        "name": "Adenoid ameloblastoma",
+        "orpha_code": "689430"
+      }
+    ],
+    "orphanet_id": "952"
+  },
+  "CXCR4": {
+    "disorders": [
+      {
+        "name": "WHIM syndrome",
+        "orpha_code": "51636"
+      }
+    ],
+    "orphanet_id": "51636"
+  },
+  "DCT": {
+    "disorders": [
+      {
+        "name": "Oculocutaneous albinism type 8",
+        "orpha_code": "597733"
+      }
+    ],
+    "orphanet_id": "597733"
+  },
+  "DLL1": {
+    "disorders": [
+      {
+        "name": "Autosomal dominant non-syndromic intellectual disability",
+        "orpha_code": "178469"
+      },
+      {
+        "name": "Microform holoprosencephaly",
+        "orpha_code": "280200"
+      },
+      {
+        "name": "Septopreoptic holoprosencephaly",
+        "orpha_code": "280195"
+      },
+      {
+        "name": "Semilobar holoprosencephaly",
+        "orpha_code": "220386"
+      },
+      {
+        "name": "Midline interhemispheric variant of holoprosencephaly",
+        "orpha_code": "93926"
+      },
+      {
+        "name": "Lobar holoprosencephaly",
+        "orpha_code": "93924"
+      },
+      {
+        "name": "Alobar holoprosencephaly",
+        "orpha_code": "93925"
+      }
+    ],
+    "orphanet_id": "178469"
+  },
+  "DLX3": {
+    "disorders": [
+      {
+        "name": "Tricho-dento-osseous syndrome",
+        "orpha_code": "3352"
+      },
+      {
+        "name": "Hypomaturation-hypoplastic amelogenesis imperfecta with taurodontism",
+        "orpha_code": "100034"
+      }
+    ],
+    "orphanet_id": "3352"
+  },
+  "DLX5": {
+    "disorders": [
+      {
+        "name": "Isolated split hand-split foot malformation",
+        "orpha_code": "2440"
+      },
+      {
+        "name": "Split hand-split foot-deafness syndrome",
+        "orpha_code": "71271"
+      }
+    ],
+    "orphanet_id": "2440"
+  },
+  "DLX6": {
+    "disorders": [
+      {
+        "name": "Isolated split hand-split foot malformation",
+        "orpha_code": "2440"
+      }
+    ],
+    "orphanet_id": "2440"
+  },
+  "ECE1": {
+    "disorders": [
+      {
+        "name": "Hirschsprung disease",
+        "orpha_code": "388"
+      }
+    ],
+    "orphanet_id": "388"
+  },
+  "EDN1": {
+    "disorders": [
+      {
+        "name": "Auriculocondylar syndrome",
+        "orpha_code": "137888"
+      }
+    ],
+    "orphanet_id": "137888"
+  },
+  "EDN3": {
+    "disorders": [
+      {
+        "name": "Hirschsprung disease",
+        "orpha_code": "388"
+      },
+      {
+        "name": "Waardenburg-Shah syndrome",
+        "orpha_code": "897"
+      },
+      {
+        "name": "Congenital central hypoventilation syndrome",
+        "orpha_code": "661"
+      }
+    ],
+    "orphanet_id": "388"
+  },
+  "EDNRA": {
+    "disorders": [
+      {
+        "name": "Cystic fibrosis",
+        "orpha_code": "586"
+      },
+      {
+        "name": "Mandibulofacial dysostosis with alopecia",
+        "orpha_code": "443995"
+      }
+    ],
+    "orphanet_id": "586"
+  },
+  "EDNRB": {
+    "disorders": [
+      {
+        "name": "Waardenburg syndrome type 2",
+        "orpha_code": "895"
+      },
+      {
+        "name": "Hirschsprung disease",
+        "orpha_code": "388"
+      },
+      {
+        "name": "Waardenburg-Shah syndrome",
+        "orpha_code": "897"
+      }
+    ],
+    "orphanet_id": "895"
+  },
+  "ERBB3": {
+    "disorders": [
+      {
+        "name": "Hirschsprung disease",
+        "orpha_code": "388"
+      },
+      {
+        "name": "Lethal congenital contracture syndrome type 2",
+        "orpha_code": "137776"
+      }
+    ],
+    "orphanet_id": "388"
+  },
+  "ETS1": {
+    "disorders": [
+      {
+        "name": "Systemic lupus erythematosus",
+        "orpha_code": "536"
+      }
+    ],
+    "orphanet_id": "536"
+  },
+  "EVC": {
+    "disorders": [
+      {
+        "name": "Ellis Van Creveld syndrome",
+        "orpha_code": "289"
+      },
+      {
+        "name": "Acrofacial dysostosis, Weyers type",
+        "orpha_code": "952"
+      }
+    ],
+    "orphanet_id": "289"
+  },
+  "FGF8": {
+    "disorders": [
+      {
+        "name": "Microform holoprosencephaly",
+        "orpha_code": "280200"
+      },
+      {
+        "name": "Septopreoptic holoprosencephaly",
+        "orpha_code": "280195"
+      },
+      {
+        "name": "Kallmann syndrome",
+        "orpha_code": "478"
+      },
+      {
+        "name": "Semilobar holoprosencephaly",
+        "orpha_code": "220386"
+      },
+      {
+        "name": "Normosmic congenital hypogonadotropic hypogonadism",
+        "orpha_code": "432"
+      },
+      {
+        "name": "Midline interhemispheric variant of holoprosencephaly",
+        "orpha_code": "93926"
+      },
+      {
+        "name": "Lobar holoprosencephaly",
+        "orpha_code": "93924"
+      },
+      {
+        "name": "Alobar holoprosencephaly",
+        "orpha_code": "93925"
+      }
+    ],
+    "orphanet_id": "280200"
+  },
+  "FGFR1": {
+    "disorders": [
+      {
+        "name": "Myeloid/lymphoid neoplasm associated with FGFR1 rearrangement",
+        "orpha_code": "168953"
+      },
+      {
+        "name": "Hartsfield syndrome",
+        "orpha_code": "2117"
+      },
+      {
+        "name": "Encephalocraniocutaneous lipomatosis",
+        "orpha_code": "2396"
+      },
+      {
+        "name": "Gliosarcoma",
+        "orpha_code": "251576"
+      },
+      {
+        "name": "Giant cell glioblastoma",
+        "orpha_code": "251579"
+      },
+      {
+        "name": "Pilomyxoid astrocytoma",
+        "orpha_code": "251615"
+      },
+      {
+        "name": "Osteoglosphonic dysplasia",
+        "orpha_code": "2645"
+      },
+      {
+        "name": "Non-syndromic metopic craniosynostosis",
+        "orpha_code": "3366"
+      },
+      {
+        "name": "Septo-optic dysplasia spectrum",
+        "orpha_code": "3157"
+      },
+      {
+        "name": "Microform holoprosencephaly",
+        "orpha_code": "280200"
+      },
+      {
+        "name": "Kallmann syndrome",
+        "orpha_code": "478"
+      },
+      {
+        "name": "Semilobar holoprosencephaly",
+        "orpha_code": "220386"
+      },
+      {
+        "name": "Primary hypereosinophilic syndrome",
+        "orpha_code": "314950"
+      },
+      {
+        "name": "Normosmic congenital hypogonadotropic hypogonadism",
+        "orpha_code": "432"
+      },
+      {
+        "name": "Pfeiffer syndrome type 1",
+        "orpha_code": "93258"
+      },
+      {
+        "name": "Lobar holoprosencephaly",
+        "orpha_code": "93924"
+      },
+      {
+        "name": "Oligodontia",
+        "orpha_code": "99798"
+      }
+    ],
+    "orphanet_id": "168953"
+  },
+  "FGFR2": {
+    "disorders": [
+      {
+        "name": "Saethre-Chotzen syndrome",
+        "orpha_code": "794"
+      },
+      {
+        "name": "Crouzon syndrome",
+        "orpha_code": "207"
+      },
+      {
+        "name": "Apert syndrome",
+        "orpha_code": "87"
+      },
+      {
+        "name": "Familial scaphocephaly syndrome, McGillivray type",
+        "orpha_code": "168624"
+      },
+      {
+        "name": "Jackson-Weiss syndrome",
+        "orpha_code": "1540"
+      },
+      {
+        "name": "Cutis gyrata-acanthosis nigricans-craniosynostosis syndrome",
+        "orpha_code": "1555"
+      },
+      {
+        "name": "Lacrimoauriculodentodigital syndrome",
+        "orpha_code": "2363"
+      },
+      {
+        "name": "FGFR2-related bent bone dysplasia",
+        "orpha_code": "313855"
+      },
+      {
+        "name": "Pfeiffer syndrome type 3",
+        "orpha_code": "93260"
+      },
+      {
+        "name": "Pfeiffer syndrome type 2",
+        "orpha_code": "93259"
+      },
+      {
+        "name": "Pfeiffer syndrome type 1",
+        "orpha_code": "93258"
+      },
+      {
+        "name": "Antley-Bixler syndrome without genital anomaly or disorder of steroidogenesis",
+        "orpha_code": "596008"
+      }
+    ],
+    "orphanet_id": "794"
+  },
+  "FGFR3": {
+    "disorders": [
+      {
+        "name": "Achondroplasia",
+        "orpha_code": "15"
+      },
+      {
+        "name": "Hypochondroplasia",
+        "orpha_code": "429"
+      },
+      {
+        "name": "Saethre-Chotzen syndrome",
+        "orpha_code": "794"
+      },
+      {
+        "name": "Thanatophoric dysplasia type 1",
+        "orpha_code": "1860"
+      },
+      {
+        "name": "Lacrimoauriculodentodigital syndrome",
+        "orpha_code": "2363"
+      },
+      {
+        "name": "Gliosarcoma",
+        "orpha_code": "251576"
+      },
+      {
+        "name": "Giant cell glioblastoma",
+        "orpha_code": "251579"
+      },
+      {
+        "name": "Non-syndromic bicoronal craniosynostosis",
+        "orpha_code": "35099"
+      },
+      {
+        "name": "Muenke syndrome",
+        "orpha_code": "53271"
+      },
+      {
+        "name": "Crouzon syndrome-acanthosis nigricans syndrome",
+        "orpha_code": "93262"
+      },
+      {
+        "name": "Thanatophoric dysplasia type 2",
+        "orpha_code": "93274"
+      },
+      {
+        "name": "Camptodactyly-tall stature-scoliosis-hearing loss syndrome",
+        "orpha_code": "85164"
+      },
+      {
+        "name": "Severe achondroplasia-developmental delay-acanthosis nigricans syndrome",
+        "orpha_code": "85165"
+      }
+    ],
+    "orphanet_id": "15"
+  },
+  "FN1": {
+    "disorders": [
+      {
+        "name": "Spondylometaphyseal dysplasia, 'corner fracture' type",
+        "orpha_code": "93315"
+      },
+      {
+        "name": "Fibronectin glomerulopathy",
+        "orpha_code": "84090"
+      }
+    ],
+    "orphanet_id": "93315"
+  },
+  "GATA4": {
+    "disorders": [
+      {
+        "name": "Tetralogy of Fallot",
+        "orpha_code": "3303"
+      },
+      {
+        "name": "8p23.1 microdeletion syndrome",
+        "orpha_code": "251071"
+      },
+      {
+        "name": "46,XY partial gonadal dysgenesis",
+        "orpha_code": "251510"
+      },
+      {
+        "name": "Hereditary atrial fibrillation",
+        "orpha_code": "334"
+      },
+      {
+        "name": "Complete atrioventricular septal defect-tetralogy of Fallot",
+        "orpha_code": "99068"
+      },
+      {
+        "name": "Complete atrioventricular septal defect with ventricular hypoplasia",
+        "orpha_code": "99067"
+      },
+      {
+        "name": "Atrial septal defect, ostium secundum type",
+        "orpha_code": "99103"
+      },
+      {
+        "name": "Partial atrioventricular septal defect with ventricular hypoplasia",
+        "orpha_code": "576232"
+      }
+    ],
+    "orphanet_id": "3303"
+  },
+  "GDNF": {
+    "disorders": [
+      {
+        "name": "Hirschsprung disease",
+        "orpha_code": "388"
+      },
+      {
+        "name": "Congenital central hypoventilation syndrome",
+        "orpha_code": "661"
+      }
+    ],
+    "orphanet_id": "388"
+  },
+  "GFRA1": {
+    "disorders": [
+      {
+        "name": "Renal agenesis, bilateral",
+        "orpha_code": "1848"
+      }
+    ],
+    "orphanet_id": "1848"
+  },
+  "HAND2": {
+    "disorders": [
+      {
+        "name": "Familial isolated dilated cardiomyopathy",
+        "orpha_code": "154"
+      }
+    ],
+    "orphanet_id": "154"
+  },
+  "IRF6": {
+    "disorders": [
+      {
+        "name": "Isolated cleft lip",
+        "orpha_code": "199302"
+      },
+      {
+        "name": "Cleft lip/palate",
+        "orpha_code": "199306"
+      },
+      {
+        "name": "Van der Woude syndrome",
+        "orpha_code": "888"
+      },
+      {
+        "name": "Autosomal dominant popliteal pterygium syndrome",
+        "orpha_code": "1300"
+      },
+      {
+        "name": "Cleft lip and alveolus",
+        "orpha_code": "141291"
+      },
+      {
+        "name": "Ectodermal dysplasia-natal teeth-skin abscesses-plantar hyperkeratosis-hearing impairment",
+        "orpha_code": "708014"
+      },
+      {
+        "name": "Oligodontia",
+        "orpha_code": "99798"
+      }
+    ],
+    "orphanet_id": "199302"
+  },
+  "JAG1": {
+    "disorders": [
+      {
+        "name": "Tetralogy of Fallot",
+        "orpha_code": "3303"
+      },
+      {
+        "name": "Alagille syndrome due to 20p12 microdeletion",
+        "orpha_code": "261600"
+      },
+      {
+        "name": "Alagille syndrome due to a JAG1 point mutation",
+        "orpha_code": "261619"
+      }
+    ],
+    "orphanet_id": "3303"
+  },
+  "KIT": {
+    "disorders": [
+      {
+        "name": "Plaque-form urticaria pigmentosa",
+        "orpha_code": "158769"
+      },
+      {
+        "name": "Typical urticaria pigmentosa",
+        "orpha_code": "158766"
+      },
+      {
+        "name": "Isolated bone marrow mastocytosis",
+        "orpha_code": "158778"
+      },
+      {
+        "name": "Smoldering systemic mastocytosis",
+        "orpha_code": "158775"
+      },
+      {
+        "name": "Nodular urticaria pigmentosa",
+        "orpha_code": "158772"
+      },
+      {
+        "name": "Piebaldism",
+        "orpha_code": "2884"
+      },
+      {
+        "name": "Testicular seminomatous germ cell tumor",
+        "orpha_code": "842"
+      },
+      {
+        "name": "Bullous diffuse cutaneous mastocytosis",
+        "orpha_code": "280785"
+      },
+      {
+        "name": "Pseudoxanthomatous diffuse cutaneous mastocytosis",
+        "orpha_code": "280794"
+      },
+      {
+        "name": "Acute mast cell leukemia",
+        "orpha_code": "566393"
+      },
+      {
+        "name": "Chronic mast cell leukemia",
+        "orpha_code": "566396"
+      },
+      {
+        "name": "Gastrointestinal stromal tumor",
+        "orpha_code": "44890"
+      },
+      {
+        "name": "Telangiectasia macularis eruptiva perstans",
+        "orpha_code": "90389"
+      },
+      {
+        "name": "Cutaneous mastocytoma",
+        "orpha_code": "79455"
+      },
+      {
+        "name": "Acute myeloblastic leukemia with maturation",
+        "orpha_code": "98834"
+      },
+      {
+        "name": "Acute myeloid leukemia with abnormal bone marrow eosinophils inv(16)(p13q22) or t(16;16)(p13;q22)",
+        "orpha_code": "98829"
+      },
+      {
+        "name": "Systemic mastocytosis with associated hematologic neoplasm",
+        "orpha_code": "98849"
+      },
+      {
+        "name": "Acute myeloid leukemia with t(8;21)(q22;q22) translocation",
+        "orpha_code": "102724"
+      }
+    ],
+    "orphanet_id": "158769"
+  },
+  "LEF1": {
+    "disorders": [
+      {
+        "name": "Ectodermal dysplasia with oligodontia-hand and foot malformation-hypoplastic nipples",
+        "orpha_code": "708043"
+      }
+    ],
+    "orphanet_id": "708043"
+  },
+  "MEF2C": {
+    "disorders": [
+      {
+        "name": "5q14.3 microdeletion syndrome",
+        "orpha_code": "228384"
+      },
+      {
+        "name": "Complete atrioventricular septal defect without ventricular hypoplasia",
+        "orpha_code": "576227"
+      },
+      {
+        "name": "Brain abnormalities-severe developmental delay-facial dysmorphism-intellectual disability syndrome due to MEF2C mutation",
+        "orpha_code": "664416"
+      }
+    ],
+    "orphanet_id": "228384"
+  },
+  "MITF": {
+    "disorders": [
+      {
+        "name": "Waardenburg syndrome type 2",
+        "orpha_code": "895"
+      },
+      {
+        "name": "Waardenburg-Shah syndrome",
+        "orpha_code": "897"
+      },
+      {
+        "name": "Familial melanoma",
+        "orpha_code": "618"
+      },
+      {
+        "name": "Papillary renal cell carcinoma",
+        "orpha_code": "319298"
+      },
+      {
+        "name": "MITF-related melanoma and renal cell carcinoma predisposition syndrome",
+        "orpha_code": "293822"
+      },
+      {
+        "name": "Clear cell papillary renal cell carcinoma",
+        "orpha_code": "404511"
+      },
+      {
+        "name": "Tietz syndrome",
+        "orpha_code": "42665"
+      }
+    ],
+    "orphanet_id": "895"
+  },
+  "MMP2": {
+    "disorders": [
+      {
+        "name": "Multicentric osteolysis-nodulosis-arthropathy spectrum",
+        "orpha_code": "371428"
+      }
+    ],
+    "orphanet_id": "371428"
+  },
+  "MMP9": {
+    "disorders": [
+      {
+        "name": "Metaphyseal anadysplasia",
+        "orpha_code": "1040"
+      }
+    ],
+    "orphanet_id": "1040"
+  },
+  "MSX1": {
+    "disorders": [
+      {
+        "name": "Isolated cleft lip",
+        "orpha_code": "199302"
+      },
+      {
+        "name": "Cleft lip/palate",
+        "orpha_code": "199306"
+      },
+      {
+        "name": "Cleft lip and alveolus",
+        "orpha_code": "141291"
+      },
+      {
+        "name": "Hypodontia-dysplasia of nails syndrome",
+        "orpha_code": "2228"
+      },
+      {
+        "name": "Oligodontia",
+        "orpha_code": "99798"
+      }
+    ],
+    "orphanet_id": "199302"
+  },
+  "MSX2": {
+    "disorders": [
+      {
+        "name": "Parietal foramina with clavicular hypoplasia",
+        "orpha_code": "251290"
+      },
+      {
+        "name": "Craniosynostosis, Boston type",
+        "orpha_code": "1541"
+      },
+      {
+        "name": "Enlarged parietal foramina",
+        "orpha_code": "60015"
+      }
+    ],
+    "orphanet_id": "251290"
+  },
+  "MYCN": {
+    "disorders": [
+      {
+        "name": "Neuroblastoma",
+        "orpha_code": "635"
+      },
+      {
+        "name": "Non-hereditary retinoblastoma",
+        "orpha_code": "357034"
+      },
+      {
+        "name": "Hereditary retinoblastoma",
+        "orpha_code": "357027"
+      },
+      {
+        "name": "Feingold syndrome type 1",
+        "orpha_code": "391641"
+      }
+    ],
+    "orphanet_id": "635"
+  },
+  "NF1": {
+    "disorders": [
+      {
+        "name": "Neurofibromatosis-Noonan syndrome",
+        "orpha_code": "638"
+      },
+      {
+        "name": "17q11.2 microduplication syndrome",
+        "orpha_code": "139474"
+      },
+      {
+        "name": "Neurofibromatosis type 1 due to NF1 mutation or intragenic deletion",
+        "orpha_code": "363700"
+      },
+      {
+        "name": "Pleomorphic rhabdomyosarcoma",
+        "orpha_code": "293199"
+      },
+      {
+        "name": "Hereditary pheochromocytoma-paraganglioma",
+        "orpha_code": "29072"
+      },
+      {
+        "name": "Juvenile myelomonocytic leukemia",
+        "orpha_code": "86834"
+      },
+      {
+        "name": "17q11 microdeletion syndrome",
+        "orpha_code": "97685"
+      },
+      {
+        "name": "Embryonal rhabdomyosarcoma",
+        "orpha_code": "99757"
+      },
+      {
+        "name": "Alveolar rhabdomyosarcoma",
+        "orpha_code": "99756"
+      }
+    ],
+    "orphanet_id": "638"
+  },
+  "NKX2-5": {
+    "disorders": [
+      {
+        "name": "Hypoplastic left heart syndrome",
+        "orpha_code": "2248"
+      },
+      {
+        "name": "Tetralogy of Fallot",
+        "orpha_code": "3303"
+      },
+      {
+        "name": "Hereditary progressive cardiac conduction defect",
+        "orpha_code": "871"
+      },
+      {
+        "name": "Deletion 5q35 syndrome",
+        "orpha_code": "1627"
+      },
+      {
+        "name": "Atrial septal defect-atrioventricular conduction defects syndrome",
+        "orpha_code": "1479"
+      },
+      {
+        "name": "Familial bicuspid aortic valve",
+        "orpha_code": "402075"
+      },
+      {
+        "name": "Hereditary atrial fibrillation",
+        "orpha_code": "334"
+      },
+      {
+        "name": "Athyreosis",
+        "orpha_code": "95713"
+      },
+      {
+        "name": "Thyroid ectopia",
+        "orpha_code": "95712"
+      },
+      {
+        "name": "Atrial septal defect, ostium secundum type",
+        "orpha_code": "99103"
+      },
+      {
+        "name": "Familial isolated congenital asplenia",
+        "orpha_code": "101351"
+      }
+    ],
+    "orphanet_id": "2248"
+  },
+  "NOTCH1": {
+    "disorders": [
+      {
+        "name": "Adams-Oliver syndrome",
+        "orpha_code": "974"
+      },
+      {
+        "name": "Familial bicuspid aortic valve",
+        "orpha_code": "402075"
+      }
+    ],
+    "orphanet_id": "974"
+  },
+  "NOTCH2": {
+    "disorders": [
+      {
+        "name": "Hajdu-Cheney syndrome",
+        "orpha_code": "955"
+      },
+      {
+        "name": "Alagille syndrome due to a NOTCH2 point mutation",
+        "orpha_code": "261629"
+      }
+    ],
+    "orphanet_id": "955"
+  },
+  "NR2F1": {
+    "disorders": [
+      {
+        "name": "Optic atrophy-intellectual disability syndrome",
+        "orpha_code": "401777"
+      }
+    ],
+    "orphanet_id": "401777"
+  },
+  "NR2F2": {
+    "disorders": [
+      {
+        "name": "Complete atrioventricular septal defect-tetralogy of Fallot",
+        "orpha_code": "99068"
+      },
+      {
+        "name": "Complete atrioventricular septal defect with ventricular hypoplasia",
+        "orpha_code": "99067"
+      }
+    ],
+    "orphanet_id": "99068"
+  },
+  "PAX3": {
+    "disorders": [
+      {
+        "name": "Waardenburg syndrome type 3",
+        "orpha_code": "896"
+      },
+      {
+        "name": "Waardenburg syndrome type 1",
+        "orpha_code": "894"
+      },
+      {
+        "name": "Craniofacial-deafness-hand syndrome",
+        "orpha_code": "1529"
+      },
+      {
+        "name": "Alveolar rhabdomyosarcoma",
+        "orpha_code": "99756"
+      }
+    ],
+    "orphanet_id": "896"
+  },
+  "PAX6": {
+    "disorders": [
+      {
+        "name": "WAGR syndrome",
+        "orpha_code": "893"
+      },
+      {
+        "name": "Aniridia-cerebellar ataxia-intellectual disability syndrome",
+        "orpha_code": "1065"
+      },
+      {
+        "name": "Foveal hypoplasia-presenile cataract syndrome",
+        "orpha_code": "2253"
+      },
+      {
+        "name": "Autosomal dominant keratitis",
+        "orpha_code": "2334"
+      },
+      {
+        "name": "Isolated aniridia",
+        "orpha_code": "250923"
+      },
+      {
+        "name": "Peters anomaly",
+        "orpha_code": "708"
+      },
+      {
+        "name": "Morning glory disc anomaly",
+        "orpha_code": "35737"
+      },
+      {
+        "name": "Coloboma of choroid and retina",
+        "orpha_code": "98942"
+      },
+      {
+        "name": "Coloboma of optic disc",
+        "orpha_code": "98947"
+      },
+      {
+        "name": "Coloboma of macula",
+        "orpha_code": "98945"
+      },
+      {
+        "name": "Coloboma of eyelid",
+        "orpha_code": "98946"
+      },
+      {
+        "name": "Coloboma of eye lens",
+        "orpha_code": "98943"
+      },
+      {
+        "name": "Coloboma of iris",
+        "orpha_code": "98944"
+      }
+    ],
+    "orphanet_id": "893"
+  },
+  "PAX7": {
+    "disorders": [
+      {
+        "name": "Alveolar rhabdomyosarcoma",
+        "orpha_code": "99756"
+      }
+    ],
+    "orphanet_id": "99756"
+  },
+  "PHOX2B": {
+    "disorders": [
+      {
+        "name": "Neuroblastoma",
+        "orpha_code": "635"
+      },
+      {
+        "name": "Congenital central hypoventilation syndrome",
+        "orpha_code": "661"
+      },
+      {
+        "name": "Hirschsprung disease-ganglioneuroblastoma syndrome",
+        "orpha_code": "2151"
+      },
+      {
+        "name": "Haddad syndrome",
+        "orpha_code": "99803"
+      }
+    ],
+    "orphanet_id": "635"
+  },
+  "RAC1": {
+    "disorders": [
+      {
+        "name": "Microcephaly-corpus callosum and cerebellar vermis hypoplasia-facial dysmorphism-intellectual disability syndrom",
+        "orpha_code": "500159"
+      }
+    ],
+    "orphanet_id": "500159"
+  },
+  "RARA": {
+    "disorders": [
+      {
+        "name": "Acute promyelocytic leukemia",
+        "orpha_code": "520"
+      }
+    ],
+    "orphanet_id": "520"
+  },
+  "RET": {
+    "disorders": [
+      {
+        "name": "Hirschsprung disease",
+        "orpha_code": "388"
+      },
+      {
+        "name": "Differentiated thyroid carcinoma",
+        "orpha_code": "146"
+      },
+      {
+        "name": "Multiple endocrine neoplasia type 2B",
+        "orpha_code": "247709"
+      },
+      {
+        "name": "Multiple endocrine neoplasia type 2A",
+        "orpha_code": "247698"
+      },
+      {
+        "name": "Renal agenesis, bilateral",
+        "orpha_code": "1848"
+      },
+      {
+        "name": "Sporadic pheochromocytoma/secreting paraganglioma",
+        "orpha_code": "276621"
+      },
+      {
+        "name": "Hereditary pheochromocytoma-paraganglioma",
+        "orpha_code": "29072"
+      },
+      {
+        "name": "Renal agenesis, unilateral",
+        "orpha_code": "93100"
+      },
+      {
+        "name": "Isolated familial medullary thyroid carcinoma",
+        "orpha_code": "99361"
+      },
+      {
+        "name": "Haddad syndrome",
+        "orpha_code": "99803"
+      }
+    ],
+    "orphanet_id": "388"
+  },
+  "RHOA": {
+    "disorders": [
+      {
+        "name": "Linear hypopigmentation and craniofacial asymmetry with acral, ocular and brain anomalies",
+        "orpha_code": "589608"
+      }
+    ],
+    "orphanet_id": "589608"
+  },
+  "RUNX2": {
+    "disorders": [
+      {
+        "name": "Cleidocranial dysplasia",
+        "orpha_code": "1452"
+      },
+      {
+        "name": "Metaphyseal dysplasia-maxillary hypoplasia-brachydacty syndrome",
+        "orpha_code": "2504"
+      }
+    ],
+    "orphanet_id": "1452"
+  },
+  "SEMA3A": {
+    "disorders": [
+      {
+        "name": "Kallmann syndrome",
+        "orpha_code": "478"
+      },
+      {
+        "name": "Brugada syndrome",
+        "orpha_code": "130"
+      }
+    ],
+    "orphanet_id": "478"
+  },
+  "SEMA3C": {
+    "disorders": [
+      {
+        "name": "Hirschsprung disease",
+        "orpha_code": "388"
+      }
+    ],
+    "orphanet_id": "388"
+  },
+  "SHH": {
+    "disorders": [
+      {
+        "name": "Tibial hemimelia-polysyndactyly-triphalangeal thumb syndrome",
+        "orpha_code": "988"
+      },
+      {
+        "name": "Microform holoprosencephaly",
+        "orpha_code": "280200"
+      },
+      {
+        "name": "Septopreoptic holoprosencephaly",
+        "orpha_code": "280195"
+      },
+      {
+        "name": "Semilobar holoprosencephaly",
+        "orpha_code": "220386"
+      },
+      {
+        "name": "Acquired schizencephaly",
+        "orpha_code": "485275"
+      },
+      {
+        "name": "Autosomal dominant preaxial polydactyly-upperback hypertrichosis syndrome",
+        "orpha_code": "476119"
+      },
+      {
+        "name": "Isolated radial hemimelia",
+        "orpha_code": "93321"
+      },
+      {
+        "name": "Polydactyly of a triphalangeal thumb",
+        "orpha_code": "93336"
+      },
+      {
+        "name": "Syndactyly type 4",
+        "orpha_code": "93405"
+      },
+      {
+        "name": "Midline interhemispheric variant of holoprosencephaly",
+        "orpha_code": "93926"
+      },
+      {
+        "name": "Lobar holoprosencephaly",
+        "orpha_code": "93924"
+      },
+      {
+        "name": "Alobar holoprosencephaly",
+        "orpha_code": "93925"
+      },
+      {
+        "name": "Colobomatous microphthalmia",
+        "orpha_code": "98938"
+      }
+    ],
+    "orphanet_id": "988"
+  },
+  "SNAI2": {
+    "disorders": [
+      {
+        "name": "Waardenburg syndrome type 2",
+        "orpha_code": "895"
+      },
+      {
+        "name": "Piebaldism",
+        "orpha_code": "2884"
+      }
+    ],
+    "orphanet_id": "895"
+  },
+  "SOX10": {
+    "disorders": [
+      {
+        "name": "Peripheral demyelinating neuropathy-central dysmyelinating leukodystrophy-Waardenburg syndrome-Hirschsprung disease",
+        "orpha_code": "163746"
+      },
+      {
+        "name": "Waardenburg syndrome type 2",
+        "orpha_code": "895"
+      },
+      {
+        "name": "Waardenburg-Shah syndrome",
+        "orpha_code": "897"
+      },
+      {
+        "name": "Kallmann syndrome",
+        "orpha_code": "478"
+      }
+    ],
+    "orphanet_id": "163746"
+  },
+  "SOX2": {
+    "disorders": [
+      {
+        "name": "Septo-optic dysplasia spectrum",
+        "orpha_code": "3157"
+      },
+      {
+        "name": "Anophthalmia/microphthalmia-esophageal atresia syndrome",
+        "orpha_code": "77298"
+      },
+      {
+        "name": "Nanophthalmos",
+        "orpha_code": "35612"
+      },
+      {
+        "name": "Colobomatous microphthalmia",
+        "orpha_code": "98938"
+      }
+    ],
+    "orphanet_id": "3157"
+  },
+  "SOX5": {
+    "disorders": [
+      {
+        "name": "Large/giant congenital melanocytic nevus",
+        "orpha_code": "626"
+      },
+      {
+        "name": "Developmental and speech delay due to SOX5 deficiency",
+        "orpha_code": "313892"
+      },
+      {
+        "name": "12p12.1 microdeletion syndrome",
+        "orpha_code": "313884"
+      }
+    ],
+    "orphanet_id": "626"
+  },
+  "SOX9": {
+    "disorders": [
+      {
+        "name": "Isolated Pierre Robin sequence",
+        "orpha_code": "718"
+      },
+      {
+        "name": "Campomelic dysplasia",
+        "orpha_code": "140"
+      },
+      {
+        "name": "46,XY complete gonadal dysgenesis",
+        "orpha_code": "242"
+      },
+      {
+        "name": "46,XX ovotesticular difference of sex development",
+        "orpha_code": "2138"
+      },
+      {
+        "name": "46,XY partial gonadal dysgenesis",
+        "orpha_code": "251510"
+      },
+      {
+        "name": "46,XX testicular difference of sex development",
+        "orpha_code": "393"
+      }
+    ],
+    "orphanet_id": "718"
+  },
+  "TBX1": {
+    "disorders": [
+      {
+        "name": "22q11.2 deletion syndrome",
+        "orpha_code": "567"
+      },
+      {
+        "name": "22q11.2 duplication syndrome",
+        "orpha_code": "1727"
+      },
+      {
+        "name": "Tetralogy of Fallot",
+        "orpha_code": "3303"
+      },
+      {
+        "name": "Common arterial trunk with pulmonary dominance and interrupted aortic arch",
+        "orpha_code": "665058"
+      },
+      {
+        "name": "Common arterial trunk with aortic dominance",
+        "orpha_code": "665044"
+      },
+      {
+        "name": "Combined immunodeficiency due to TBX1 deficiency",
+        "orpha_code": "685017"
+      }
+    ],
+    "orphanet_id": "567"
+  },
+  "TBX5": {
+    "disorders": [
+      {
+        "name": "Holt-Oram syndrome",
+        "orpha_code": "392"
+      },
+      {
+        "name": "Romano-Ward syndrome",
+        "orpha_code": "101016"
+      }
+    ],
+    "orphanet_id": "392"
+  },
+  "TCOF1": {
+    "disorders": [
+      {
+        "name": "Treacher-Collins syndrome",
+        "orpha_code": "861"
+      }
+    ],
+    "orphanet_id": "861"
+  },
+  "TFAP2A": {
+    "disorders": [
+      {
+        "name": "Branchio-oculo-facial syndrome",
+        "orpha_code": "1297"
+      }
+    ],
+    "orphanet_id": "1297"
+  },
+  "TFAP2B": {
+    "disorders": [
+      {
+        "name": "Familial patent arterial duct",
+        "orpha_code": "466729"
+      },
+      {
+        "name": "Char syndrome",
+        "orpha_code": "46627"
+      }
+    ],
+    "orphanet_id": "466729"
+  },
+  "TGFBR1": {
+    "disorders": [
+      {
+        "name": "Marfan syndrome type 2",
+        "orpha_code": "284973"
+      },
+      {
+        "name": "Multiple self-healing squamous epithelioma",
+        "orpha_code": "65748"
+      },
+      {
+        "name": "Loeys-Dietz syndrome",
+        "orpha_code": "60030"
+      },
+      {
+        "name": "Familial thoracic aortic aneurysm and aortic dissection",
+        "orpha_code": "91387"
+      }
+    ],
+    "orphanet_id": "284973"
+  },
+  "TGFBR2": {
+    "disorders": [
+      {
+        "name": "Lynch syndrome",
+        "orpha_code": "144"
+      },
+      {
+        "name": "Marfan syndrome type 2",
+        "orpha_code": "284973"
+      },
+      {
+        "name": "Loeys-Dietz syndrome",
+        "orpha_code": "60030"
+      },
+      {
+        "name": "Familial thoracic aortic aneurysm and aortic dissection",
+        "orpha_code": "91387"
+      },
+      {
+        "name": "Squamous cell carcinoma of the esophagus",
+        "orpha_code": "99977"
+      }
+    ],
+    "orphanet_id": "144"
+  },
+  "TWIST1": {
+    "disorders": [
+      {
+        "name": "Saethre-Chotzen syndrome",
+        "orpha_code": "794"
+      },
+      {
+        "name": "Non-syndromic bicoronal craniosynostosis",
+        "orpha_code": "35099"
+      },
+      {
+        "name": "Non-syndromic sagittal craniosynostosis",
+        "orpha_code": "35093"
+      }
+    ],
+    "orphanet_id": "794"
+  },
+  "TWIST2": {
+    "disorders": [
+      {
+        "name": "Ablepharon macrostomia syndrome",
+        "orpha_code": "920"
+      },
+      {
+        "name": "Barber-Say syndrome",
+        "orpha_code": "1231"
+      },
+      {
+        "name": "Focal facial dermal dysplasia type III",
+        "orpha_code": "1807"
+      }
+    ],
+    "orphanet_id": "920"
+  },
+  "TYR": {
+    "disorders": [
+      {
+        "name": "Waardenburg syndrome type 2",
+        "orpha_code": "895"
+      },
+      {
+        "name": "Minimal pigment oculocutaneous albinism type 1",
+        "orpha_code": "352734"
+      },
+      {
+        "name": "Temperature-sensitive oculocutaneous albinism type 1",
+        "orpha_code": "352737"
+      },
+      {
+        "name": "Oculocutaneous albinism type 1B",
+        "orpha_code": "79434"
+      },
+      {
+        "name": "Oculocutaneous albinism type 1A",
+        "orpha_code": "79431"
+      }
+    ],
+    "orphanet_id": "895"
+  },
+  "TYRP1": {
+    "disorders": [
+      {
+        "name": "Oculocutaneous albinism type 3",
+        "orpha_code": "79433"
+      }
+    ],
+    "orphanet_id": "79433"
+  },
+  "WNT1": {
+    "disorders": [
+      {
+        "name": "Osteogenesis imperfecta type 3",
+        "orpha_code": "216812"
+      },
+      {
+        "name": "Osteogenesis imperfecta type 4",
+        "orpha_code": "216820"
+      },
+      {
+        "name": "Idiopathic juvenile osteoporosis",
+        "orpha_code": "85193"
+      }
+    ],
+    "orphanet_id": "216812"
+  },
+  "WNT3A": {
+    "disorders": [
+      {
+        "name": "Idiopathic juvenile osteoporosis",
+        "orpha_code": "85193"
+      }
+    ],
+    "orphanet_id": "85193"
+  },
+  "ZEB2": {
+    "disorders": [
+      {
+        "name": "Large/giant congenital melanocytic nevus",
+        "orpha_code": "626"
+      },
+      {
+        "name": "Mowat-Wilson syndrome due to monosomy 2q22",
+        "orpha_code": "261537"
+      },
+      {
+        "name": "Mowat-Wilson syndrome due to a ZEB2 point mutation",
+        "orpha_code": "261552"
+      }
+    ],
+    "orphanet_id": "626"
+  },
+  "ZIC1": {
+    "disorders": [
+      {
+        "name": "Isolated Dandy-Walker malformation without hydrocephalus",
+        "orpha_code": "269215"
+      },
+      {
+        "name": "Isolated Dandy-Walker malformation with hydrocephalus",
+        "orpha_code": "269212"
+      },
+      {
+        "name": "Non-syndromic bicoronal craniosynostosis",
+        "orpha_code": "35099"
+      }
+    ],
+    "orphanet_id": "269215"
+  }
+}

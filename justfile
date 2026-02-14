@@ -28,6 +28,10 @@ normalize:
     python3 normalizers/from_gtex.py
     python3 normalizers/from_clinicaltrials.py
     python3 normalizers/from_string.py
+    python3 normalizers/from_orphanet.py
+    python3 normalizers/from_opentargets.py
+    python3 normalizers/from_structures.py
+    python3 normalizers/from_models.py
 
 # Run normalizers in parallel
 normalize-parallel:
@@ -120,6 +124,18 @@ normalize-clinicaltrials:
 
 normalize-string:
     python3 normalizers/from_string.py
+
+normalize-orphanet:
+    python3 normalizers/from_orphanet.py
+
+normalize-opentargets:
+    python3 normalizers/from_opentargets.py
+
+normalize-structures:
+    python3 normalizers/from_structures.py
+
+normalize-models:
+    python3 normalizers/from_models.py
 
 # Build static site
 site: vizdata
