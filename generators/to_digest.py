@@ -184,6 +184,7 @@ def build_digest() -> str:
     # Expanded pipeline (lacuene-exp)
     exp_dir = REPO_ROOT / ".." / "lacuene-exp" / "derived"
     gap_file = exp_dir / "gap_candidates.json"
+    enrichment_file = exp_dir / "candidate_enrichment.json"
     status_file = exp_dir / "pipeline_status.json"
 
     if gap_file.exists():
@@ -192,6 +193,15 @@ def build_digest() -> str:
 
         candidate_count = gap_data.get("candidate_count", 0)
         candidates = gap_data.get("candidates", [])
+        score_dist = gap_data.get("score_distribution", {})
+
+        # Load enrichment data (craniofacial publication counts)
+        cf_pubs = {}
+        if enrichment_file.exists():
+            with open(enrichment_file) as f:
+                enrich_data = json.load(f)
+            for ec in enrich_data.get("candidates", []):
+                cf_pubs[ec["symbol"]] = ec.get("pubmed_craniofacial_count", 0)
 
         lines.append("### Expanded Pipeline (lacuene-exp)")
         lines.append("")
@@ -208,25 +218,41 @@ def build_digest() -> str:
             f"**{candidate_count} gap candidates** identified "
             f"with disease signal not in curated set."
         )
+        if score_dist:
+            high = score_dist.get("high (7+)", 0)
+            med = score_dist.get("medium (4-6.9)", 0)
+            lines.append(
+                f" ({high} high-confidence, {med} medium)"
+            )
         lines.append("")
 
-        # Top 5 by confidence score
+        # Top 10 by confidence score, with enrichment data
         top = sorted(
             candidates, key=lambda c: c.get("confidence_score", 0),
             reverse=True
-        )[:5]
+        )[:10]
 
         if top:
-            lines.append("Top candidates by confidence:")
+            lines.append("| Gene | Score | HPO | Orphanet | CF Pubs | Name |")
+            lines.append("|------|------:|----:|---------:|--------:|------|")
             for c in top:
                 ev = c.get("evidence", {})
                 hpo = ev.get("hpo_phenotype_count", 0)
                 orph = ev.get("orphanet_disorder_count", 0)
+                pubs = cf_pubs.get(c["symbol"], "—")
+                name = c.get("name", "")[:40]
+                score = c.get("confidence_score", 0)
                 lines.append(
-                    f"- `{c['symbol']}` — "
-                    f"HPO: {hpo} phenotypes, Orphanet: {orph} disorders"
+                    f"| `{c['symbol']}` | {score} | {hpo} | {orph} "
+                    f"| {pubs} | {name} |"
                 )
             lines.append("")
+
+            if cf_pubs:
+                lines.append(
+                    "*CF Pubs = PubMed articles mentioning gene + craniofacial terms*"
+                )
+                lines.append("")
 
         lines.append("Run `just rebuild` in lacuene-exp to refresh.")
         lines.append("")
