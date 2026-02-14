@@ -219,8 +219,8 @@ def build_digest() -> str:
             f"with disease signal not in curated set."
         )
         if score_dist:
-            high = score_dist.get("high (7+)", 0)
-            med = score_dist.get("medium (4-6.9)", 0)
+            high = score_dist.get("high (12+)", score_dist.get("high (7+)", 0))
+            med = score_dist.get("medium (7-11.9)", score_dist.get("medium (4-6.9)", 0))
             lines.append(
                 f" ({high} high-confidence, {med} medium)"
             )
