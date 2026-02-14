@@ -8,6 +8,7 @@ const FUNDING_INTEL = {{ funding_intel_json }};
 const SYNDROME_FUNDING = {{ syndrome_funding_json }};
 const SOURCE_COUNT = {{ source_count }};
 let currentFilteredRows = GENE_ROWS;
+const compareSet = new Set();
 
 // Populate gap list (Card 1) — sorted by weighted priority score
 const gapList = document.getElementById('gap-list');
@@ -72,7 +73,7 @@ function renderTable(rows) {
     const tr = document.createElement('tr');
     tr.style.cursor = 'pointer';
     tr.onclick = () => focusGene(g.symbol);
-    const inCompare = typeof compareSet !== 'undefined' && compareSet.has(g.symbol);
+    const inCompare = compareSet.has(g.symbol);
     tr.innerHTML = `
       <td><span class="gene-link">${g.symbol}</span> <span class="detail-tag" style="font-size:0.6rem;padding:1px 5px;vertical-align:middle;${inCompare ? 'background:var(--accent);color:var(--bg)' : ''}" onclick="event.stopPropagation();toggleCompare('${g.symbol}')" title="Add to comparison">${inCompare ? '&#10003;' : '+'}</span></td>
       <td>${mark(g.go)}</td>
@@ -1722,7 +1723,6 @@ function renderCommunityPanel() {
 renderCommunityPanel();
 
 // === Gene Comparison Mode ===
-const compareSet = new Set();
 const compareTray = document.getElementById('compare-tray');
 const compareChips = document.getElementById('compare-chips');
 
