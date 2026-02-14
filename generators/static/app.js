@@ -131,19 +131,19 @@ const cy = cytoscape({
         'background-color': 'data(color)',
         'label': 'data(label)',
         'color': '#e6edf3',
-        'font-size': '12px',
+        'font-size': '9px',
         'font-family': "'Atkinson Hyperlegible Next', system-ui, sans-serif",
         'font-weight': 600,
         'text-valign': 'bottom',
-        'text-margin-y': 6,
-        'text-outline-width': 2.5,
+        'text-margin-y': 4,
+        'text-outline-width': 2,
         'text-outline-color': '#0d1117',
         'text-outline-opacity': 1,
         'width': 'data(size)',
         'height': 'data(size)',
-        'border-width': 2,
+        'border-width': 1.5,
         'border-color': '#0d1117',
-        'min-zoomed-font-size': 8,
+        'min-zoomed-font-size': 6,
         'transition-property': 'opacity, border-color, border-width',
         'transition-duration': '0.2s',
       }
@@ -151,10 +151,11 @@ const cy = cytoscape({
     {
       selector: 'edge',
       style: {
-        'width': 0.5,
+        'width': 0.4,
         'line-color': '#21262d',
-        'curve-style': 'bezier',
-        'opacity': 0.12,
+        'curve-style': 'haystack',
+        'haystack-radius': 0.5,
+        'opacity': 0.08,
         'transition-property': 'opacity, line-color, width',
         'transition-duration': '0.2s',
       }
@@ -164,32 +165,34 @@ const cy = cytoscape({
       style: {
         'line-color': '#db61a2',
         'width': 1.5,
-        'opacity': 0.55,
+        'opacity': 0.6,
+        'curve-style': 'bezier',
       }
     },
     {
       selector: 'edge[type="ppi"]',
       style: {
         'line-color': '#3fb950',
-        'width': 1.2,
-        'opacity': 0.45,
+        'width': 1,
+        'opacity': 0.5,
         'line-style': 'dashed',
+        'curve-style': 'bezier',
       }
     },
     {
       selector: 'edge[type="shared_pathway"]',
       style: {
         'line-color': '#a371f7',
-        'width': 0.8,
-        'opacity': 0.25,
+        'width': 0.6,
+        'opacity': 0.15,
       }
     },
     {
       selector: 'edge[type="shared_phenotype"]',
       style: {
         'line-color': '#30363d',
-        'width': 0.5,
-        'opacity': 0.08,
+        'width': 0.3,
+        'opacity': 0.05,
       }
     },
     {
@@ -215,31 +218,31 @@ const cy = cytoscape({
     {
       selector: '.faded',
       style: {
-        'opacity': 0.04,
+        'opacity': 0.03,
       }
     },
   ],
   layout: {
     name: 'cose',
-    idealEdgeLength: 180,
-    nodeOverlap: 40,
+    idealEdgeLength: 250,
+    nodeOverlap: 80,
     refresh: 20,
     fit: true,
-    padding: 60,
+    padding: 50,
     randomize: false,
-    componentSpacing: 160,
-    nodeRepulsion: 80000,
-    edgeElasticity: 200,
+    componentSpacing: 200,
+    nodeRepulsion: 200000,
+    edgeElasticity: 300,
     nestingFactor: 5,
-    gravity: 25,
-    numIter: 1500,
-    initialTemp: 300,
+    gravity: 8,
+    numIter: 2500,
+    initialTemp: 400,
     coolingFactor: 0.95,
     minTemp: 1.0,
     animate: false,
   },
   wheelSensitivity: 0.3,
-  maxZoom: 5,
+  maxZoom: 6,
   minZoom: 0.1,
 });
 
@@ -249,17 +252,17 @@ function setLayout(name, btn) {
   const opts = { name: name, animate: true, animationDuration: 600 };
   if (name === 'cose') {
     Object.assign(opts, {
-      nodeOverlap: 40, idealEdgeLength: 180, nodeRepulsion: 80000,
-      edgeElasticity: 200, componentSpacing: 160,
-      gravity: 25, numIter: 1500, initialTemp: 300,
-      padding: 60, animate: false,
+      nodeOverlap: 80, idealEdgeLength: 250, nodeRepulsion: 200000,
+      edgeElasticity: 300, componentSpacing: 200,
+      gravity: 8, numIter: 2500, initialTemp: 400,
+      padding: 50, animate: false,
     });
   } else if (name === 'circle') {
-    Object.assign(opts, { avoidOverlap: true, spacingFactor: 1.75, padding: 60 });
+    Object.assign(opts, { avoidOverlap: true, spacingFactor: 2.0, padding: 50 });
   } else if (name === 'concentric') {
     Object.assign(opts, {
-      avoidOverlap: true, spacingFactor: 1.75, padding: 60,
-      minNodeSpacing: 40,
+      avoidOverlap: true, spacingFactor: 2.0, padding: 50,
+      minNodeSpacing: 50,
       concentric: n => n.data('pub_count') || 0,
       levelWidth: () => 2,
     });
@@ -1184,51 +1187,62 @@ function restoreHashState() {
 
 restoreHashState();
 
-// === Community Detection (Label Propagation) ===
+// === Community Detection (Label Propagation on Key Edges Only) ===
 function detectCommunities() {
   const nodes = cy.nodes();
+  // Build adjacency from key edges only (syndrome + PPI) to avoid
+  // the dense phenotype/pathway edges collapsing everything into 1 community
+  const keyEdges = cy.edges().filter(e => {
+    const t = e.data('type');
+    return t === 'shared_syndrome' || t === 'ppi';
+  });
+  const adj = {};
+  nodes.forEach(n => { adj[n.data('id')] = []; });
+  keyEdges.forEach(e => {
+    const s = e.data('source'), t = e.data('target');
+    if (adj[s]) adj[s].push(t);
+    if (adj[t]) adj[t].push(s);
+  });
+
   // Initialize: each node gets its own label
-  nodes.forEach((n, i) => n.data('community', i));
+  const labels = {};
+  nodes.forEach((n, i) => { labels[n.data('id')] = i; });
 
   for (let iter = 0; iter < 30; iter++) {
     let changed = false;
-    // Shuffle traversal order for better convergence
-    const order = [...Array(nodes.length).keys()];
+    const order = [...Object.keys(labels)];
     for (let i = order.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [order[i], order[j]] = [order[j], order[i]];
     }
-    for (const idx of order) {
-      const node = nodes[idx];
-      const neighbors = node.neighborhood().nodes();
+    for (const sym of order) {
+      const neighbors = adj[sym] || [];
       if (neighbors.length === 0) continue;
-      // Count neighbor labels, weighted by edge count between them
       const counts = {};
       neighbors.forEach(nb => {
-        const lbl = nb.data('community');
+        const lbl = labels[nb];
         counts[lbl] = (counts[lbl] || 0) + 1;
       });
-      // Pick the most frequent label (tie-break: smallest label for stability)
-      let bestLabel = node.data('community'), bestCount = 0;
+      let bestLabel = labels[sym], bestCount = 0;
       for (const [lbl, cnt] of Object.entries(counts)) {
         if (cnt > bestCount || (cnt === bestCount && Number(lbl) < Number(bestLabel))) {
           bestLabel = Number(lbl);
           bestCount = cnt;
         }
       }
-      if (bestLabel !== node.data('community')) {
-        node.data('community', bestLabel);
+      if (bestLabel !== labels[sym]) {
+        labels[sym] = bestLabel;
         changed = true;
       }
     }
     if (!changed) break;
   }
 
-  // Collect communities and assign sequential IDs
+  // Assign sequential community IDs
   const labelMap = {};
   let nextId = 0;
   nodes.forEach(n => {
-    const raw = n.data('community');
+    const raw = labels[n.data('id')];
     if (!(raw in labelMap)) labelMap[raw] = nextId++;
     n.data('community', labelMap[raw]);
   });

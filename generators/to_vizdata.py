@@ -15,7 +15,7 @@ from collections import defaultdict
 
 # Import gene metadata for roles and coloring
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "normalizers"))
-from genes import GENES, ROLES
+from genes import GENES, SYMBOL_TO_ROLE
 
 OUTPUT_PATH = os.path.join(os.path.dirname(__file__), "..", "output", "vizdata.json")
 
@@ -63,14 +63,14 @@ def build_nodes(sources: dict, genes_data: dict) -> list[dict]:
     for sym in sorted(sources.keys()):
         flags = sources[sym]
         source_count = sum(1 for v in flags.values() if v)
-        role = ROLES.get(sym, "patterning")
+        role = SYMBOL_TO_ROLE.get(sym, "patterning")
         color = ROLE_COLORS.get(role, "#999999")
         gene = genes_data.get(sym, {})
         pub_count = gene.get("pubmed_total", 0)
         pub_recent = gene.get("pubmed_recent", 0)
 
-        # Size by publication count (log scale, 20-60px range)
-        size = 20 + min(40, math.log(1 + pub_count) * 6)
+        # Size by publication count (log scale, 10-35px range)
+        size = 10 + min(25, math.log(1 + pub_count) * 4)
 
         # Publication trend: recent (last 5 years) as fraction of total
         if pub_count > 0:
