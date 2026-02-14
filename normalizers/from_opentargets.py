@@ -31,7 +31,7 @@ CACHE_FILE = CACHE_DIR / "opentargets_cache.json"
 OUTPUT_FILE = REPO_ROOT / "model" / "opentargets.cue"
 GNOMAD_CACHE_FILE = REPO_ROOT / "data" / "gnomad" / "gnomad_cache.json"
 
-OPENTARGETS_API_URL = "https://api.platform.opentargets.io/api/v4/graphql"
+OPENTARGETS_API_URL = "https://api.platform.opentargets.org/api/v4/graphql"
 
 REQUEST_DELAY = 0.3  # seconds between requests
 

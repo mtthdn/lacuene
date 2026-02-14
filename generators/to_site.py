@@ -85,7 +85,7 @@ def main():
         "in_clinicaltrials": "https://clinicaltrials.gov/",
         "in_string": "https://string-db.org/",
         "in_orphanet": "https://www.orpha.net/",
-        "in_opentargets": "https://platform.opentargets.io/",
+        "in_opentargets": "https://platform.opentargets.org/",
         "in_structures": "https://alphafold.ebi.ac.uk/",
         "in_models": "https://www.alliancegenome.org/",
     }

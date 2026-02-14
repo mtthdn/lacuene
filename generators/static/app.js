@@ -72,8 +72,9 @@ function renderTable(rows) {
     const tr = document.createElement('tr');
     tr.style.cursor = 'pointer';
     tr.onclick = () => focusGene(g.symbol);
+    const inCompare = typeof compareSet !== 'undefined' && compareSet.has(g.symbol);
     tr.innerHTML = `
-      <td><span class="gene-link">${g.symbol}</span></td>
+      <td><span class="gene-link">${g.symbol}</span> <span class="detail-tag" style="font-size:0.6rem;padding:1px 5px;vertical-align:middle;${inCompare ? 'background:var(--accent);color:var(--bg)' : ''}" onclick="event.stopPropagation();toggleCompare('${g.symbol}')" title="Add to comparison">${inCompare ? '&#10003;' : '+'}</span></td>
       <td>${mark(g.go)}</td>
       <td>${mark(g.omim)}</td>
       <td>${mark(g.hpo)}</td>
@@ -663,6 +664,7 @@ document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') {
     closeDetail();
     closeBriefing();
+    closeComparison();
   }
 });
 
@@ -1718,3 +1720,102 @@ function renderCommunityPanel() {
   panel.innerHTML = html;
 }
 renderCommunityPanel();
+
+// === Gene Comparison Mode ===
+const compareSet = new Set();
+const compareTray = document.getElementById('compare-tray');
+const compareChips = document.getElementById('compare-chips');
+
+function toggleCompare(symbol, evt) {
+  if (evt) evt.stopPropagation();
+  if (compareSet.has(symbol)) {
+    compareSet.delete(symbol);
+  } else {
+    if (compareSet.size >= 4) return; // max 4 genes
+    compareSet.add(symbol);
+  }
+  renderCompareTray();
+}
+
+function renderCompareTray() {
+  if (compareSet.size === 0) {
+    compareTray.classList.remove('visible');
+    return;
+  }
+  compareTray.classList.add('visible');
+  compareChips.innerHTML = [...compareSet].map(sym =>
+    `<span class="compare-gene-chip">${sym}<span class="remove-chip" onclick="toggleCompare('${sym}')">&times;</span></span>`
+  ).join('');
+}
+
+function clearComparison() {
+  compareSet.clear();
+  renderCompareTray();
+}
+
+function openComparison() {
+  if (compareSet.size < 2) return;
+  const symbols = [...compareSet];
+  const rows = symbols.map(sym => GENE_ROWS.find(g => g.symbol === sym)).filter(Boolean);
+
+  const mark = v => v ? '<span class="check">Y</span>' : '<span class="miss">&mdash;</span>';
+  const val = v => v != null ? v : '&mdash;';
+
+  const fields = [
+    { label: 'Protein', fn: g => g.protein || '&mdash;' },
+    { label: 'Key Syndrome', fn: g => g.syndrome || '&mdash;' },
+    { label: 'Sources', fn: g => `${g.count}/${SOURCE_COUNT}` },
+    { label: 'Publications', fn: g => `${val(g.pub_total)} total, ${val(g.pub_recent)} recent` },
+    { label: 'Pathogenic', fn: g => val(g.pathogenic) },
+    { label: 'Phenotypes', fn: g => val(g.phenotype_count) },
+    { label: 'Gene Ontology', fn: g => mark(g.go) },
+    { label: 'OMIM', fn: g => mark(g.omim) },
+    { label: 'HPO', fn: g => mark(g.hpo) },
+    { label: 'UniProt', fn: g => mark(g.uniprot) },
+    { label: 'FaceBase', fn: g => mark(g.facebase) },
+    { label: 'ClinVar', fn: g => mark(g.clinvar) },
+    { label: 'gnomAD', fn: g => mark(g.gnomad) },
+    { label: 'NIH Reporter', fn: g => mark(g.nih_reporter) },
+    { label: 'GTEx', fn: g => mark(g.gtex) },
+    { label: 'ClinicalTrials', fn: g => mark(g.clinicaltrials) },
+    { label: 'STRING', fn: g => mark(g.string) },
+    { label: 'ORPHANET', fn: g => mark(g.orphanet) },
+    { label: 'Open Targets', fn: g => mark(g.opentargets) },
+    { label: 'Structures', fn: g => mark(g.structures) },
+    { label: 'Models', fn: g => mark(g.models) },
+    { label: 'pLI Score', fn: g => g.pli_score != null ? g.pli_score.toFixed(3) : '&mdash;' },
+    { label: 'LOEUF', fn: g => g.loeuf_score != null ? g.loeuf_score.toFixed(3) : '&mdash;' },
+    { label: 'Active Grants', fn: g => val(g.grant_count) },
+    { label: 'Clinical Trials', fn: g => val(g.trial_count) },
+    { label: 'Drug Target', fn: g => g.is_drug_target ? `Yes (${g.drug_count} drugs)` : 'No' },
+    { label: 'Translational Score', fn: g => val(g.translational_score) },
+    { label: 'AlphaFold', fn: g => g.has_alphafold ? (g.alphafold_confidence ? `pLDDT ${g.alphafold_confidence.toFixed(1)}` : 'Yes') : '&mdash;' },
+    { label: 'PDB Structures', fn: g => val(g.pdb_count) },
+    { label: 'Mouse Models', fn: g => val(g.mouse_model_count) },
+    { label: 'Zebrafish Models', fn: g => val(g.zebrafish_model_count) },
+  ];
+
+  let html = '<table style="border-collapse:collapse;width:100%">';
+  html += '<thead><tr><th></th>';
+  rows.forEach(g => {
+    html += `<th style="text-align:center;color:var(--accent);font-size:0.9rem;padding:0.6rem 1rem;min-width:140px">${g.symbol}</th>`;
+  });
+  html += '</tr></thead><tbody>';
+
+  fields.forEach(f => {
+    html += '<tr>';
+    html += `<th style="text-align:right;padding:0.4rem 1rem;color:var(--text-sec);font-size:0.78rem;font-weight:500;white-space:nowrap">${f.label}</th>`;
+    rows.forEach(g => {
+      html += `<td style="text-align:center;padding:0.4rem 1rem;font-size:0.82rem">${f.fn(g)}</td>`;
+    });
+    html += '</tr>';
+  });
+
+  html += '</tbody></table>';
+  document.getElementById('compare-body').innerHTML = html;
+  document.getElementById('compare-modal').classList.add('open');
+}
+
+function closeComparison() {
+  document.getElementById('compare-modal').classList.remove('open');
+}

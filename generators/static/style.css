@@ -981,6 +981,92 @@ tr:hover td { background: var(--elevated); }
   flex-shrink: 0;
 }
 
+/* Gene Comparison Tray */
+.compare-tray {
+  position: fixed;
+  bottom: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-bottom: none;
+  border-radius: var(--radius) var(--radius) 0 0;
+  padding: 0.6rem 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  z-index: 90;
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.4);
+  transition: bottom 0.3s ease;
+}
+.compare-tray.visible { bottom: 0; }
+.compare-tray-label {
+  font-size: 0.75rem;
+  color: var(--text-sec);
+  font-weight: 500;
+  white-space: nowrap;
+}
+.compare-gene-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  background: rgba(88,166,255,0.15);
+  border: 1px solid rgba(88,166,255,0.3);
+  border-radius: 16px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+.compare-gene-chip .remove-chip {
+  cursor: pointer;
+  color: var(--text-sec);
+  font-size: 0.9rem;
+  line-height: 1;
+  margin-left: 2px;
+}
+.compare-gene-chip .remove-chip:hover { color: var(--red); }
+
+/* Comparison modal */
+.compare-modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 200;
+  align-items: center;
+  justify-content: center;
+}
+.compare-modal.open { display: flex; }
+.compare-content {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  max-width: 95vw;
+  width: fit-content;
+  max-height: 85vh;
+  overflow: auto;
+}
+.compare-grid {
+  display: grid;
+  gap: 0;
+}
+.compare-grid th {
+  position: sticky;
+  left: 0;
+  background: var(--elevated);
+  z-index: 1;
+  text-align: right;
+  padding-right: 1rem;
+  min-width: 140px;
+}
+.compare-grid td {
+  min-width: 160px;
+  text-align: center;
+}
+.compare-grid tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+
 /* Constraint interpretation */
 .constraint-high { color: var(--red); font-weight: 500; }
 .constraint-moderate { color: var(--orange); font-weight: 500; }

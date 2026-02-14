@@ -1,0 +1,78 @@
+name: Weekly Data Rebuild
+
+on:
+  schedule:
+    - cron: '0 6 * * 1'  # Every Monday at 6 AM UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: rebuild
+  cancel-in-progress: false
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install CUE
+        run: |
+          curl -fsSL https://github.com/cue-lang/cue/releases/download/v0.15.4/cue_v0.15.4_linux_amd64.tar.gz | tar xz
+          sudo mv cue /usr/local/bin/
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run all normalizers
+        run: python3 normalizers/run_parallel.py --force
+        env:
+          OMIM_API_KEY: ${{ secrets.OMIM_API_KEY }}
+
+      - name: Validate CUE model
+        run: cue vet -c ./model/
+
+      - name: Generate outputs
+        run: |
+          python3 generators/to_vizdata.py
+          python3 generators/to_site.py
+
+      - name: Run tests
+        run: python3 tests/test_pipeline.py
+
+      - name: Commit updated data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet model/ output/; then
+            echo "No data changes detected"
+          else
+            git add model/ output/
+            git commit -m "chore: weekly data refresh $(date +%Y-%m-%d)"
+            git push
+          fi
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: output/site
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: rebuild
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

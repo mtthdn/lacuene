@@ -1,5 +1,5 @@
 # lacuene: Neural crest gene reconciliation pipeline
-# Unifies 12 biomedical sources into one CUE model via lattice semantics.
+# Unifies 16 biomedical sources into one CUE model via lattice semantics.
 
 default: validate generate
 

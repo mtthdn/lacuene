@@ -310,6 +310,25 @@
   <div id="detail-content"></div>
 </div>
 
+<!-- Gene Comparison Tray -->
+<div class="compare-tray" id="compare-tray">
+  <span class="compare-tray-label">Compare:</span>
+  <div id="compare-chips"></div>
+  <button class="action-btn" onclick="openComparison()" style="background:var(--accent);color:var(--bg);border-color:var(--accent);padding:4px 12px;font-size:0.75rem">Compare</button>
+  <button class="action-btn" onclick="clearComparison()" style="padding:4px 8px;font-size:0.75rem">Clear</button>
+</div>
+
+<!-- Gene Comparison Modal -->
+<div class="compare-modal" id="compare-modal">
+  <div class="compare-content">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
+      <h3>Gene Comparison</h3>
+      <button class="action-btn" onclick="closeComparison()">Close</button>
+    </div>
+    <div id="compare-body"></div>
+  </div>
+</div>
+
 <!-- Edge tooltip -->
 <div class="edge-tooltip" id="edge-tooltip"></div>
 
