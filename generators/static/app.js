@@ -681,7 +681,7 @@ document.addEventListener('click', function(e) {
 });
 
 function downloadCSV(template) {
-  const headers = ['Gene','GO','OMIM','HPO','UniProt','FaceBase','ClinVar','PubMed','gnomAD','NIH Reporter','GTEx','ClinicalTrials','STRING','ORPHANET','Open Targets','Structures','Sources','PubTotal','PubRecent','Pathogenic','Phenotypes','Key Syndrome'];
+  const headers = ['Gene','GO','OMIM','HPO','UniProt','FaceBase','ClinVar','PubMed','gnomAD','NIH Reporter','GTEx','ClinicalTrials','STRING','ORPHANET','Open Targets','Structures','Models','Sources','PubTotal','PubRecent','Pathogenic','Phenotypes','Key Syndrome'];
   let exportRows;
   const gapSymbols = new Set(CRITICAL_GAPS.map(g => g.symbol));
 
@@ -715,6 +715,7 @@ function downloadCSV(template) {
     g.orphanet ? 'Y' : '',
     g.opentargets ? 'Y' : '',
     g.structures ? 'Y' : '',
+    g.models ? 'Y' : '',
     g.count,
     g.pub_total,
     g.pub_recent,

@@ -1,0 +1,572 @@
+{
+  "ADAM10": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "ALDH1A2": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "AXIN2": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "BMP2": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "BMP4": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "BMP7": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "CDH11": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "CDH2": {
+    "has_mouse": true,
+    "has_zebrafish": false,
+    "mouse_count": 1,
+    "zebrafish_count": 0
+  },
+  "CDH6": {
+    "has_mouse": true,
+    "has_zebrafish": false,
+    "mouse_count": 1,
+    "zebrafish_count": 0
+  },
+  "CHD7": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "CTNNB1": {
+    "has_mouse": true,
+    "has_zebrafish": false,
+    "mouse_count": 1,
+    "zebrafish_count": 0
+  },
+  "CXCR4": {
+    "has_mouse": true,
+    "has_zebrafish": false,
+    "mouse_count": 1,
+    "zebrafish_count": 0
+  },
+  "DCT": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "DLL1": {
+    "has_mouse": true,
+    "has_zebrafish": false,
+    "mouse_count": 1,
+    "zebrafish_count": 0
+  },
+  "DLX2": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "DLX3": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "DLX5": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "DLX6": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "ECE1": {
+    "has_mouse": true,
+    "has_zebrafish": false,
+    "mouse_count": 1,
+    "zebrafish_count": 0
+  },
+  "EDN1": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "EDN3": {
+    "has_mouse": true,
+    "has_zebrafish": false,
+    "mouse_count": 1,
+    "zebrafish_count": 0
+  },
+  "EDNRA": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "EDNRB": {
+    "has_mouse": true,
+    "has_zebrafish": false,
+    "mouse_count": 1,
+    "zebrafish_count": 0
+  },
+  "ERBB3": {
+    "has_mouse": true,
+    "has_zebrafish": false,
+    "mouse_count": 1,
+    "zebrafish_count": 0
+  },
+  "ETS1": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "EVC": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "FGF8": {
+    "has_mouse": true,
+    "has_zebrafish": false,
+    "mouse_count": 1,
+    "zebrafish_count": 0
+  },
+  "FGFR1": {
+    "has_mouse": true,
+    "has_zebrafish": false,
+    "mouse_count": 1,
+    "zebrafish_count": 0
+  },
+  "FGFR2": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "FGFR3": {
+    "has_mouse": true,
+    "has_zebrafish": false,
+    "mouse_count": 1,
+    "zebrafish_count": 0
+  },
+  "FN1": {
+    "has_mouse": true,
+    "has_zebrafish": false,
+    "mouse_count": 1,
+    "zebrafish_count": 0
+  },
+  "FOXD3": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "GATA4": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "GBX2": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "GDNF": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "GFRA1": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "HAND1": {
+    "has_mouse": true,
+    "has_zebrafish": false,
+    "mouse_count": 1,
+    "zebrafish_count": 0
+  },
+  "HAND2": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "IRF6": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "ITGB1": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "JAG1": {
+    "has_mouse": true,
+    "has_zebrafish": false,
+    "mouse_count": 1,
+    "zebrafish_count": 0
+  },
+  "KIT": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "LEF1": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "MEF2C": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "MITF": {
+    "has_mouse": true,
+    "has_zebrafish": false,
+    "mouse_count": 1,
+    "zebrafish_count": 0
+  },
+  "MMP2": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "MMP9": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "MSX1": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "MSX2": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "MYCN": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "NF1": {
+    "has_mouse": true,
+    "has_zebrafish": false,
+    "mouse_count": 1,
+    "zebrafish_count": 0
+  },
+  "NGFR": {
+    "has_mouse": true,
+    "has_zebrafish": false,
+    "mouse_count": 1,
+    "zebrafish_count": 0
+  },
+  "NKX2-5": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "NOTCH1": {
+    "has_mouse": true,
+    "has_zebrafish": false,
+    "mouse_count": 1,
+    "zebrafish_count": 0
+  },
+  "NOTCH2": {
+    "has_mouse": true,
+    "has_zebrafish": false,
+    "mouse_count": 1,
+    "zebrafish_count": 0
+  },
+  "NR2F1": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "NR2F2": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "NRP1": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "PAX3": {
+    "has_mouse": true,
+    "has_zebrafish": false,
+    "mouse_count": 1,
+    "zebrafish_count": 0
+  },
+  "PAX6": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "PAX7": {
+    "has_mouse": true,
+    "has_zebrafish": false,
+    "mouse_count": 1,
+    "zebrafish_count": 0
+  },
+  "PHOX2B": {
+    "has_mouse": true,
+    "has_zebrafish": false,
+    "mouse_count": 1,
+    "zebrafish_count": 0
+  },
+  "PLXNA2": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "PMEL": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "RAC1": {
+    "has_mouse": true,
+    "has_zebrafish": false,
+    "mouse_count": 1,
+    "zebrafish_count": 0
+  },
+  "RARA": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "RET": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "RHOA": {
+    "has_mouse": true,
+    "has_zebrafish": false,
+    "mouse_count": 1,
+    "zebrafish_count": 0
+  },
+  "RUNX2": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "SEMA3A": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "SEMA3C": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "SHH": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "SMAD1": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "SNAI1": {
+    "has_mouse": true,
+    "has_zebrafish": false,
+    "mouse_count": 1,
+    "zebrafish_count": 0
+  },
+  "SNAI2": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "SOX10": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "SOX2": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "SOX5": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "SOX8": {
+    "has_mouse": true,
+    "has_zebrafish": false,
+    "mouse_count": 1,
+    "zebrafish_count": 0
+  },
+  "SOX9": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "TBX1": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "TBX5": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "TCOF1": {
+    "has_mouse": true,
+    "has_zebrafish": false,
+    "mouse_count": 1,
+    "zebrafish_count": 0
+  },
+  "TFAP2A": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "TFAP2B": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "TGFBR1": {
+    "has_mouse": true,
+    "has_zebrafish": false,
+    "mouse_count": 1,
+    "zebrafish_count": 0
+  },
+  "TGFBR2": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "TWIST1": {
+    "has_mouse": true,
+    "has_zebrafish": false,
+    "mouse_count": 1,
+    "zebrafish_count": 0
+  },
+  "TWIST2": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "TYR": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "TYRP1": {
+    "has_mouse": true,
+    "has_zebrafish": false,
+    "mouse_count": 1,
+    "zebrafish_count": 0
+  },
+  "WNT1": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "WNT3A": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "ZEB2": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  },
+  "ZIC1": {
+    "has_mouse": true,
+    "has_zebrafish": true,
+    "mouse_count": 1,
+    "zebrafish_count": 1
+  }
+}
