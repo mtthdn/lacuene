@@ -1113,7 +1113,7 @@ function toggleExpanded() {
   // Live API status check
   const indicator = document.getElementById('api-status-indicator');
   if (indicator) {
-    fetch('http://lacuene-api.apercue.ca/api/status', {mode: 'cors'})
+    fetch('https://lacuene-api.apercue.ca/api/status', {mode: 'cors'})
       .then(r => r.json())
       .then(d => {
         const tiers = d.tiers || {};

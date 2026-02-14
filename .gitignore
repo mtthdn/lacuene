@@ -2,8 +2,10 @@ output/
 data/omim/genemap2.txt
 data/hpo/phenotype_to_genes.txt
 data/orphanet/en_product6.xml
+data/nih_reporter/nih_reporter_cache.json
 data/cache/
 data/hgnc/hgnc_complete.json
 __pycache__/
 *.pyc
+.pytest_cache/
 .env
