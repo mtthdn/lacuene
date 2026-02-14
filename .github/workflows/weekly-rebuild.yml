@@ -9,6 +9,7 @@ permissions:
   contents: write
   pages: write
   id-token: write
+  issues: write
 
 concurrency:
   group: rebuild
@@ -67,6 +68,22 @@ jobs:
             git commit -m "chore: weekly data refresh $(date +%Y-%m-%d)"
             git push
           fi
+
+      - name: Post weekly digest
+        run: |
+          python3 generators/to_digest.py --output /tmp/digest.md
+          # Find or create the digest tracking issue
+          ISSUE_NUM=$(gh issue list --label "digest" --state open --json number -q '.[0].number' || true)
+          if [ -z "$ISSUE_NUM" ]; then
+            ISSUE_NUM=$(gh issue create \
+              --title "Weekly Pipeline Digest" \
+              --label "digest" \
+              --body "Automated weekly digest from the data rebuild pipeline. Each comment below is one weekly run." \
+              | grep -oP '\d+$')
+          fi
+          gh issue comment "$ISSUE_NUM" --body-file /tmp/digest.md
+        env:
+          GH_TOKEN: ${{ github.token }}
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

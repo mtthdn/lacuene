@@ -153,5 +153,9 @@ serve: site
 anomalies:
     @cue export ./model/ -e anomalies | python3 -m json.tool
 
+# Weekly digest (markdown summary of pipeline state)
+digest:
+    python3 generators/to_digest.py
+
 # Generate all outputs
 all: generate vizdata report site
