@@ -97,6 +97,93 @@ def test_weighted_gaps():
     assert sox9["priority_score"] >= 0
 
 
+def run_generator(script: str) -> subprocess.CompletedProcess:
+    """Run a generator script from the repo root."""
+    result = subprocess.run(
+        ["python3", script],
+        capture_output=True, text=True, cwd=str(REPO_ROOT)
+    )
+    assert result.returncode == 0, f"{script} failed: {result.stderr}"
+    return result
+
+
+def test_vizdata_structure():
+    """VizData generator produces valid Cytoscape.js-compatible JSON."""
+    run_generator("generators/to_vizdata.py")
+    vizdata_path = REPO_ROOT / "output" / "vizdata.json"
+    assert vizdata_path.exists(), "output/vizdata.json not found"
+    with open(vizdata_path) as f:
+        vizdata = json.load(f)
+
+    # Top-level structure
+    assert "nodes" in vizdata, "vizdata missing 'nodes'"
+    assert "edges" in vizdata, "vizdata missing 'edges'"
+    assert isinstance(vizdata["nodes"], list)
+    assert isinstance(vizdata["edges"], list)
+
+    # At least 90 nodes (95 genes in the pipeline)
+    assert len(vizdata["nodes"]) >= 90, f"Expected >= 90 nodes, got {len(vizdata['nodes'])}"
+
+    # Each node has required data fields
+    for node in vizdata["nodes"]:
+        d = node.get("data", {})
+        assert "id" in d, f"Node missing data.id: {node}"
+        assert "label" in d, f"Node missing data.label: {node}"
+        assert "type" in d, f"Node missing data.type: {node}"
+        assert "color" in d, f"Node missing data.color: {node}"
+
+    # At least 4 edge types present
+    edge_types = set(e["data"]["type"] for e in vizdata["edges"])
+    required_types = {"shared_phenotype", "shared_syndrome", "shared_pathway", "ppi"}
+    missing = required_types - edge_types
+    assert not missing, f"Missing edge types: {missing}"
+
+
+def test_site_output_files():
+    """Site generator produces index.html and about.html with expected content."""
+    run_generator("generators/to_site.py")
+    site_dir = REPO_ROOT / "output" / "site"
+
+    index_path = site_dir / "index.html"
+    assert index_path.exists(), "output/site/index.html not found"
+    index_size = index_path.stat().st_size
+    assert index_size > 100_000, f"index.html too small: {index_size} bytes (expected > 100KB)"
+
+    about_path = site_dir / "about.html"
+    assert about_path.exists(), "output/site/about.html not found"
+    about_size = about_path.stat().st_size
+    assert about_size > 10_000, f"about.html too small: {about_size} bytes (expected > 10KB)"
+
+    # index.html contains key sections
+    index_html = index_path.read_text()
+    for section in ["Gene Table", "Gene Landscape", "Funding Gaps"]:
+        assert section in index_html, f"index.html missing section: '{section}'"
+
+
+def test_anomaly_projection():
+    """Anomalies projection returns valid cross-source inconsistencies."""
+    anomalies = cue_export("anomalies")
+    assert "genes_with_anomalies" in anomalies, "anomalies missing 'genes_with_anomalies'"
+    assert isinstance(anomalies["genes_with_anomalies"], list)
+    assert "summary" in anomalies, "anomalies missing 'summary'"
+    summary = anomalies["summary"]
+    assert "total_anomalies" in summary, "summary missing 'total_anomalies'"
+    assert "omim_no_clinvar_count" in summary, "summary missing 'omim_no_clinvar_count'"
+    assert "high_pli_no_trials_count" in summary, "summary missing 'high_pli_no_trials_count'"
+
+
+def test_weighted_gaps_structure():
+    """Weighted gaps have valid priority scores for all genes."""
+    weighted = cue_export("weighted_gaps")
+    assert len(weighted) >= 90, f"Expected >= 90 genes in weighted_gaps, got {len(weighted)}"
+    for sym, entry in weighted.items():
+        assert "symbol" in entry, f"{sym} missing 'symbol'"
+        assert "priority_score" in entry, f"{sym} missing 'priority_score'"
+        score = entry["priority_score"]
+        assert isinstance(score, (int, float)), f"{sym} priority_score is not numeric: {type(score)}"
+        assert score >= 0, f"{sym} has negative priority_score: {score}"
+
+
 def main():
     tests = [
         test_model_validates,
@@ -107,6 +194,10 @@ def main():
         test_gene_detail,
         test_funding_gaps,
         test_weighted_gaps,
+        test_vizdata_structure,
+        test_site_output_files,
+        test_anomaly_projection,
+        test_weighted_gaps_structure,
     ]
     passed = 0
     failed = 0

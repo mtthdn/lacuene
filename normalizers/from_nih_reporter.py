@@ -14,8 +14,6 @@ Usage:
 import json
 import sys
 import time
-import urllib.error
-import urllib.request
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
@@ -23,6 +21,7 @@ sys.path.insert(0, str(REPO_ROOT / "normalizers"))
 
 from genes import GENES
 from pipeline import PipelineReport, escape_cue_string
+from utils import post_json_with_retry
 
 CACHE_DIR = REPO_ROOT / "data" / "nih_reporter"
 CACHE_FILE = CACHE_DIR / "nih_reporter_cache.json"
@@ -54,22 +53,13 @@ def fetch_projects(symbol: str) -> dict | None:
         "offset": 0,
     }
 
-    body = json.dumps(payload).encode("utf-8")
-    req = urllib.request.Request(
-        API_URL,
-        data=body,
-        headers={
-            "Accept": "application/json",
-            "Content-Type": "application/json",
-        },
-        method="POST",
-    )
-
     try:
-        with urllib.request.urlopen(req, timeout=30) as resp:
-            data = json.loads(resp.read().decode("utf-8"))
-    except (urllib.error.URLError, urllib.error.HTTPError,
-            TimeoutError, json.JSONDecodeError) as e:
+        data = post_json_with_retry(
+            API_URL,
+            json_body=payload,
+            headers={"Accept": "application/json"},
+        )
+    except Exception as e:
         print(f"  WARNING: request failed: {e}", file=sys.stderr)
         return None
 

@@ -1,6 +1,6 @@
 # Adding a Source to froq
 
-Adding a 6th (or Nth) biomedical database follows the same pattern as the existing 5.
+Adding a 13th (or Nth) biomedical database follows the same pattern as the existing 12.
 The model uses CUE lattice unification — each source contributes its own fields,
 and CUE merges them automatically.
 
@@ -81,10 +81,13 @@ normalize-kegg:
 
 Add `python3 normalizers/from_kegg.py` to the `normalize:` recipe list.
 
-### Step 4: Update projections
+### Step 4: Update projections and site
 
 In `model/proj_sources.cue`, add `in_kegg: v._in_kegg` to the comprehension.
 In `model/proj_enrichment.cue`, add `has_pathway: v._in_kegg`.
+In `model/proj_gap_report.cue`, add `missing_kegg` list comprehension.
+In `generators/to_site.py`, add `"in_kegg": "KEGG"` to `source_names`, `source_urls`, and `filter_keys`.
+In `generators/static/app.js`, add KEGG to the gene detail panel and filter buttons.
 
 ### Step 5: Validate
 

@@ -14,8 +14,6 @@ Usage:
 import json
 import sys
 import time
-import urllib.request
-import urllib.error
 from pathlib import Path
 
 # Resolve paths relative to repo root (parent of normalizers/)
@@ -24,6 +22,7 @@ sys.path.insert(0, str(REPO_ROOT / "normalizers"))
 
 from genes import GENES
 from pipeline import PipelineReport, escape_cue_string
+from utils import post_json_with_retry
 
 CACHE_DIR = REPO_ROOT / "data" / "gnomad"
 CACHE_FILE = CACHE_DIR / "gnomad_cache.json"
@@ -57,21 +56,14 @@ def fetch_gnomad_gene(symbol: str) -> dict | None:
     Or None on failure.
     """
     query = QUERY_TEMPLATE % symbol
-    payload = json.dumps({"query": query}).encode("utf-8")
-
-    req = urllib.request.Request(
-        GNOMAD_API_URL,
-        data=payload,
-        headers={
-            "Content-Type": "application/json",
-            "Accept": "application/json",
-        },
-    )
 
     try:
-        with urllib.request.urlopen(req, timeout=30) as resp:
-            data = json.loads(resp.read().decode("utf-8"))
-    except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError, json.JSONDecodeError) as e:
+        data = post_json_with_retry(
+            GNOMAD_API_URL,
+            json_body={"query": query},
+            headers={"Accept": "application/json"},
+        )
+    except Exception as e:
         print(f"  WARNING: request failed for {symbol}: {e}", file=sys.stderr)
         return None
 

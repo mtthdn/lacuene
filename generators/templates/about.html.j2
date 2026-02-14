@@ -63,14 +63,14 @@ li { margin-bottom: 0.3rem; }
 
 <h2>Capabilities</h2>
 <p>
-  froq provides eleven interactive features, each designed around a question a program officer
+  froq provides sixteen interactive features, each designed around a question a program officer
   or PI might ask during grant review or portfolio planning.
 </p>
 <ol>
   <li><strong>Funding Gap Finder</strong> &mdash; Identifies genes with confirmed Mendelian
     disease associations (OMIM) but no experimental coverage in FaceBase, ranked by
-    publication scarcity. Click any gene to see its full profile, connected genes,
-    and recent publications.</li>
+    weighted priority score (combines syndrome burden, phenotype count, genetic constraint,
+    and publication scarcity). Click any gene to see its full profile.</li>
 
   <li><strong>Source Coverage</strong> &mdash; Shows at a glance how completely each of the
     {{ source_count }} databases covers the gene set. Immediately reveals which databases have
@@ -78,13 +78,25 @@ li { margin-bottom: 0.3rem; }
 
   <li><strong>Understudied Gene Ranking</strong> &mdash; Disease genes sorted by craniofacial
     publication count (ascending). Low publication counts for genes with known pathogenic
-    variants suggest high-impact, low-competition research opportunities.</li>
+    variants suggest high-impact, low-competition research opportunities. Priority badges
+    mark the highest-value targets.</li>
 
-  <li><strong>Gene Landscape Graph</strong> &mdash; Interactive network visualization connecting
-    genes that share syndromes (pink edges) or HPO phenotypes (gray edges). Click any node
-    to highlight its neighborhood and open its detail panel. Hover over any edge to see the
-    syndrome or phenotype that connects two genes. Supports force-directed, circle,
-    and concentric layouts.</li>
+  <li><strong>Gene Landscape Graph</strong> &mdash; Interactive Cytoscape.js network visualization
+    with {{ total }} nodes and 2000+ edges across four relationship types: shared HPO phenotypes
+    (gray edges), shared OMIM syndromes (pink edges), shared GO biological processes
+    (blue edges), and STRING protein&ndash;protein interactions (green dashed edges). Click any
+    node to highlight its neighborhood and open its detail panel. Supports force-directed,
+    circle, concentric, and cluster layouts.</li>
+
+  <li><strong>Community Clustering</strong> &mdash; Label propagation community detection
+    identifies groups of functionally related genes in the network. The cluster layout arranges
+    communities spatially with convex hull boundaries, revealing which biological modules
+    are well-studied vs. underserved.</li>
+
+  <li><strong>Cross-Source Anomaly Detection</strong> &mdash; CUE-computed rules identify
+    cross-source inconsistencies: genes with OMIM disease associations but no ClinVar variants,
+    high genetic constraint but no clinical trials, high publication counts but no FaceBase
+    coverage, and ClinVar variants but no HPO phenotypes. Filterable by anomaly type.</li>
 
   <li><strong>Syndrome-Centric View</strong> &mdash; Flips the analysis from gene-level to
     disease-level. Instead of asking &ldquo;which databases cover SOX10?&rdquo;, you can ask
@@ -95,8 +107,7 @@ li { margin-bottom: 0.3rem; }
   <li><strong>Portfolio Overlay</strong> &mdash; Paste a list of gene symbols from your current
     funded portfolio (or a proposed grant) to instantly see which critical gaps your funding
     addresses and which remain uncovered. Separates your genes into covered gaps (green),
-    unfunded gaps (red), and genes that are already well-covered. Useful for identifying
-    complementary funding opportunities or demonstrating portfolio impact to review panels.</li>
+    unfunded gaps (red), and genes that are already well-covered.</li>
 
   <li><strong>Cross-Source Filter</strong> &mdash; Interactive filter panel with tri-state
     toggle buttons for each database (any / required / excluded) plus numeric ranges for
@@ -106,6 +117,18 @@ li { margin-bottom: 0.3rem; }
 
   <li><strong>Gene Table Search</strong> &mdash; Real-time search across gene symbols,
     syndrome names, and protein names. Filters the per-gene coverage table as you type.</li>
+
+  <li><strong>Per-Gene Dossier</strong> &mdash; Click any gene to see all {{ source_count }}
+    sources, publications with trend analysis (rising/stable/declining), pathogenic variants,
+    syndromes, tissue expression from GTEx, active NIH grants with PI names, genetic constraint
+    scores (pLI, LOEUF), active clinical trials, and STRING protein interaction partners.</li>
+
+  <li><strong>Tissue Expression</strong> &mdash; GTEx expression data showing top tissues and
+    craniofacial-specific TPM values in the gene detail panel. Confirms whether a gene
+    is expressed in tissues relevant to craniofacial development.</li>
+
+  <li><strong>Active Grants</strong> &mdash; NIH Reporter project details with PI names and
+    direct links. Reveals which gap genes already have federal research investment.</li>
 
   <li><strong>Change History</strong> &mdash; The pipeline saves a timestamped snapshot of
     the gap state each time it runs. Once multiple snapshots exist, the change history
@@ -118,7 +141,8 @@ li { margin-bottom: 0.3rem; }
 
   <li><strong>CSV Export</strong> &mdash; Full dataset export with {{ csv_column_count }} columns covering all
     {{ source_count }} sources, publication counts, pathogenic variants, and syndrome associations.
-    Exports the currently filtered view when filters are active.</li>
+    Four presets: All Genes, Critical Gaps Only, Top Priority (score &ge; 15), Understudied
+    (&lt; 20 publications). Exports the currently filtered view when filters are active.</li>
 </ol>
 
 <h2>What froq does that individual databases don&rsquo;t</h2>
@@ -222,6 +246,18 @@ li { margin-bottom: 0.3rem; }
     Genotype-Tissue Expression project. Provides tissue-specific gene expression data
     across 54 human tissues. Used to confirm craniofacial-relevant expression patterns
     and identify genes with tissue-specific regulatory programs.</li>
+
+  <li><strong><a href="https://clinicaltrials.gov/">ClinicalTrials.gov</a></strong> &mdash;
+    Registry and results database of clinical studies. Queried via the v2 API for active
+    interventional and observational trials mentioning each gene. Surfaces which disease
+    genes have active translational research, complementing the basic science coverage
+    from other sources.</li>
+
+  <li><strong><a href="https://string-db.org/">STRING</a></strong> &mdash;
+    Search Tool for Retrieval of Interacting Genes/Proteins. Provides known and predicted
+    protein&ndash;protein interactions with confidence scores. Used to build PPI edges in
+    the gene landscape graph and identify interaction partners within the 95-gene network.
+    <em>Szklarczyk et al. (2023) Nucleic Acids Research 51:D483&ndash;D489.</em></li>
 </ol>
 
 <h2>Methodology</h2>
@@ -263,11 +299,15 @@ li { margin-bottom: 0.3rem; }
 
 <h2 style="font-size:1rem;border:none;margin-top:0.5rem">Graph Construction</h2>
 <p>
-  The gene landscape graph connects genes that share HPO phenotypes (gray edges) or
-  OMIM syndromes (pink edges). Shared-phenotype edges are filtered to phenotypes
-  present in 2&ndash;5 genes to avoid edge explosion from universal phenotypes like
-  &ldquo;Intellectual disability.&rdquo; Node size reflects log-scaled craniofacial
-  publication count; color indicates developmental role.
+  The gene landscape graph connects genes via four relationship types: shared HPO phenotypes
+  (gray edges), shared OMIM syndromes (pink edges), shared GO biological processes
+  (blue edges), and STRING protein&ndash;protein interactions (green dashed edges).
+  Shared-phenotype edges are filtered to phenotypes present in 2&ndash;5 genes to avoid
+  edge explosion from universal phenotypes like &ldquo;Intellectual disability.&rdquo;
+  PPI edges are filtered to interactions within the 95-gene network with confidence
+  scores above 0.4 (medium confidence). Node size reflects log-scaled craniofacial
+  publication count; color indicates developmental role. Community detection via label
+  propagation identifies clusters of functionally related genes.
 </p>
 
 <h2>Technology</h2>
@@ -311,6 +351,11 @@ li { margin-bottom: 0.3rem; }
   <li><span class="ref-num">[8]</span> Martik ML, Bronner ME. &ldquo;Regulatory logic underlying diversification of the neural crest.&rdquo;
     <em>Developmental Biology</em> 429:293&ndash;302 (2017).
     <a href="https://doi.org/10.1016/j.ydbio.2017.05.028">doi:10.1016/j.ydbio.2017.05.028</a></li>
+
+  <li><span class="ref-num">[9]</span> Szklarczyk D et al. &ldquo;The STRING database in 2023: protein&ndash;protein association networks
+    and functional enrichment analyses for any sequenced genome of interest.&rdquo;
+    <em>Nucleic Acids Research</em> 51:D483&ndash;D489 (2023).
+    <a href="https://doi.org/10.1093/nar/gkac1000">doi:10.1093/nar/gkac1000</a></li>
 </ul>
 
 <div class="footer">

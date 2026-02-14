@@ -16,9 +16,7 @@ Usage:
 import json
 import sys
 import time
-import urllib.error
 import urllib.parse
-import urllib.request
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
@@ -26,6 +24,7 @@ sys.path.insert(0, str(REPO_ROOT / "normalizers"))
 
 from genes import GENES
 from pipeline import PipelineReport, escape_cue_string
+from utils import fetch_json_with_retry
 
 CACHE_DIR = REPO_ROOT / "data" / "gtex"
 CACHE_FILE = CACHE_DIR / "gtex_cache.json"
@@ -55,11 +54,8 @@ CRANIOFACIAL_TISSUES = {
 def fetch_json(url: str) -> dict | None:
     """Fetch a URL and return parsed JSON, or None on failure."""
     try:
-        req = urllib.request.Request(url, headers={"Accept": "application/json"})
-        with urllib.request.urlopen(req, timeout=30) as resp:
-            return json.loads(resp.read().decode("utf-8"))
-    except (urllib.error.URLError, urllib.error.HTTPError,
-            TimeoutError, json.JSONDecodeError) as e:
+        return fetch_json_with_retry(url, headers={"Accept": "application/json"})
+    except Exception as e:
         print(f"  WARNING: request failed: {e}", file=sys.stderr)
         return None
 

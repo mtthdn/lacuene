@@ -49,6 +49,7 @@ generate: validate
     cue export ./model/ -e gene_sources > output/sources.json
     cue export ./model/ -e funding_gaps > output/funding_gaps.json
     cue export ./model/ -e weighted_gaps > output/weighted_gaps.json
+    cue export ./model/ -e anomalies > output/anomalies.json
     @echo "Generated: $(du -sh output | cut -f1) in output/"
 
 # Quick summary stats
@@ -127,6 +128,14 @@ site: vizdata
 # Deploy site
 deploy: site
     bash deploy.sh
+
+# Local preview server
+serve: site
+    python3 -m http.server 8000 -d output/site
+
+# Cross-source anomalies
+anomalies:
+    @cue export ./model/ -e anomalies | python3 -m json.tool
 
 # Generate all outputs
 all: generate vizdata report site
